@@ -73,8 +73,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ShopCarWindow.xaml.cs">
-      <DependentUpon>ShopCarWindow.xaml</DependentUpon>
+    <Compile Include="ShowCarWindow.xaml.cs">
+      <DependentUpon>ShowCarWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWinCarShop.xaml">
       <SubType>Designer</SubType>
@@ -87,7 +87,7 @@
     <Compile Include="MainWinCarShop.xaml.cs">
       <DependentUpon>MainWinCarShop.xaml</DependentUpon>
     </Compile>
-    <Page Include="ShopCarWindow.xaml">
+    <Page Include="ShowCarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

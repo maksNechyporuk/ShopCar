@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWinCarShop" Height="450" Width="800">
     <Grid>
-        <Button Name="btnShowCar" Content="Show car" HorizontalAlignment="Left" Margin="71,72,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="btnShowCar" Content="Show car" HorizontalAlignment="Left" Margin="71,72,0,0" VerticalAlignment="Top" Width="95" Height="32" Click="BtnShowCar_Click"/>
 
     </Grid>
 </Window>
