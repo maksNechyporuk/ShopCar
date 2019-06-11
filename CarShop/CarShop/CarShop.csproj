@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ShopCarWindow.xaml.cs">
+      <DependentUpon>ShopCarWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWinCarShop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -66,6 +69,10 @@
     <Compile Include="MainWinCarShop.xaml.cs">
       <DependentUpon>MainWinCarShop.xaml</DependentUpon>
     </Compile>
+    <Page Include="ShopCarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
