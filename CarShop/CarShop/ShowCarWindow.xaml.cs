@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace CarShop
 {
     /// <summary>
-    /// Interaction logic for ShopCarWindow.xaml
+    /// Interaction logic for ShowCarWindow.xaml
     /// </summary>
-    public partial class ShopCarWindow : Window
+    public partial class ShowCarWindow : Window
     {
-        public ShopCarWindow()
+        public ShowCarWindow()
         {
             InitializeComponent();
         }
