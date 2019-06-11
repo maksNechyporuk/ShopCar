@@ -22,6 +22,9 @@ namespace CarShop
         public MainWinCarShop()
         {
             InitializeComponent();
+
+
+
         }
     }
 }
