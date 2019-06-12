@@ -45,5 +45,11 @@ namespace CarShop
             AddNewMakeWindow makeWindow = new AddNewMakeWindow();
             makeWindow.ShowDialog();
         }
+
+        private void BtnAddModel_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewModelWindow makeWindow = new AddNewModelWindow();
+            makeWindow.ShowDialog();
+        }
     }
 }

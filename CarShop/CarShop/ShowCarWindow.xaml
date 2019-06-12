@@ -66,5 +66,6 @@
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
         <Button x:Name="btnAddMake" Content="Add new make" HorizontalAlignment="Left" Margin="256,19,0,0" VerticalAlignment="Top" Width="103" Height="37" Click="BtnAddMake_Click"/>
+        <Button x:Name="btnAddModel" Content="Add new model" HorizontalAlignment="Left" Margin="378,19,0,0" VerticalAlignment="Top" Width="102" Height="37" Click="BtnAddModel_Click"/>
     </Grid>
 </Window>
