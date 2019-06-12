@@ -53,7 +53,12 @@ namespace CarShop
 
             SQLiteConnection con = new SQLiteConnection($"Data Source={dbName}");
             con.Open();
+            string query = "PRAGMA foreign_keys = ON";
+            SQLiteCommand cmd = new SQLiteCommand(query, con);
+            cmd.ExecuteNonQuery();
             GenerateTabels(con);
+            con.Close();
+
         }
         private void GenerateTabels(SQLiteConnection con)
         {
@@ -112,6 +117,7 @@ namespace CarShop
                                      "Date Datetime NOT NULL, " +
                                      "Id_FuelType int NOT NULL, " +
                                      "Id_Type int NOT NULL, " +
+                                       "Availability Bool NOT NULL, " +
                                     "Price int NOT NULL, " +
                                     "FOREIGN KEY (Id_Color) REFERENCES tblColor(Id), " +
                                     "FOREIGN KEY (Id_Model) REFERENCES tblCarModel(Id)" +
@@ -129,7 +135,7 @@ namespace CarShop
                                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                     "Id_Car int NOT NULL, " +
                                     "Id_Client int NOT NULL, " +
-                                
+                                  "Date Datetime NOT NULL, " +
                                     " Total_Price int NOT NULL, " +
                                     "FOREIGN KEY (Id_Car) REFERENCES tblCar(Id), " +
                                     "FOREIGN KEY (Id_Client) REFERENCES tblClient(Id)" +
