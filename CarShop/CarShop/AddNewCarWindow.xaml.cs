@@ -15,28 +15,13 @@ using System.Windows.Shapes;
 namespace CarShop
 {
     /// <summary>
-    /// Interaction logic for ShowCarWindow.xaml
+    /// Interaction logic for AddNewCarWindow.xaml
     /// </summary>
-    public partial class ShowCarWindow : Window
+    public partial class AddNewCarWindow : Window
     {
-        public ShowCarWindow()
+        public AddNewCarWindow()
         {
             InitializeComponent();
-        }
-
-        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnAddNew_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
