@@ -36,7 +36,14 @@ namespace CarShop
 
         private void BtnAddNew_Click(object sender, RoutedEventArgs e)
         {
+            AddNewCarWindow addNewCar = new AddNewCarWindow();
+            addNewCar.ShowDialog();
+        }
 
+        private void BtnAddMake_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewMakeWindow makeWindow = new AddNewMakeWindow();
+            makeWindow.ShowDialog();
         }
     }
 }
