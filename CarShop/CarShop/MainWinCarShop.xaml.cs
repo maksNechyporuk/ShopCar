@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -29,10 +31,8 @@ namespace CarShop
         private string tblTypeCar = "tblTypeCar";
         private string tblOrder = "tblOrder"; 
         private string tblPurchase = "tblPurchase"; 
-        private string tblClient = "tblClient"; 
-
-
-
+        private string tblClient = "tblClient";
+        public ObservableCollection<Car> Cars = new ObservableCollection<Car>();
 
         public MainWinCarShop()
         {
@@ -71,8 +71,6 @@ namespace CarShop
                                 ")";
             SQLiteCommand cmd = new SQLiteCommand(query, con);
             cmd.ExecuteNonQuery();
-
-
             query = $"CREATE TABLE IF NOT EXISTS {tblCarModel} " +
                                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                     "Model TEXT NOT NULL " +
@@ -80,7 +78,6 @@ namespace CarShop
                                 ");";
             cmd.CommandText = query;
             cmd.ExecuteNonQuery();
-
             query = $"CREATE TABLE IF NOT EXISTS {tblCarMake} " +
                        "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                            "Make TEXT NOT NULL " +
@@ -113,11 +110,12 @@ namespace CarShop
                                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                     "Id_Color int NOT NULL, " +
                                     "Id_Model int NOT NULL, " +
-                                     "Id_Make int NOT NULL, " +
-                                     "Date Datetime NOT NULL, " +
-                                     "Id_FuelType int NOT NULL, " +
-                                     "Id_Type int NOT NULL, " +
-                                       "Availability Bool NOT NULL, " +
+                                    "Id_Make int NOT NULL, " +
+                                    "Date Datetime NOT NULL, " +
+                                    "Id_FuelType int NOT NULL, " +
+                                    "Id_Type int NOT NULL, " +
+                                    "Availability Bool NOT NULL, " +
+                                    "Image Text NOT NULL, " +
                                     "Price int NOT NULL, " +
                                     "FOREIGN KEY (Id_Color) REFERENCES tblColor(Id), " +
                                     "FOREIGN KEY (Id_Model) REFERENCES tblCarModel(Id)" +
@@ -180,6 +178,7 @@ namespace CarShop
         private void BtnShowCar_Click(object sender, RoutedEventArgs e)
         {
             ShowCarWindow showCar = new ShowCarWindow();
+           
             showCar.Show();
         }
     }
