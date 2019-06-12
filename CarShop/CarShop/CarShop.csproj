@@ -92,11 +92,18 @@
     <Compile Include="AddNewCarWindow.xaml.cs">
       <DependentUpon>AddNewCarWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddNewMakeWindow.xaml.cs">
+      <DependentUpon>AddNewMakeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Car.cs" />
     <Compile Include="ShowCarWindow.xaml.cs">
       <DependentUpon>ShowCarWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AddNewCarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddNewMakeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

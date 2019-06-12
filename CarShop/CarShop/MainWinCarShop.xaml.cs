@@ -79,9 +79,8 @@ namespace CarShop
             cmd.CommandText = query;
             cmd.ExecuteNonQuery();
             query = $"CREATE TABLE IF NOT EXISTS {tblCarMake} " +
-                       "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                           "Make TEXT NOT NULL " +
-
+                       "(    Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                           "Make TEXT NOT NULL UNIQUE" +
                        ");";
             cmd.CommandText = query;
             cmd.ExecuteNonQuery();
