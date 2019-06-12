@@ -71,13 +71,6 @@ namespace CarShop
                                 ")";
             SQLiteCommand cmd = new SQLiteCommand(query, con);
             cmd.ExecuteNonQuery();
-            query = $"CREATE TABLE IF NOT EXISTS {tblCarModel} " +
-                                "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                    "Model TEXT NOT NULL " +
-                                     
-                                ");";
-            cmd.CommandText = query;
-            cmd.ExecuteNonQuery();
             query = $"CREATE TABLE IF NOT EXISTS {tblCarMake} " +
                        "(    Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                            "Make TEXT NOT NULL UNIQUE" +
@@ -86,6 +79,16 @@ namespace CarShop
             cmd.ExecuteNonQuery();
 
 
+         
+            query = $"CREATE TABLE IF NOT EXISTS {tblCarModel} " +
+                                "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                 "Id_Make int NOT NULL, " +
+                                    "Model TEXT NOT NULL, " +
+                                 "FOREIGN KEY (Id_Make) REFERENCES tblCarMake(Id)" +
+
+                                ");";
+            cmd.CommandText = query;
+            cmd.ExecuteNonQuery();
             query = $"CREATE TABLE IF NOT EXISTS {tblFuel_type} " +
                   "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                       "Fuel TEXT NOT NULL " +
