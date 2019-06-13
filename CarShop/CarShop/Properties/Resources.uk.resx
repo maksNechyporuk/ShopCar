@@ -120,4 +120,16 @@
   <data name="bntContentShow" xml:space="preserve">
     <value> Автомобілі</value>
   </data>
+  <data name="btnAddCar" xml:space="preserve">
+    <value> Добавити новий автомобіль</value>
+  </data>
+  <data name="btnAddMake" xml:space="preserve">
+    <value>Добавити нову марку</value>
+  </data>
+  <data name="btnAddModel" xml:space="preserve">
+    <value>Добавити нову модель</value>
+  </data>
+  <data name="btnSearchCar" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
 </root>
