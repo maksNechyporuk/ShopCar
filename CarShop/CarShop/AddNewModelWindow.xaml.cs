@@ -68,13 +68,13 @@ namespace CarShop
             cmd.Parameters.AddWithValue("@IdMake", cbMake.SelectedValue);
             cmd.Parameters.AddWithValue("@Model", txtModel.Text);
 
-          //  try
+            try
             {
                 cmd.ExecuteNonQuery();
                 txtModel.Clear();
                 con.Close();
             }
-          //  catch
+            catch
             {
 
             }

@@ -83,7 +83,7 @@ namespace CarShop
          
             query = $"CREATE TABLE IF NOT EXISTS {tblCarModel} " +
                                 "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                 "Id_Make int NOT NULL, " +
+                                 "Id_Make int, " +
                                     "Model TEXT NOT NULL, " +
                                  "FOREIGN KEY (Id_Make) REFERENCES tblCarMake(Id)" +
 
