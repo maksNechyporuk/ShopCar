@@ -154,7 +154,7 @@ namespace CarShop
 
                                     "Id_Purchase int, " +
 
-                                    " Total_Price int NOT NULL, " +
+                                    " Total_Price int, " +
                                     "FOREIGN KEY (Id_Purchase) REFERENCES tblPurchase(Id) " +
 
 
