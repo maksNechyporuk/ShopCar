@@ -97,6 +97,15 @@ namespace CarShop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clients.
+        /// </summary>
+        public static string btnClients {
+            get {
+                return ResourceManager.GetString("btnClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string btnSearchCar {

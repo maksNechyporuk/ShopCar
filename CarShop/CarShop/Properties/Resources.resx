@@ -129,6 +129,9 @@
   <data name="btnAddModel" xml:space="preserve">
     <value>Add new model</value>
   </data>
+  <data name="btnClients" xml:space="preserve">
+    <value>Clients</value>
+  </data>
   <data name="btnSearchCar" xml:space="preserve">
     <value>Search</value>
   </data>
