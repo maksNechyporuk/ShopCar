@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bntContentShow" xml:space="preserve">
-    <value>Show car</value>
+    <value> Автомобілі</value>
   </data>
   <data name="btnAddCar" xml:space="preserve">
-    <value>Add new car</value>
+    <value> Добавити новий автомобіль</value>
   </data>
   <data name="btnAddMake" xml:space="preserve">
-    <value>Add new make</value>
+    <value>Добавити нову марку</value>
   </data>
   <data name="btnAddModel" xml:space="preserve">
-    <value>Add new model</value>
+    <value>Добавити нову модель</value>
   </data>
   <data name="btnSearchCar" xml:space="preserve">
-    <value>Search</value>
+    <value>Пошук</value>
   </data>
 </root>
