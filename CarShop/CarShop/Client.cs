@@ -7,10 +7,38 @@ using System.Threading.Tasks;
 
 namespace CarShop
 {
-    class Client
+    public class Client
     {
         string name;
         string clientImg;
+        int id;
+        string img;
+        public string PathImg
+        {
+            get { return this.img; }
+
+            set
+            {
+                if (this.img != value)
+                {
+                    this.img = value;
+                    this.NotifyPropertyChanged("PathImg");
+                }
+            }
+        }
+        public int Id
+        {
+            get { return this.id; }
+
+            set
+            {
+                if (this.id != value)
+                {
+                    this.id = value;
+                    this.NotifyPropertyChanged("Id");
+                }
+            }
+        }
         public string Name
         {
             get { return this.name; }
