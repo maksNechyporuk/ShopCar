@@ -212,5 +212,12 @@ namespace CarShop
                 .Start(System.Windows.Application.ResourceAssembly.Location);
             System.Windows.Application.Current.Shutdown();
         }
+
+        private void BtnAddClients_Click(object sender, RoutedEventArgs e)
+        {
+            AddClients addClients = new AddClients();
+
+            addClients.Show();
+        }
     }
 }
