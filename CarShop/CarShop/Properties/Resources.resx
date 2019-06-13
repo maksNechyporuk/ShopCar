@@ -120,4 +120,16 @@
   <data name="bntContentShow" xml:space="preserve">
     <value>Show car</value>
   </data>
+  <data name="btnAddCar" xml:space="preserve">
+    <value>Add new car</value>
+  </data>
+  <data name="btnAddMake" xml:space="preserve">
+    <value>Add new make</value>
+  </data>
+  <data name="btnAddModel" xml:space="preserve">
+    <value>Add new model</value>
+  </data>
+  <data name="btnSearchCar" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

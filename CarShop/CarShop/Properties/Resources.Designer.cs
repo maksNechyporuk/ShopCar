@@ -68,5 +68,41 @@ namespace CarShop.Properties {
                 return ResourceManager.GetString("bntContentShow", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new car.
+        /// </summary>
+        public static string btnAddCar {
+            get {
+                return ResourceManager.GetString("btnAddCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new make.
+        /// </summary>
+        public static string btnAddMake {
+            get {
+                return ResourceManager.GetString("btnAddMake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new model.
+        /// </summary>
+        public static string btnAddModel {
+            get {
+                return ResourceManager.GetString("btnAddModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string btnSearchCar {
+            get {
+                return ResourceManager.GetString("btnSearchCar", resourceCulture);
+            }
+        }
     }
 }
