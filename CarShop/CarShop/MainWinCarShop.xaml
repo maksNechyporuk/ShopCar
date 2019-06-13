@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:CarShop"
+        xmlns:p="clr-namespace:CarShop.Properties"
         mc:Ignorable="d"
         Title="MainWinCarShop" Height="450" Width="800">
     <Grid>
-        <Button Name="btnShowCar" Content="Show car" HorizontalAlignment="Left" Margin="71,72,0,0" VerticalAlignment="Top" Width="95" Height="32" Click="BtnShowCar_Click"/>
+        <ToolBar Margin="0,0,0,377">
+            <Button Name="btnUk" Click="BtnUk_Click" >Українська</Button>
+            <Button Name="btnEng" Click="BtnEng_Click" >English</Button>
+        </ToolBar>
+        <Button Name="btnShowCar" Content="{x:Static  p:Resources.bntContentShow}"  HorizontalAlignment="Left" Margin="71,72,0,0" VerticalAlignment="Top" Width="95" Height="32" Click="BtnShowCar_Click"/>
 
     </Grid>
 </Window>
