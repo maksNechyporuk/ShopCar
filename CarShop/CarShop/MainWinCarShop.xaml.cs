@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CarShop
@@ -41,15 +42,15 @@ namespace CarShop
         }
         private void GenerateDB()
         {
-           // Color a =Colors.Green;
-           // MessageBox.Show(a.A.ToString());
-           // Color b=Colors.Yellow;//
-           // Color c=new Color();
-           // c =  Color.FromArgb(a.A,a.R,a.G,a.B);
-           //b = a;
-           // MessageBox.Show(b.A.ToString());
-           // this.Background = new LinearGradientBrush(c,c,10);
-
+            // Color a =Colors.Green;
+            // MessageBox.Show(a.A.ToString());
+            // Color b=Colors.Yellow;//
+            // Color c=new Color();
+            // c =  Color.FromArgb(a.A,a.R,a.G,a.B);
+            //b = a;
+            // MessageBox.Show(b.A.ToString());
+            // this.Background = new LinearGradientBrush(c,c,10);
+        
 
             SQLiteConnection con = new SQLiteConnection($"Data Source={dbName}");
             con.Open();
@@ -182,6 +183,34 @@ namespace CarShop
             ShowCarWindow showCar = new ShowCarWindow();
            
             showCar.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnEng_Click(object sender, RoutedEventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["setLang"].Value = "en-US";
+            config.Save(ConfigurationSaveMode.Modified);
+            //ConfigurationManager.AppSettings["setLang"] = "ru";
+            this.Restart();
+        }
+
+        private void BtnUk_Click(object sender, RoutedEventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["setLang"].Value = "uk";
+            config.Save(ConfigurationSaveMode.Modified);
+            this.Restart();
+        }
+        private void Restart()
+        {
+            System.Diagnostics.Process
+                .Start(System.Windows.Application.ResourceAssembly.Location);
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }
