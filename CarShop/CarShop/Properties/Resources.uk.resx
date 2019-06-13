@@ -129,6 +129,9 @@
   <data name="btnAddModel" xml:space="preserve">
     <value>Добавити нову модель</value>
   </data>
+  <data name="btnClients" xml:space="preserve">
+    <value>Клієнти</value>
+  </data>
   <data name="btnSearchCar" xml:space="preserve">
     <value>Пошук</value>
   </data>
