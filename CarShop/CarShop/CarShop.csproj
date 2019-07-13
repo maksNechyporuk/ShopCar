@@ -109,7 +109,35 @@
     </Compile>
     <Compile Include="Car.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Entities\Car.cs" />
+    <Compile Include="Entities\Colors.cs" />
+    <Compile Include="Entities\EFcontext.cs" />
+    <Compile Include="Entities\FuelType.cs" />
+    <Compile Include="Entities\Make.cs" />
+    <Compile Include="Entities\Model.cs" />
+    <Compile Include="Entities\TypeCar.cs" />
     <Compile Include="Make.cs" />
+    <Compile Include="Migrations\201907131929423_tblFuelTypes.cs" />
+    <Compile Include="Migrations\201907131929423_tblFuelTypes.Designer.cs">
+      <DependentUpon>201907131929423_tblFuelTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907131937196_tblColors.cs" />
+    <Compile Include="Migrations\201907131937196_tblColors.Designer.cs">
+      <DependentUpon>201907131937196_tblColors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907131938520_tblMakes.cs" />
+    <Compile Include="Migrations\201907131938520_tblMakes.Designer.cs">
+      <DependentUpon>201907131938520_tblMakes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907131940211_tblTypeCars.cs" />
+    <Compile Include="Migrations\201907131940211_tblTypeCars.Designer.cs">
+      <DependentUpon>201907131940211_tblTypeCars.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907132044550_tblCars.cs" />
+    <Compile Include="Migrations\201907132044550_tblCars.Designer.cs">
+      <DependentUpon>201907132044550_tblCars.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\Resource.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,6 +201,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201907131929423_tblFuelTypes.resx">
+      <DependentUpon>201907131929423_tblFuelTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907131937196_tblColors.resx">
+      <DependentUpon>201907131937196_tblColors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907131938520_tblMakes.resx">
+      <DependentUpon>201907131938520_tblMakes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907131940211_tblTypeCars.resx">
+      <DependentUpon>201907131940211_tblTypeCars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907132044550_tblCars.resx">
+      <DependentUpon>201907132044550_tblCars.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -196,7 +239,9 @@
     <None Include="ShopCar.sqlite" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets')" />
