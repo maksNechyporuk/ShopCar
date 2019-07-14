@@ -24,7 +24,7 @@ namespace CarShop
     public partial class AddClients : Window
     {
         UserService service;
-        public ObservableCollection<Client> clients = new ObservableCollection<Client>();
+        public ObservableCollection<ClientVM> clients = new ObservableCollection<ClientVM>();
         public bool check = false;
         public string ImgName;
         string imageFolderSave = "ClientsPictures";
@@ -104,7 +104,7 @@ namespace CarShop
                     window.btnAddImg.IsEnabled = false;
                     //window.btnSearch.IsEnabled = false;
                     int ind = 0;
-                    ind = window.clients.IndexOf(window.dgViewDB.SelectedItem as Client);
+                    ind = window.clients.IndexOf(window.dgViewDB.SelectedItem as ClientVM);
                     //window.lblId.Content = window.clients[ind].Id;
                     window.txtName.Text = window.clients[ind].Name;
                     window.img.Source = new BitmapImage(new Uri(window.clients[ind].PathImg));
@@ -119,7 +119,7 @@ namespace CarShop
                     if (window.dgViewDB.SelectedItem != null)
                     {
                         int ind = 0;
-                        ind = window.clients.IndexOf(window.dgViewDB.SelectedItem as Client);
+                        ind = window.clients.IndexOf(window.dgViewDB.SelectedItem as ClientVM);
 
 
                         SQLiteCommand cmd;

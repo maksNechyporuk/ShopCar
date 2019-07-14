@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarShop
 {
-    public class Client
+    public class ClientVM
     {
         string name;
         string clientImg;

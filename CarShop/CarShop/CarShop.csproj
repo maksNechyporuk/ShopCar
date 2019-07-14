@@ -110,11 +110,14 @@
     <Compile Include="Car.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Entities\Car.cs" />
+    <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Colors.cs" />
     <Compile Include="Entities\EFcontext.cs" />
     <Compile Include="Entities\FuelType.cs" />
     <Compile Include="Entities\Make.cs" />
     <Compile Include="Entities\Model.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\Purchase.cs" />
     <Compile Include="Entities\TypeCar.cs" />
     <Compile Include="Make.cs" />
     <Compile Include="Migrations\201907131929423_tblFuelTypes.cs" />
@@ -136,6 +139,10 @@
     <Compile Include="Migrations\201907132044550_tblCars.cs" />
     <Compile Include="Migrations\201907132044550_tblCars.Designer.cs">
       <DependentUpon>201907132044550_tblCars.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907140909157_tblPurchase.cs" />
+    <Compile Include="Migrations\201907140909157_tblPurchase.Designer.cs">
+      <DependentUpon>201907140909157_tblPurchase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\Resource.en-US.Designer.cs">
@@ -215,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907132044550_tblCars.resx">
       <DependentUpon>201907132044550_tblCars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907140909157_tblPurchase.resx">
+      <DependentUpon>201907140909157_tblPurchase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
