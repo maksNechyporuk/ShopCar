@@ -13,7 +13,7 @@ namespace CarShop.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201907131937196_tblColors"; }
+            get { return "201907150823134_tblColors"; }
         }
         
         string IMigrationMetadata.Source

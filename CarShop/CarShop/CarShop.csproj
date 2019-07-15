@@ -124,10 +124,6 @@
     <Compile Include="Migrations\201907131929423_tblFuelTypes.Designer.cs">
       <DependentUpon>201907131929423_tblFuelTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907131937196_tblColors.cs" />
-    <Compile Include="Migrations\201907131937196_tblColors.Designer.cs">
-      <DependentUpon>201907131937196_tblColors.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201907131938520_tblMakes.cs" />
     <Compile Include="Migrations\201907131938520_tblMakes.Designer.cs">
       <DependentUpon>201907131938520_tblMakes.cs</DependentUpon>
@@ -143,6 +139,10 @@
     <Compile Include="Migrations\201907140909157_tblPurchase.cs" />
     <Compile Include="Migrations\201907140909157_tblPurchase.Designer.cs">
       <DependentUpon>201907140909157_tblPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907150823134_tblColors.cs" />
+    <Compile Include="Migrations\201907150823134_tblColors.Designer.cs">
+      <DependentUpon>201907150823134_tblColors.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\Resource.en-US.Designer.cs">
@@ -211,9 +211,6 @@
     <EmbeddedResource Include="Migrations\201907131929423_tblFuelTypes.resx">
       <DependentUpon>201907131929423_tblFuelTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907131937196_tblColors.resx">
-      <DependentUpon>201907131937196_tblColors.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907131938520_tblMakes.resx">
       <DependentUpon>201907131938520_tblMakes.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907140909157_tblPurchase.resx">
       <DependentUpon>201907140909157_tblPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907150823134_tblColors.resx">
+      <DependentUpon>201907150823134_tblColors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
