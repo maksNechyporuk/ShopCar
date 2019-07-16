@@ -158,6 +158,7 @@
     <Compile Include="ShowCarWindow.xaml.cs">
       <DependentUpon>ShowCarWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MakeViewModels.cs" />
     <Page Include="AddClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
