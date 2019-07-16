@@ -7,26 +7,45 @@
         mc:Ignorable="d"
         Title="ShowClients" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="dgClients" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5" Margin="15,74,7,7">
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.292"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-1.069"/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="Id" Header="Id" Binding="{Binding Id}" />
+        <DataGrid Name="dgSimple" AutoGenerateColumns="False" Margin="0,64,0,0">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Назва" Binding="{Binding Name}" />
+            <DataGridTemplateColumn Header="Дата народження">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <DatePicker SelectedDate="{Binding Birthday}" BorderThickness="0" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+        <DataGrid.RowDetailsTemplate>
+            <DataTemplate>
+                <DockPanel Background="GhostWhite">
+                    <Image DockPanel.Dock="Left" Source="{Binding ImageUrl}" Height="64" Margin="10" />
+                    <Grid Margin="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                <DataGridTextColumn x:Name="Name" Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn x:Name="AnimalName" Header="Клікуха" Binding="{Binding Name}" />
+                        <TextBlock Text="ID: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding Id}" Grid.Column="1" />
+                        <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
+                        <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
+                        <TextBlock Text="Birthday: " FontWeight="Bold" Grid.Row="2" />
+                        <TextBlock Text="{Binding Birthday, StringFormat=d}" Grid.Column="1" Grid.Row="2" />
 
-                
-            </DataGrid.Columns>
-
-        </DataGrid>
-        <Button Name="btnFindClient" Content="Find" HorizontalAlignment="Left" Margin="656,10,0,0" VerticalAlignment="Top" Width="126" Height="49" Click="BtnFindClient_Click"/>
+                    </Grid>
+                </DockPanel>
+            </DataTemplate>
+        </DataGrid.RowDetailsTemplate>
+    </DataGrid>
+    <Button Name="btnFindClient" Content="Find" HorizontalAlignment="Left" Margin="656,10,0,0" VerticalAlignment="Top" Width="126" Height="49"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="371,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Label Content="Name: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
