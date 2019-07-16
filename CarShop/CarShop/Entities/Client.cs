@@ -17,6 +17,9 @@ namespace CarShop.Entities
         public string Name { get; set; }
         [Required]
         public string Image { get; set; }
+        [Required]
+        public string Phone { get; set; }
+
         public float Total_price { get; set; }
     }
 }
