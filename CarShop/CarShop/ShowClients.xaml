@@ -26,7 +26,7 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Name="btnFindClient" Content="Find" HorizontalAlignment="Left" Margin="656,10,0,0" VerticalAlignment="Top" Width="126" Height="49"/>
+        <Button Name="btnFindClient" Content="Find" HorizontalAlignment="Left" Margin="656,10,0,0" VerticalAlignment="Top" Width="126" Height="49" Click="BtnFindClient_Click"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="371,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Label Content="Name: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
