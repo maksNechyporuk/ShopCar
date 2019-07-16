@@ -7,13 +7,13 @@ namespace CarShop.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class tblPurchase : IMigrationMetadata
+    public sealed partial class tblClient : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(tblPurchase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(tblClient));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907140909157_tblPurchase"; }
+            get { return "201907160808479_tblClient"; }
         }
         
         string IMigrationMetadata.Source
