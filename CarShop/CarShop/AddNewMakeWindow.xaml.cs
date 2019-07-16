@@ -39,7 +39,6 @@ namespace CarShop
         void FillDB()
         {
             try {
-                //DBGrid.Items.Clear();
                 var query = _context.Makes.AsQueryable();
                 var list = query.Select(at => new MakeViewModels
                 {
@@ -54,9 +53,23 @@ namespace CarShop
        }
         private void BtnAddMake_Click(object sender, RoutedEventArgs e)
         {
-            _context.Makes.Add(new Entities.Make { Name = txtMake.Text });
-            _context. SaveChanges();
-            FillDB();
+            var list = _context.Makes.AsQueryable().ToList();
+            bool c = false;
+            foreach (var item in list)
+            {
+                if (item.Name == txtMake.Text)
+                    c = true;
+            }
+            if (c == true)
+            {
+                MessageBox.Show("Error");
+            }
+            if (c == false)
+            {
+                _context.Makes.Add(new Entities.Make { Name = txtMake.Text });
+                _context.SaveChanges();
+                FillDB();
+            }
         }
 
         private void DBGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -11,7 +11,7 @@
         <Label Content="Name :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.705,0.5"/>
         <TextBox Name="txtName" HorizontalAlignment="Left" Height="23" Margin="81,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
 
-        <Button Name="btnAdd" Content="Click to accept registration" HorizontalAlignment="Left" Margin="17,216,0,0" VerticalAlignment="Top" Width="207" Height="29" Click="Button_Click"/>
+        <Button Name="btnAdd" Content="Click to accept registration" HorizontalAlignment="Left" Margin="17,216,0,0" VerticalAlignment="Top" Width="207" Height="29"/>
         <Image Name="img" HorizontalAlignment="Left" Height="70" Margin="129,127,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.116,-0.143"/>
         <Label Name="lblId" Content="" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Surname :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
