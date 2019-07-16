@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CarShop.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
@@ -24,33 +26,13 @@ namespace CarShop
         string dbName = "ShopCar.sqlite";
       
         private string tblCarMake = "tblCarMake";
-  
+        private ObservableCollection<MakeViewModels> MakeVM { get; set; }
         public AddNewMakeWindow()
         {
             InitializeComponent();
-            SQLiteConnection con = new SQLiteConnection($"Data Source={dbName}");
-            //string query = $"Insert into tblCarMake(Make) values(@newMake)";
-
-            //SQLiteCommand cmd = new SQLiteCommand(query, con);
-
-            //con.Open();
-
-            //DBGrid.ItemsSource = dataSet.Tables[0].DefaultView;
-
-            //cmd.Dispose();
-            //con.Close();
-
-            con.Open();
-
-            string query = $"Select * from tblCarMake";
-            DataSet dataSet = new DataSet();
-            SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(query, con);
-            dataAdapter.Fill(dataSet);
-            DBGrid.ItemsSource = dataSet.Tables[0].DefaultView;
-            con.Close();
-          
-
-
+            MakeVM = new ObservableCollection<MakeViewModels>();
+           
+            DBGrid.ItemsSource = MakeVM;        
         }
 
         private void BtnAddMake_Click(object sender, RoutedEventArgs e)
@@ -70,6 +52,11 @@ namespace CarShop
            {
 
             }
+        }
+
+        private void DBGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
