@@ -23,5 +23,10 @@ namespace CarShop
         {
             InitializeComponent();
         }
+
+        private void BtnFindClient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
