@@ -184,6 +184,531 @@ namespace CarShop.Migrations
                 Name = "AMG GT S"
             });
 
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 12,
+                MakeId = 4,
+                Name = "A SEDAN"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 13,
+                MakeId = 4,
+                Name = "V-CLASS"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 14,
+                MakeId = 4,
+                Name = "M-CLASS"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 15,
+                MakeId = 4,
+                Name = "S-CLASS CABRIOLET"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 16,
+                MakeId = 5,
+                Name = "GT 86"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 17,
+                MakeId = 5,
+                Name = "SIENNA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 18,
+                MakeId = 5,
+                Name = "CAMRY"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 19,
+                MakeId = 6,
+                Name = "GOLF"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 20,
+                MakeId = 6,
+                Name = "ATLAS"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 21,
+                MakeId = 6,
+                Name = "PASSAT"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 22,
+                MakeId = 6,
+                Name = "TOURAN"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 23,
+                MakeId = 7,
+                Name = "COBALT"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 24,
+                MakeId = 7,
+                Name = "CORVETTE"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 25,
+                MakeId = 7,
+                Name = "VIVA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 26,
+                MakeId = 7,
+                Name = "ORLANDO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 27,
+                MakeId = 7,
+                Name = "ALERO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 28,
+                MakeId = 8,
+                Name = "EXPLORER"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 29,
+                MakeId = 8,
+                Name = "FIESTA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 30,
+                MakeId = 8,
+                Name = "FOCUS RS"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 31,
+                MakeId = 8,
+                Name = "MUSTANG"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 32,
+                MakeId = 8,
+                Name = "TAURUS"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 33,
+                MakeId = 9,
+                Name = "EXPERT"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 34,
+                MakeId = 9,
+                Name = "308 GT"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 35,
+                MakeId = 9,
+                Name = "PEUGEOT 1007"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 36,
+                MakeId = 9,
+                Name = "208"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 37,
+                MakeId = 9,
+                Name = "TRAVELLER"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 38,
+                MakeId = 9,
+                Name = "508 RXH"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 39,
+                MakeId = 10,
+                Name = "BRAVO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 40,
+                MakeId = 10,
+                Name = "MOBI"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 41,
+                MakeId = 10,
+                Name = "PANDA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 42,
+                MakeId = 10,
+                Name = "TIPO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 43,
+                MakeId = 10,
+                Name = "TORO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 44,
+                MakeId = 10,
+                Name = "LINEA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 45,
+                MakeId = 11,
+                Name = "LAFESTA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 46,
+                MakeId = 11,
+                Name = "GT-R"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 47,
+                MakeId = 11,
+                Name = "ALMERA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 48,
+                MakeId = 11,
+                Name = " PATROL"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 49,
+                MakeId = 11,
+                Name = "SENTRA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 50,
+                MakeId = 12,
+                Name = "TERRACAN"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 51,
+                MakeId = 12,
+                Name = "KONA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 52,
+                MakeId = 12,
+                Name = " GRANDEUR"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 53,
+                MakeId = 12,
+                Name = "CRETA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 54,
+                MakeId = 12,
+                Name = "SONATA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 55,
+                MakeId = 12,
+                Name = "GENESIS"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 56,
+                MakeId = 13,
+                Name = "ADAM"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 57,
+                MakeId = 13,
+                Name = "ANTARA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 58,
+                MakeId = 13,
+                Name = "FRONTERA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 59,
+                MakeId = 13,
+                Name = "CORSA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 60,
+                MakeId = 13,
+                Name = "VIVARO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 61,
+                MakeId = 14,
+                Name = "ESPACE"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 62,
+                MakeId = 14,
+                Name = "KOLEOS"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 63,
+                MakeId = 14,
+                Name = "LATITUDE"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 64,
+                MakeId = 14,
+                Name = "SANDERO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 65,
+                MakeId = 14,
+                Name = "TALISMAN"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 66,
+                MakeId = 14,
+                Name = "TWINGO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 67,
+                MakeId = 15,
+                Name = "STELLA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 68,
+                MakeId = 15,
+                Name = "TRIBECA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 69,
+                MakeId = 15,
+                Name = "ASCENT"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 70,
+                MakeId = 15,
+                Name = "JUSTY"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 71,
+                MakeId = 15,
+                Name = "FORESTER"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 72,
+                MakeId = 16,
+                Name = "CITIGO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 73,
+                MakeId = 16,
+                Name = "OCTAVIA"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 74,
+                MakeId = 16,
+                Name = "ROOMSTER"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 75,
+                MakeId = 16,
+                Name = "YETI"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 76,
+                MakeId = 16,
+                Name = "KAMIQ"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 77,
+                MakeId = 17,
+                Name = "ACCORD"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 78,
+                MakeId = 17,
+                Name = "FIT"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 79,
+                MakeId = 17,
+                Name = "PASSPORT"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 80,
+                MakeId = 17,
+                Name = "PILOT"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 81,
+                MakeId = 17,
+                Name = "CR-V"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 82,
+                MakeId = 18,
+                Name = "C-CROSSER"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 83,
+                MakeId = 18,
+                Name = "BERLINGO"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 84,
+                MakeId = 18,
+                Name = "C4 SEDAN"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 85,
+                MakeId = 18,
+                Name = "SPACETOURER"
+            });
+
+            context.Models.AddOrUpdate(a => a.Id, new Entities.Model
+            {
+                Id = 86,
+                MakeId = 18,
+                Name = "C6"
+            });
+
             #endregion
 
             #region tblTypes
@@ -266,55 +791,43 @@ namespace CarShop.Migrations
             context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
             {
                 Id = 12,
-                Name = "Volvo"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 13,
                 Name = "Hyundai"
             });
 
             context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
             {
-                Id = 14,
+                Id = 13,
                 Name = "Opel"
             });
 
             context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
             {
-                Id = 15,
+                Id = 14,
                 Name = "Renault"
             });
 
             context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
             {
-                Id = 16,
-                Name = "Seat"
+                Id = 15,
+                Name = "Subaru"
             });
 
             context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
             {
-                Id = 17,
+                Id = 16,
                 Name = "Skoda"
             });
 
             context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
             {
-                Id = 18,
+                Id = 17,
                 Name = "Honda"
             });
 
             context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
             {
-                Id = 19,
+                Id = 18,
                 Name = "Citroen"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 20,
-                Name = "Suzuki"
             });
 
             #endregion
