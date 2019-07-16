@@ -703,9 +703,7 @@ namespace CarShop.Migrations
             });
 
             #endregion
-
-          
-
+        
             #region tblMakes
 
             context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
