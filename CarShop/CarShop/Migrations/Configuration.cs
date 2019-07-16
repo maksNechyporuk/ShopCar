@@ -14,14 +14,7 @@ namespace CarShop.Migrations
 
         protected override void Seed(CarShop.Entities.EFcontext context)
         {
-            #region tblCars
-
-            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
-            {
-                  
-            });
-
-            #endregion
+            
 
             #region tblColors
 
@@ -711,14 +704,7 @@ namespace CarShop.Migrations
 
             #endregion
 
-            #region tblTypes
-
-            context.TypeCars.AddOrUpdate(a => a.Id, new Entities.TypeCar
-            {
-
-            });
-
-            #endregion
+          
 
             #region tblMakes
 
