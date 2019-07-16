@@ -219,5 +219,11 @@ namespace CarShop
 
             addClients.Show();
         }
+
+        private void BtnShowClients_Click(object sender, RoutedEventArgs e)
+        {
+            ShowClients showClients = new ShowClients();
+            showClients.Show();
+        }
     }
 }

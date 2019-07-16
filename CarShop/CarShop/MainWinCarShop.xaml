@@ -15,6 +15,7 @@
         </ToolBar>
         <Button Name="btnShowCar" Content="{x:Static  p:Resources.bntContentShow}"  HorizontalAlignment="Left" Margin="71,72,0,0" VerticalAlignment="Top" Width="95" Height="32" Click="BtnShowCar_Click"/>
         <Button Name="btnAddClients" Content="{x:Static  p:Resources.btnClients}" HorizontalAlignment="Left" Margin="543,72,0,0" VerticalAlignment="Top" Width="95" Height="32" Click="BtnAddClients_Click"/>
+        <Button x:Name="btnShowClients" Content="Show Clients" HorizontalAlignment="Left" Margin="543,191,0,0" VerticalAlignment="Top" Width="95" Height="32" Click="BtnShowClients_Click"/>
 
     </Grid>
 </Window>
