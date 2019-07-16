@@ -5,57 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop"
         mc:Ignorable="d"
-        Title="AddClients" Height="418" Width="552">
-    <Grid Height="385" VerticalAlignment="Top" Margin="0,0,2,0">
-        <Button Name="btnAddImg" Content="Add Image" HorizontalAlignment="Left" Margin="224,7,0,0" VerticalAlignment="Top" Width="100" Height="29" Click="BtnImage_Click"/>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="32,10,0,0" VerticalAlignment="Top" Width="44" RenderTransformOrigin="0.705,0.5"/>
-        <TextBox Name="txtName" HorizontalAlignment="Left" Height="23" Margin="81,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
-        <DataGrid x:Name="dgViewDB" Margin="7,83,7,7" AutoGenerateColumns="False" >
-            <DataGrid.Columns>
+        Title="Registration" Height="292" Width="258">
+    <Grid Height="265" VerticalAlignment="Top" HorizontalAlignment="Left" Width="248" Margin="0,0,0,-4">
+        <Button Name="btnAddImg" Content="Add Image" HorizontalAlignment="Left" Margin="17,168,0,0" VerticalAlignment="Top" Width="100" Height="29" Click="BtnImage_Click" RenderTransformOrigin="0.5,0.966"/>
+        <Label Content="Name :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.705,0.5"/>
+        <TextBox Name="txtName" HorizontalAlignment="Left" Height="23" Margin="81,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
 
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
-
-                <DataGridTextColumn x:Name="nameUser" Header="Name" Binding="{Binding Name}" />
-
-            </DataGrid.Columns>
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.292"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-1.069"/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
-
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate x:Name="abc">
-                    <DockPanel x:Name="dockPanelUser" Background="GhostWhite">
-                        <Image  x:Name="UserImage" DockPanel.Dock="Left" Source="{Binding PathImg}" Height="64" Margin="10" />
-                        <Grid Margin="0,10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="ID: " FontWeight="Bold" />
-                            <TextBlock Text="{Binding Id}" Grid.Column="1" />
-                            <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
-                            <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
-
-                        </Grid>
-                    </DockPanel>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-        </DataGrid>
-
-        <Button Name="btnAdd" Content="Add Client" HorizontalAlignment="Left" Margin="429,7,0,0" VerticalAlignment="Top" Width="105" Height="29" Click="Button_Click"/>
-        <Image Name="img" HorizontalAlignment="Left" Height="70" Margin="329,7,0,0" VerticalAlignment="Top" Width="95"/>
+        <Button Name="btnAdd" Content="Click to accept registration" HorizontalAlignment="Left" Margin="17,216,0,0" VerticalAlignment="Top" Width="207" Height="29" Click="Button_Click"/>
+        <Image Name="img" HorizontalAlignment="Left" Height="70" Margin="129,127,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.116,-0.143"/>
         <Label Name="lblId" Content="" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Surname :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtName_Copy" HorizontalAlignment="Left" Height="23" Margin="81,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+        <TextBox x:Name="txtName_Copy1" HorizontalAlignment="Left" Height="23" Margin="81,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
+        <TextBox x:Name="txtName_Copy2" HorizontalAlignment="Left" Height="23" Margin="81,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
+        <Label Content="Surname :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Number :" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top"/>
+        <Label Content="Choice your photo :" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
