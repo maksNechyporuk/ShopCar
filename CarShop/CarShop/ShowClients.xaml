@@ -7,21 +7,15 @@
         mc:Ignorable="d"
         Title="ShowClients" Height="450" Width="800">
     <Grid>
-        <DataGrid Name="dgSimple" AutoGenerateColumns="False" Margin="0,64,0,0">
+        <DataGrid Name="dgShowClients" AutoGenerateColumns="False" Margin="0,64,0,0">
         <DataGrid.Columns>
-            <DataGridTextColumn Header="Назва" Binding="{Binding Name}" />
-            <DataGridTemplateColumn Header="Дата народження">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <DatePicker SelectedDate="{Binding Birthday}" BorderThickness="0" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-        </DataGrid.Columns>
+            <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+            </DataGrid.Columns>
         <DataGrid.RowDetailsTemplate>
             <DataTemplate>
                 <DockPanel Background="GhostWhite">
-                    <Image DockPanel.Dock="Left" Source="{Binding ImageUrl}" Height="64" Margin="10" />
+                        <Image DockPanel.Dock="Left" Source="{Binding PathImg}" Height="64" Margin="10" />
                     <Grid Margin="0,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -38,7 +32,7 @@
                         <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
                         <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
                         <TextBlock Text="Birthday: " FontWeight="Bold" Grid.Row="2" />
-                        <TextBlock Text="{Binding Birthday, StringFormat=d}" Grid.Column="1" Grid.Row="2" />
+                        <TextBlock Text="{Binding Phone}" Grid.Column="1" Grid.Row="2" />
 
                     </Grid>
                 </DockPanel>
