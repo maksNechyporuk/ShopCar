@@ -1,4 +1,4 @@
-namespace CarShop.Migrations
+﻿namespace CarShop.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -14,8 +14,19 @@ namespace CarShop.Migrations
 
         protected override void Seed(CarShop.Entities.EFcontext context)
         {
-            
+            #region tblCars     
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 1,
+                ColorId = 1,
+                FuelTypeId = 2,
+                ModelId = 1,
+                Price = 10000,
+                //TypeId          
+            });
 
+          
+            
             #region tblColors
 
             context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
@@ -74,26 +85,26 @@ namespace CarShop.Migrations
 
             context.FuelTypes.AddOrUpdate(a => a.Id, new Entities.FuelType
             {
-                 Id = 1,
-                 Type = "Electro"
+                Id = 1,
+                Type = "Електро"
             });
 
             context.FuelTypes.AddOrUpdate(a => a.Id, new Entities.FuelType
             {
                 Id = 2,
-                Type = "Gas"
+                Type = "Газ"
             });
 
             context.FuelTypes.AddOrUpdate(a => a.Id, new Entities.FuelType
             {
                 Id = 3,
-                Type = "Diesel"
+                Type = "Дизельне паливо"
             });
 
             context.FuelTypes.AddOrUpdate(a => a.Id, new Entities.FuelType
             {
                 Id = 4,
-                Type = "Petrol"
+                Type = "Бензин"
             });
 
             #endregion
@@ -102,9 +113,9 @@ namespace CarShop.Migrations
 
             context.Models.AddOrUpdate(a => a.Id, new Entities.Model
             {
-                 Id = 1,
-                 MakeId = 1,
-                 Name = "3-series Coupe"
+                Id = 1,
+                MakeId = 1,
+                Name = "3-series Coupe"
             });
 
             context.Models.AddOrUpdate(a => a.Id, new Entities.Model
@@ -703,7 +714,7 @@ namespace CarShop.Migrations
             });
 
             #endregion
-        
+
             #region tblMakes
 
             context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
@@ -816,6 +827,64 @@ namespace CarShop.Migrations
 
             #endregion
 
+            //#region tblClients          
+            //context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
+            //{
+            //    Id = 1,
+            //    Name = "Захар",
+            //    Phone = "+380(68)238-80-01",
+            //    Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
+
+            //});
+
+            //context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
+            //{
+            //    Id = 2,
+            //    Name = "Юрій",
+            //    Phone = "+380(68)278-55-22",
+            //    Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
+
+            //});
+
+            //context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
+            //{
+            //    Id = 3,
+            //    Name = "Максим",
+            //    Phone = "+380(97)888-15-97",
+            //    Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
+
+            //});
+
+            //context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
+            //{
+            //    Id = 4,
+            //    Name = "Жопа",
+            //    Phone = "+380(97)156-75-36",
+            //    Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
+
+            //});
+
+            //context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
+            //{
+            //    Id = 5,
+            //    Name = "Кінолог Олексій",
+            //    Phone = "+380(68)675-83-61",
+            //    Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
+
+            //});
+            //#endregion
+
+
+            
+            #region tblOrders         
+            context.Orders.AddOrUpdate(a => a.Id, new Entities.Order
+            {
+                Id = 1,
+                
+
+
+            });
+            #endregion
         }
     }
 }
