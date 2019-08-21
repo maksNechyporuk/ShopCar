@@ -11,7 +11,7 @@
         Title="ShowCarWindow" Height="450" Width="800">
     <Grid>
         <Button Name="btnAddNew" Content="{x:Static  p:Resources.btnAddCar}" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="191" Height="37" Click="BtnAddNew_Click"/>
-        <Button x:Name="btnSearch" Content="{x:Static  p:Resources.btnSearchCar}" HorizontalAlignment="Left" Margin="229,19,0,0" VerticalAlignment="Top" Width="103" Height="37" Click="BtnSearch_Click"/>
+        <Button x:Name="btnSearch" Content="{x:Static  p:Resources.btnSearchCar}" HorizontalAlignment="Left" Margin="229,19,0,0" VerticalAlignment="Top" Width="103" Height="37"/>
         <DataGrid x:Name="dgViewDB" Margin="1,67,-2,-2" AutoGenerateColumns="False" >
             <DataGrid.ContextMenu>
                 <ContextMenu>

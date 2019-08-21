@@ -5,22 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop"
         mc:Ignorable="d"
-        Title="Registration" Height="292" Width="258">
-    <Grid Height="265" VerticalAlignment="Top" HorizontalAlignment="Left" Width="248" Margin="0,0,0,-4">
-        <Button Name="btnAddImg" Content="Add Image" HorizontalAlignment="Left" Margin="17,168,0,0" VerticalAlignment="Top" Width="100" Height="29" Click="BtnImage_Click" RenderTransformOrigin="0.5,0.966"/>
-        <Label Content="Name :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.705,0.5"/>
+        Title="Registration" Height="265.009" Width="245.731">
+    <Grid Height="231" VerticalAlignment="Top" HorizontalAlignment="Left" Width="236">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Name :" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.705,0.5" Height="26"/>
         <TextBox Name="txtName" HorizontalAlignment="Left" Height="23" Margin="81,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-
-        <Button Name="btnAdd" Content="Click to accept registration" HorizontalAlignment="Left" Margin="17,216,0,0" VerticalAlignment="Top" Width="207" Height="29"/>
-        <Image Name="img" HorizontalAlignment="Left" Height="70" Margin="129,127,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.116,-0.143"/>
-        <Label Name="lblId" Content="" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Surname :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtName_Copy" HorizontalAlignment="Left" Height="23" Margin="81,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
-        <TextBox x:Name="txtName_Copy1" HorizontalAlignment="Left" Height="23" Margin="81,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <TextBox x:Name="txtName_Copy2" HorizontalAlignment="Left" Height="23" Margin="81,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <Label Content="Surname :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label Content="Number :" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top"/>
-        <Label Content="Choice your photo :" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
+        
+        <Label Content="Surname :" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Height="26" Width="63"/>
+        <TextBox Name="txtSurname" HorizontalAlignment="Left" Height="23" Margin="81,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
+        
+        <Label Content="Number :" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Height="26" Width="59"/>
+        <TextBox Name="txtNumber" HorizontalAlignment="Left" Height="23" Margin="81,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
+        
+        <Label Content="Password: " HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
+        <TextBox Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="81,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
+        
+        <Label Content="Choice your photo :" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Height="26" Width="114"/>
+        <Button Name="btnAddImg" Content="Add Image" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="114" Height="29" Click="BtnImage_Click" RenderTransformOrigin="0.5,0.966"/>
+        <Image Name="img" HorizontalAlignment="Left" Height="70" Margin="129,122,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.116,-0.143"/>
+        <Button Name="btnAdd" Content="Click to accept registration" HorizontalAlignment="Left" Margin="10,197,0,0" VerticalAlignment="Top" Width="214" Height="29"/>
 
     </Grid>
 </Window>
