@@ -20,6 +20,10 @@ namespace CarShop.Entities
         [Required]
         public string Phone { get; set; }
 
+        [Required]
+        public string Password { get; set; }
+
+
         public float Total_price { get; set; }
     }
 }

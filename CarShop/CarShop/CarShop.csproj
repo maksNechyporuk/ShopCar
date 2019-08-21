@@ -145,6 +145,10 @@
     <Compile Include="Migrations\201907160808479_tblClient.Designer.cs">
       <DependentUpon>201907160808479_tblClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908210655423_add password.cs" />
+    <Compile Include="Migrations\201908210655423_add password.Designer.cs">
+      <DependentUpon>201908210655423_add password.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\Resource.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -235,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907160808479_tblClient.resx">
       <DependentUpon>201907160808479_tblClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908210655423_add password.resx">
+      <DependentUpon>201908210655423_add password.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
