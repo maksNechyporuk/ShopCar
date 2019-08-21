@@ -17,8 +17,8 @@
         <Label Content="Surname :" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Height="26" Width="63"/>
         <TextBox Name="txtSurname" HorizontalAlignment="Left" Height="23" Margin="81,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
         
-        <Label Content="Number :" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Height="26" Width="59"/>
-        <TextBox Name="txtNumber" HorizontalAlignment="Left" Height="23" Margin="81,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
+        <Label Content="Phone :" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Height="26" Width="59"/>
+        <TextBox Name="txtPhone" HorizontalAlignment="Left" Height="23" Margin="81,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
         
         <Label Content="Password: " HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
         <TextBox Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="81,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
@@ -26,7 +26,7 @@
         <Label Content="Choice your photo :" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Height="26" Width="114"/>
         <Button Name="btnAddImg" Content="Add Image" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="114" Height="29" Click="BtnImage_Click" RenderTransformOrigin="0.5,0.966"/>
         <Image Name="img" HorizontalAlignment="Left" Height="70" Margin="129,122,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="0.116,-0.143"/>
-        <Button Name="btnAdd" Content="Click to accept registration" HorizontalAlignment="Left" Margin="10,197,0,0" VerticalAlignment="Top" Width="214" Height="29"/>
+        <Button Name="btnAdd" Content="Click to accept registration" HorizontalAlignment="Left" Margin="10,197,0,0" VerticalAlignment="Top" Width="214" Height="29" Click="BtnAdd_Click"/>
 
     </Grid>
 </Window>
