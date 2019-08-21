@@ -23,7 +23,7 @@ namespace CarShop
     public partial class AddNewCarWindow : Window
     {
         string dbName = "ShopCar.sqlite";
-        public static List<Make> dataSource = new List<Make>();
+       // public static List<Make> dataSource = new List<Make>();
         public AddNewCarWindow()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace CarShop
             dataAdapter.Fill(dataSet);
             while (reader.Read())
             {
-                dataSource.Add(new Make { Name = reader["Make"].ToString(), CityID = int.Parse(reader["Id"].ToString()) });             
+                //dataSource.Add(new Make { Name = reader["Make"].ToString(), CityID = int.Parse(reader["Id"].ToString()) });             
             }
             
            cbMake.ItemsSource = dataSet.Tables[0].DefaultView;

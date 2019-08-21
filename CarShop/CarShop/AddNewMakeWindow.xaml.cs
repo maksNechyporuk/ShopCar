@@ -76,5 +76,46 @@ namespace CarShop
         {
 
         }
+
+        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+             // try
+            { 
+                
+                if (DBGrid.SelectedItem != null)
+                {
+                    int ind = 0;
+                    //    DataRowView d = DBGrid.SelectedItem ;
+                    ind = 0; //int.Parse(d["Id"].ToString());
+                    ind = MakeVM.IndexOf(DBGrid.SelectedItem as MakeViewModels);
+                   
+                    //     //DataGrid(DBGrid.SelectedItem as MakeViewModels);
+                    Make make = new Make { Id = MakeVM[ind].Id, Name = MakeVM[ind].Name };
+                    var itemToRemove = _context.Makes.SingleOrDefault(x => x.Id == MakeVM[ind].Id); //returns a single item.
+
+                    if (itemToRemove != null)
+                    {
+                        _context.Makes.Remove(itemToRemove);
+                        _context.SaveChanges();
+                    }
+                  
+                    //     Make make = _context.Makes
+                    //   .Where(o => o.Name == d["Name"])
+                    //   .FirstOrDefault();
+                    //     int f = 0;
+                    //_context.Makes.Remove(make);
+                    _context.SaveChanges();
+                    FillDB();
+
+                }
+            }
+             //catch
+            {}
+        }
     }
 }
