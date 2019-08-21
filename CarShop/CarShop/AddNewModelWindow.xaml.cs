@@ -22,13 +22,12 @@ namespace CarShop
     public partial class AddNewModelWindow : Window
     {
         string dbName = "ShopCar.sqlite";
-        public static List<Make> dataSource = new List<Make>();
+      //  public static List<Make> dataSource = new List<Make>();
        
         public AddNewModelWindow()
         {
             InitializeComponent();
             this.cbMake.Focus();
-
             FillDG();
         }
         void FillDG()
