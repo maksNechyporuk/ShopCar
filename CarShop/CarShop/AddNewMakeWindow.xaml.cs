@@ -87,28 +87,21 @@ namespace CarShop
              // try
             { 
                 
-                if (DBGrid.SelectedItem != null)
+               if (DBGrid.SelectedItem != null)
                 {
                     int ind = 0;
-                    //    DataRowView d = DBGrid.SelectedItem ;
-                    ind = 0; //int.Parse(d["Id"].ToString());
                     ind = MakeVM.IndexOf(DBGrid.SelectedItem as MakeViewModels);
-                   
+                    int f = MakeVM[ind].Id;
                     //     //DataGrid(DBGrid.SelectedItem as MakeViewModels);
-                    Make make = new Make { Id = MakeVM[ind].Id, Name = MakeVM[ind].Name };
-                    var itemToRemove = _context.Makes.SingleOrDefault(x => x.Id == MakeVM[ind].Id); //returns a single item.
+                    var itemToRemove = _context.Makes.Where(x => x.Id ==f ).ToList(); //returns a single item.
 
                     if (itemToRemove != null)
                     {
-                        _context.Makes.Remove(itemToRemove);
+                        _context.Makes.Remove(itemToRemove[0]);
                         _context.SaveChanges();
                     }
                   
-                    //     Make make = _context.Makes
-                    //   .Where(o => o.Name == d["Name"])
-                    //   .FirstOrDefault();
-                    //     int f = 0;
-                    //_context.Makes.Remove(make);
+                   
                     _context.SaveChanges();
                     FillDB();
 
