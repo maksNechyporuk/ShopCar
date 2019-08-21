@@ -10,7 +10,19 @@ namespace CarShop.ViewModels
    public class MakeViewModels : INotifyPropertyChanged
     {
         private string _name;
-        public int Id { get; set; }
+        int id;
+        public int Id
+        {
+            get { return this.id; }
+            set
+            {
+                if (this.id != value)
+                {
+                    this.id = value;
+                    NotifyPropertyChanged("Id");
+                }
+            }
+        }
         public string Name
         {
             get { return this._name; }
