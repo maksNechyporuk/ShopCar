@@ -18,14 +18,54 @@
             context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
             {
                 Id = 1,
-                ColorId = 1,
-                FuelTypeId = 2,
+                TypeId = 1,
                 ModelId = 1,
+                FuelTypeId = 3,
+                ColorId = 1,
+                Price = 50000,
+
+            });
+
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 2,
+                TypeId = 1,
+                ModelId = 4,
+                FuelTypeId = 4,
+                ColorId = 4,
+                Price = 26000,
+            });
+
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 3,
+                TypeId = 1,
+                ModelId = 2,
+                FuelTypeId = 2,
+                ColorId = 1,
+                Price = 15000,
+            });
+
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 4,
+                TypeId = 1,
+                ModelId = 3,
+                FuelTypeId = 2,
+                ColorId = 3,
+                Price = 40000,
+            });
+
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 5,
+                TypeId = 1,
+                ModelId = 2,
+                FuelTypeId = 4,
+                ColorId = 3,
                 Price = 10000,
-                
             });
             #endregion
-
 
             #region tblColors
 
@@ -874,16 +914,20 @@
             });
             #endregion
 
-
-
-            #region tblOrders         
-            context.Orders.AddOrUpdate(a => a.Id, new Entities.Order
+            #region tblTypesCar       
+            context.Clients.AddOrUpdate(a => a.Id, new Entities.Type
             {
-                Id = 1
-
-
+                Id = 1,
+                Name = "Легковий автомобіль"
 
             });
+
+            context.Clients.AddOrUpdate(a => a.Id, new Entities.Type
+            {
+                Id = 2,
+                Name = "Позашляховик(кросовер)"
+
+            });           
             #endregion
         }
     }
