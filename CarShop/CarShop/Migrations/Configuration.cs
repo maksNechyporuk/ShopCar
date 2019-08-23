@@ -14,60 +14,10 @@
 
         protected override void Seed(CarShop.Entities.EFcontext context)
         {
-            #region tblCars     
-            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
-            {
-                Id = 1,
-                TypeId = 1,
-                ModelId = 1,
-                FuelTypeId = 3,
-                ColorId = 1,
-                Price = 50000,
-
-            });
-
-            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
-            {
-                Id = 2,
-                TypeId = 1,
-                ModelId = 4,
-                FuelTypeId = 4,
-                ColorId = 4,
-                Price = 26000,
-            });
-
-            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
-            {
-                Id = 3,
-                TypeId = 1,
-                ModelId = 2,
-                FuelTypeId = 2,
-                ColorId = 1,
-                Price = 15000,
-            });
-
-            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
-            {
-                Id = 4,
-                TypeId = 1,
-                ModelId = 3,
-                FuelTypeId = 2,
-                ColorId = 3,
-                Price = 40000,
-            });
-
-            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
-            {
-                Id = 5,
-                TypeId = 1,
-                ModelId = 2,
-                FuelTypeId = 4,
-                ColorId = 3,
-                Price = 10000,
-            });
-            #endregion
-
             #region tblColors
+
+
+
 
             context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
             {
@@ -120,7 +70,6 @@
             });
 
             #endregion
-
             #region tblFuelTypes
 
             context.FuelTypes.AddOrUpdate(a => a.Id, new Entities.FuelType
@@ -148,7 +97,159 @@
             });
 
             #endregion
+            #region tblMakes
 
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 1,
+                Name = "BMW"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 2,
+                Name = "Mazda"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 3,
+                Name = "Audi"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 4,
+                Name = "Mersedes-Benz"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 5,
+                Name = "Toyota"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 6,
+                Name = "Volkswagen"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 7,
+                Name = "Chevrolet"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 8,
+                Name = "Ford"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 9,
+                Name = "Peugeot"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 10,
+                Name = "Fiat"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 11,
+                Name = "Nissan"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 12,
+                Name = "Hyundai"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 13,
+                Name = "Opel"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 14,
+                Name = "Renault"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 15,
+                Name = "Subaru"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 16,
+                Name = "Skoda"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 17,
+                Name = "Honda"
+            });
+
+            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
+            {
+                Id = 18,
+                Name = "Citroen"
+            });
+
+            #endregion
+
+
+            #region tblClients          
+            context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
+            {
+                Id = 1,
+                Name = "Zahar",
+                Phone = "+380(68)238-80-01",
+                Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
+
+            });
+
+
+
+            context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
+            {
+                Id = 2,
+                Name = "Yuri",
+                Phone = "+380(68)278-55-22",
+                Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
+
+            });
+
+            context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
+            {
+                Id = 3,
+                Name = "Maxim",
+                Phone = "+380(97)888-15-97",
+                Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
+
+            });
+
+            context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
+            {
+                Id = 4,
+                Name = "Man",
+                Phone = "+380(97)156-75-36",
+                Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
+
+            });
+
+            #endregion
             #region tblModels
 
             context.Models.AddOrUpdate(a => a.Id, new Entities.Model
@@ -754,180 +855,78 @@
             });
 
             #endregion
-
-            #region tblMakes
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 1,
-                Name = "BMW"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 2,
-                Name = "Mazda"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 3,
-                Name = "Audi"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 4,
-                Name = "Mersedes-Benz"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 5,
-                Name = "Toyota"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 6,
-                Name = "Volkswagen"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 7,
-                Name = "Chevrolet"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 8,
-                Name = "Ford"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 9,
-                Name = "Peugeot"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 10,
-                Name = "Fiat"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 11,
-                Name = "Nissan"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 12,
-                Name = "Hyundai"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 13,
-                Name = "Opel"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 14,
-                Name = "Renault"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 15,
-                Name = "Subaru"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 16,
-                Name = "Skoda"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 17,
-                Name = "Honda"
-            });
-
-            context.Makes.AddOrUpdate(a => a.Id, new Entities.Make
-            {
-                Id = 18,
-                Name = "Citroen"
-            });
-
-            #endregion
-
-            #region tblClients          
-            context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
-            {
-                Id = 1,
-                Name = "Захар",
-                Phone = "+380(68)238-80-01",
-                Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
-
-            });
-
-            context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
-            {
-                Id = 2,
-                Name = "Юрій",
-                Phone = "+380(68)278-55-22",
-                Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
-
-            });
-
-            context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
-            {
-                Id = 3,
-                Name = "Максим",
-                Phone = "+380(97)888-15-97",
-                Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
-
-            });
-
-            context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
-            {
-                Id = 4,
-                Name = "Жопа",
-                Phone = "+380(97)156-75-36",
-                Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
-
-            });
-
-            context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
-            {
-                Id = 5,
-                Name = "Кінолог Олексій",
-                Phone = "+380(68)675-83-61",
-                Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
-
-            });
-            #endregion
-
             #region tblTypesCar       
-            context.Clients.AddOrUpdate(a => a.Id, new Entities.Type
+            context.TypeCars.AddOrUpdate(a => a.Id, new Entities.TypeCar
             {
                 Id = 1,
                 Name = "Легковий автомобіль"
 
             });
 
-            context.Clients.AddOrUpdate(a => a.Id, new Entities.Type
+            context.TypeCars.AddOrUpdate(a => a.Id, new Entities.TypeCar
             {
                 Id = 2,
                 Name = "Позашляховик(кросовер)"
 
-            });           
+            });
+            #endregion
+            #region tblCars     
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 1,
+                TypeId = 1,
+                ModelId = 1,
+                FuelTypeId = 3,
+                Date = DateTime.Now,
+                ColorId = 1,
+                Image = "asd",
+                Price = 50000
+
+            });
+
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 2,
+                TypeId = 1,
+                ModelId = 4,
+                Date = DateTime.Now,
+                FuelTypeId = 4,
+                ColorId = 4,
+                Price = 26000
+            });
+
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 3,
+                TypeId = 1,
+                ModelId = 2,
+                FuelTypeId = 2,
+                Date = DateTime.Now,
+                ColorId = 1,
+                Price = 15000
+            });
+
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 4,
+                TypeId = 1,
+                ModelId = 3,
+                FuelTypeId = 2,
+                Date = DateTime.Now,
+                ColorId = 3,
+                Price = 40000
+            });
+
+            context.Cars.AddOrUpdate(a => a.Id, new Entities.Car
+            {
+                Id = 5,
+                TypeId = 1,
+                ModelId = 2,
+                FuelTypeId = 4,
+                ColorId = 3,
+                Date = DateTime.Now,
+                Price = 10000
+            });
             #endregion
         }
     }
