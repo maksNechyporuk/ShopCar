@@ -107,8 +107,7 @@ namespace CarShop
                     _context.Clients.Add(new Entities.Client {
                         Name = txtName.Text + " " + txtSurname.Text,
                         Image = ImgName,
-                        Phone = txtPhone.Text,
-                        Password = txtPassword.Text
+                        Phone = txtPhone.Text
                     });
                     _context.SaveChanges();
                     FillDB();
