@@ -208,8 +208,6 @@
             });
 
             #endregion
-
-
             #region tblClients          
             context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
             {

@@ -172,6 +172,7 @@
     </Compile>
     <Compile Include="ViewModels\ClientViewModels.cs" />
     <Compile Include="ViewModels\MakeViewModels.cs" />
+    <Compile Include="ViewModels\ModelViewModels.cs" />
     <Page Include="AddClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
