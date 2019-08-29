@@ -9,16 +9,15 @@
     <Grid >
         <TextBox Name="txtModel" HorizontalAlignment="Left" Height="23" Margin="243,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Model" HorizontalAlignment="Left" Margin="185,23,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button Name="btnAddMake" Content="Add" HorizontalAlignment="Left" Margin="396,29,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddMake_Click"/>
+        <Button Name="btnAddModel" Content="Add" HorizontalAlignment="Left" Margin="396,29,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddModel_Click"/>
         <DataGrid x:Name="DBGrid" HorizontalAlignment="Left" Height="286" Margin="10,73,0,0" VerticalAlignment="Top" Width="474">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding Path=Id}" Width="50"></DataGridTextColumn>
-                <DataGridTextColumn Header="Make" IsReadOnly="True"  Binding="{Binding Path=Make}" Width="130"></DataGridTextColumn>
-                <DataGridTextColumn Header="Model" IsReadOnly="True"  Binding="{Binding Path=Name}" Width="130"></DataGridTextColumn>
-
+                <DataGridTextColumn Header="Make"  IsReadOnly="True"  Binding="{Binding Path=Make}" Width="130"></DataGridTextColumn>
+                <DataGridTextColumn Header="Model"  IsReadOnly="True" Binding="{Binding Path=Name}" Width="130"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox  x:Name="cbMake" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="CbMake_SelectionChanged" HorizontalAlignment="Left" Margin="60,26,0,0" VerticalAlignment="Top" Width="120"   IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="True"/>
+        <ComboBox  x:Name="cbMake" DisplayMemberPath="Name" SelectedValuePath="Id"  HorizontalAlignment="Left" Margin="60,26,0,0" VerticalAlignment="Top" Width="120"   IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="True"/>
         <Label Content="Make" HorizontalAlignment="Left" Margin="7,26,0,0" VerticalAlignment="Top" Width="48"/>
 
     </Grid>
