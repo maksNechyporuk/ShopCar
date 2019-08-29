@@ -36,7 +36,7 @@ namespace CarShop
         {
             InitializeComponent();
             _context = new EFcontext();
-        //    this.cbMake.Focus();
+            this.cbMake.Focus();
             ModelVM = new ObservableCollection<ModelViewModels>();
             FillDG();
         }
@@ -53,6 +53,7 @@ namespace CarShop
                 }).ToList();
                 ModelVM.Clear();
                 ModelVM.AddRange(list);
+                DBGrid.Items.Clear();
                 foreach (var u in ModelVM)
                 {
                     DBGrid.Items.Add(u);
@@ -68,30 +69,40 @@ namespace CarShop
             }
             catch { }          
         }
-            private void BtnAddMake_Click(object sender, RoutedEventArgs e)
-        {
-            var list = _context.Models.AsQueryable().ToList();
-            bool c = false;
-            foreach (var item in list)
-            {
-                if (item.Name == txtModel.Text)
-                    c = true;
-            }
-            if (c == true)
-            {
-                MessageBox.Show("Error");
-            }
-            if (c == false)
-            {
-                _context.Makes.Add(new Entities.Make { Name = txtModel.Text });
-                _context.SaveChanges();
-                FillDG();
-            }
-        }
 
-        private void CbMake_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+
+
+
+        private void BtnAddModel_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(cbMake.SelectedValue.ToString());
+            if (cbMake.Text != "" && txtModel.Text != "")
+            {
+                var list = _context.Models.AsQueryable().ToList();
+                bool c = false;
+                foreach (var item in list)
+                {
+                    if (item.Name == txtModel.Text)
+                        c = true;
+                }
+                if (c == true)
+                {
+                    MessageBox.Show("Error");
+                }
+                if (c == false)
+                {
+                    _context.Models.Add(new Entities.Model { MakeId = int.Parse(cbMake.SelectedValue.ToString()), Name = txtModel.Text });
+                    _context.SaveChanges();
+                    txtModel.Clear();
+
+                    FillDG();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please, fill all lines.");
+
+            }
         }
     }
 }
