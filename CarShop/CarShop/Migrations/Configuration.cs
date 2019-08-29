@@ -75,25 +75,25 @@
             context.FuelTypes.AddOrUpdate(a => a.Id, new Entities.FuelType
             {
                 Id = 1,
-                Type = "Електро"
+                Type = "Electric"
             });
 
             context.FuelTypes.AddOrUpdate(a => a.Id, new Entities.FuelType
             {
                 Id = 2,
-                Type = "Газ"
+                Type = "Gas"
             });
 
             context.FuelTypes.AddOrUpdate(a => a.Id, new Entities.FuelType
             {
                 Id = 3,
-                Type = "Дизельне паливо"
+                Type = "Diesel"
             });
 
             context.FuelTypes.AddOrUpdate(a => a.Id, new Entities.FuelType
             {
                 Id = 4,
-                Type = "Бензин"
+                Type = "Gasoline"
             });
 
             #endregion
@@ -217,8 +217,6 @@
                 Image = "https://mystatfiles.itstep.org/index.php?view_key=rtILv2awXkYrSQ7WVzOr0G9F1kZwIdRQC03dLrvYiKeqOlHfVfWihS%2FQG%2F11CgvGz2Oj7lb%2FU37S6VWM25ADRgZpjRgGmn2pOd45FJeYozc%3D"
 
             });
-
-
 
             context.Clients.AddOrUpdate(a => a.Id, new Entities.Client
             {
@@ -857,14 +855,28 @@
             context.TypeCars.AddOrUpdate(a => a.Id, new Entities.TypeCar
             {
                 Id = 1,
-                Name = "Легковий автомобіль"
+                Name = "Passenger"
 
             });
 
             context.TypeCars.AddOrUpdate(a => a.Id, new Entities.TypeCar
             {
                 Id = 2,
-                Name = "Позашляховик(кросовер)"
+                Name = "Crossover"
+
+            });
+
+            context.TypeCars.AddOrUpdate(a => a.Id, new Entities.TypeCar
+            {
+                Id = 3,
+                Name = "Truck"
+
+            });
+
+            context.TypeCars.AddOrUpdate(a => a.Id, new Entities.TypeCar
+            {
+                Id = 4,
+                Name = "Moto"
 
             });
             #endregion
