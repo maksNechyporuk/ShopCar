@@ -42,16 +42,6 @@
             context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
             {
                 Id = 3,
-                Name = "Dark Blue",
-                R = 0,
-                G = 0,
-                B = 228,
-                A = 1
-            });
-
-            context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
-            {
-                Id = 4,
                 Name = "Black",
                 R = 0,
                 G = 0,
@@ -61,11 +51,81 @@
 
             context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
             {
-                Id = 5,
+                Id = 4,
                 Name = "White",
                 R = 255,
                 G = 255,
                 B = 255,
+                A = 1
+            });
+
+            context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
+            {
+                Id = 5,
+                Name = "Beige",
+                R = 245,
+                G = 245,
+                B = 220,
+                A = 1
+            });
+
+            context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
+            {
+                Id = 6,
+                Name = "Blue",
+                R = 0,
+                G = 0,
+                B = 255,
+                A = 1
+            });
+
+            context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
+            {
+                Id = 7,
+                Name = "Brown",
+                R = 205,
+                G = 133,
+                B = 63,
+                A = 1
+            });
+
+            context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
+            {
+                Id = 8,
+                Name = "Grey",
+                R = 128,
+                G = 128,
+                B = 128,
+                A = 1
+            });
+
+            context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
+            {
+                Id = 9,
+                Name = "Orange",
+                R = 255,
+                G = 165,
+                B = 0,
+                A = 1
+            });
+
+            context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
+            {
+                Id = 10,
+                Name = "Purple",
+                R = 238,
+                G = 130,
+                B = 238,
+                A = 1
+            });
+
+            context.Colors.AddOrUpdate(a => a.Id, new Entities.Colors
+            {
+                Id = 10,
+                Name = "Yellow",
+                R = 255,
+                G = 255,
+                B = 0,
                 A = 1
             });
 
