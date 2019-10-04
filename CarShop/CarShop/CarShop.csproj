@@ -104,11 +104,6 @@
     <Compile Include="AddNewModelWindow.xaml.cs">
       <DependentUpon>AddNewModelWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AutoComplete.xaml.cs">
-      <DependentUpon>AutoComplete.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Car.cs" />
-    <Compile Include="Client.cs" />
     <Compile Include="Entities\Car.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Colors.cs" />
@@ -121,39 +116,6 @@
     <Compile Include="Entities\TypeCar.cs" />
     <Compile Include="Extensions\ObservableExtension.cs" />
     <Compile Include="Make.cs" />
-    <Compile Include="Migrations\201907131929423_tblFuelTypes.cs" />
-    <Compile Include="Migrations\201907131929423_tblFuelTypes.Designer.cs">
-      <DependentUpon>201907131929423_tblFuelTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907131938520_tblMakes.cs" />
-    <Compile Include="Migrations\201907131938520_tblMakes.Designer.cs">
-      <DependentUpon>201907131938520_tblMakes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907131940211_tblTypeCars.cs" />
-    <Compile Include="Migrations\201907131940211_tblTypeCars.Designer.cs">
-      <DependentUpon>201907131940211_tblTypeCars.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907132044550_tblCars.cs" />
-    <Compile Include="Migrations\201907132044550_tblCars.Designer.cs">
-      <DependentUpon>201907132044550_tblCars.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907150823134_tblColors.cs" />
-    <Compile Include="Migrations\201907150823134_tblColors.Designer.cs">
-      <DependentUpon>201907150823134_tblColors.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907160808479_tblClient.cs" />
-    <Compile Include="Migrations\201907160808479_tblClient.Designer.cs">
-      <DependentUpon>201907160808479_tblClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908210655423_add password.cs" />
-    <Compile Include="Migrations\201908210655423_add password.Designer.cs">
-      <DependentUpon>201908210655423_add password.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908220851524_delete passwd.cs" />
-    <Compile Include="Migrations\201908220851524_delete passwd.Designer.cs">
-      <DependentUpon>201908220851524_delete passwd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\Resource.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -186,10 +148,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewModelWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AutoComplete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,30 +185,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201907131929423_tblFuelTypes.resx">
-      <DependentUpon>201907131929423_tblFuelTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907131938520_tblMakes.resx">
-      <DependentUpon>201907131938520_tblMakes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907131940211_tblTypeCars.resx">
-      <DependentUpon>201907131940211_tblTypeCars.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907132044550_tblCars.resx">
-      <DependentUpon>201907132044550_tblCars.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907150823134_tblColors.resx">
-      <DependentUpon>201907150823134_tblColors.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907160808479_tblClient.resx">
-      <DependentUpon>201907160808479_tblClient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908210655423_add password.resx">
-      <DependentUpon>201908210655423_add password.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908220851524_delete passwd.resx">
-      <DependentUpon>201908220851524_delete passwd.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
