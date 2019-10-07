@@ -9,8 +9,10 @@ namespace ServiceDLL.Interfaces
 {
     public interface IMakeService
     {
-        List<MakeModels> GetMakes();
-        Task<List<MakeModels>> GetMakesAsync();
+        List<MakeModel> GetMakes();
+        Task<List<MakeModel>> GetMakesAsync();
         void Create(MakeAddModel make);
+        int Delete(ModelDeleteVM make);
+        void Update(MakeModel make);
     }
 }
