@@ -14,7 +14,6 @@ namespace ServiceDLL.Models
 
     public class MakeAddModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
