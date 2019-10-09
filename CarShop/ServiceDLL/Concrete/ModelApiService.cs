@@ -11,18 +11,18 @@ using System.Threading.Tasks;
 
 namespace ServiceDLL.Concrete
 {
-  public  class MakeApiService : IMakeService
+    class ModelApiService : IModelService
     {
-        private string _url = "https://localhost:44356/api/makes";
+        private string _url = "https://localhost:44356/api/models";
 
-        public void Create(MakeAddModel make)
+        public void Create(ModelAddVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
             http.ContentType = "application/json";
             http.Method = "POST";
 
-            string parsedContent = JsonConvert.SerializeObject(make);
+            string parsedContent = JsonConvert.SerializeObject(model);
             UTF8Encoding encoding = new UTF8Encoding();
             Byte[] bytes = encoding.GetBytes(parsedContent);
             Stream newStream = http.GetRequestStream();
@@ -35,14 +35,14 @@ namespace ServiceDLL.Concrete
             var content = sr.ReadToEnd();
         }
 
-        public int Delete(MakelDeleteVM make)
+        public int Delete(ModelDeleteVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
             http.ContentType = "application/json";
             http.Method = "DELETE";
 
-            string parsedContent = JsonConvert.SerializeObject(make);
+            string parsedContent = JsonConvert.SerializeObject(model);
             UTF8Encoding encoding = new UTF8Encoding();
             Byte[] bytes = encoding.GetBytes(parsedContent);
             Stream newStream = http.GetRequestStream();
@@ -55,28 +55,28 @@ namespace ServiceDLL.Concrete
             return 0;
         }
 
-        public List<MakeModel> GetMakes()
+        public List<ModelVM> GetMakes()
         {
             var client = new WebClient();
             client.Encoding = ASCIIEncoding.UTF8;
             string data = client.DownloadString(_url);
-            var list = JsonConvert.DeserializeObject<List<MakeModel>>(data);
+            var list = JsonConvert.DeserializeObject<List<ModelVM>>(data);
             return list;
         }
 
-        public Task<List<MakeModel>> GetMakesAsync()
+        public Task<List<ModelVM>> GetMakesAsync()
         {
-            return Task.Run(() => GetMakes()); 
+            return Task.Run(() => GetMakes());
         }
 
-        public void Update(MakeModel make)
+        public void Update(ModelVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
             http.ContentType = "application/json";
             http.Method = "PUT";
 
-            string parsedContent = JsonConvert.SerializeObject(make);
+            string parsedContent = JsonConvert.SerializeObject(model);
             UTF8Encoding encoding = new UTF8Encoding();
             Byte[] bytes = encoding.GetBytes(parsedContent);
             Stream newStream = http.GetRequestStream();
