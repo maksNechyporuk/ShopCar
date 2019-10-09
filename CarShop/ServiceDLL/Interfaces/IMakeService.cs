@@ -12,7 +12,7 @@ namespace ServiceDLL.Interfaces
         List<MakeModel> GetMakes();
         Task<List<MakeModel>> GetMakesAsync();
         void Create(MakeAddModel make);
-        int Delete(ModelDeleteVM make);
+        int Delete(MakelDeleteVM make);
         void Update(MakeModel make);
     }
 }
