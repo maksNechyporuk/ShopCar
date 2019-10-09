@@ -51,12 +51,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\AccountApiService.cs" />
+    <Compile Include="Concrete\ClientApiService.cs" />
     <Compile Include="Concrete\MakeApiService.cs" />
     <Compile Include="Concrete\ModelApiService.cs" />
     <Compile Include="Concrete\ProductApiService.cs" />
     <Compile Include="Helpers\ImageConverter.cs" />
+    <Compile Include="Interfaces\IClientService.cs" />
     <Compile Include="Interfaces\IMakeService.cs" />
     <Compile Include="Interfaces\IModelService.cs" />
+    <Compile Include="Models\ClientModels.cs" />
     <Compile Include="Models\MakeModels.cs" />
     <Compile Include="Models\ModelModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
