@@ -13,7 +13,7 @@ namespace ServiceDLL.Concrete
 {
     public class ClientApiService : IClientService
     {
-        private string _url = "https://localhost:44356/api/makes";
+        private string _url = "https://localhost:44356/api/clients";
 
         public void Create(ClientAddVM client)
         {
