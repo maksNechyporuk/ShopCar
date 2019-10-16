@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CarShop"
         mc:Ignorable="d"
         Title="Registration" Height="156.009" Width="245.731">
-    <Grid Height="109" VerticalAlignment="Top" HorizontalAlignment="Left" Width="236">
+    <Grid Height="124" VerticalAlignment="Top" HorizontalAlignment="Left" Width="236">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>

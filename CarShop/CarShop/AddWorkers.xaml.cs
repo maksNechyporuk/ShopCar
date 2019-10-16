@@ -38,6 +38,7 @@ namespace CarShop
                 }
                 else
                 {
+                    MessageBox.Show("Неправильно введені дані.");
                     txtEmail.Text = "";
                     txtPassword.Text = "";
                 }
