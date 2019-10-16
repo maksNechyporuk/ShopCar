@@ -10,8 +10,11 @@
         <TextBox Name="txtMake" HorizontalAlignment="Left" Height="23" Margin="97,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Make" HorizontalAlignment="Left" Margin="31,26,0,0" VerticalAlignment="Top"/>
         <Button Name="btnAddMake" Content="Add" HorizontalAlignment="Left" Margin="297,27,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddMake_Click"/>
-        <DataGrid              x:Name="DBGrid" HorizontalAlignment="Left" Height="268" ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" Grid.Row="0"  Margin="0,111,0,0" VerticalAlignment="Top" Width="461">
-
+        <DataGrid x:Name="DBGrid" HorizontalAlignment="Left" Height="268" AutoGenerateColumns="False"  ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" Grid.Row="0"  Margin="0,111,0,0" VerticalAlignment="Top" Width="461">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+            </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Edit" x:Name="EditMenuItem" Click="EditMenuItem_Click" />

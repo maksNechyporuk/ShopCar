@@ -13,9 +13,9 @@ namespace ServiceDLL.Concrete
 {
   public  class MakeApiService : IMakeService
     {
-        private string _url = "https://localhost:44356/api/makes";
+        private string _url = "https://localhost:44381/api/make";
 
-        public void Create(MakeAddModel make)
+        public bool Create(MakeAddModel make)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -33,6 +33,7 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
+            return false;
         }
 
         public int Delete(MakelDeleteVM make)
@@ -55,21 +56,21 @@ namespace ServiceDLL.Concrete
             return 0;
         }
 
-        public List<MakeModel> GetMakes()
+        public List<MakeVM> GetMakes()
         {
             var client = new WebClient();
             client.Encoding = ASCIIEncoding.UTF8;
             string data = client.DownloadString(_url);
-            var list = JsonConvert.DeserializeObject<List<MakeModel>>(data);
+            var list = JsonConvert.DeserializeObject<List<MakeVM>>(data);
             return list;
         }
 
-        public Task<List<MakeModel>> GetMakesAsync()
+        public Task<List<MakeVM>> GetMakesAsync()
         {
             return Task.Run(() => GetMakes()); 
         }
 
-        public void Update(MakeModel make)
+        public void Update(MakeVM make)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
