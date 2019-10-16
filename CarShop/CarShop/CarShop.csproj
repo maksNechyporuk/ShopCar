@@ -107,8 +107,11 @@
     <Compile Include="AddNewModelWindow.xaml.cs">
       <DependentUpon>AddNewModelWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddWorkers.xaml.cs">
-      <DependentUpon>AddWorkers.xaml</DependentUpon>
+    <Compile Include="EmployeersWindows\ShowEmployees.xaml.cs">
+      <DependentUpon>ShowEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogInEmployee.xaml.cs">
+      <DependentUpon>LogInEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="Entities\Car.cs" />
     <Compile Include="Entities\Client.cs" />
@@ -157,7 +160,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddWorkers.xaml">
+    <Page Include="EmployeersWindows\ShowEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogInEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
-﻿using ServiceDLL.Concrete;
+﻿using CarShop.EmployeersWindows;
+using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,11 @@ using System.Windows.Shapes;
 namespace CarShop
 {
     /// <summary>
-    /// Interaction logic for AddWorkers.xaml
+    /// Interaction logic for LogInEmployee.xaml
     /// </summary>
-    public partial class AddWorkers : Window
+    public partial class LogInEmployee : Window
     {
-        public AddWorkers()
+        public LogInEmployee()
         {
             InitializeComponent();
         }
@@ -35,6 +36,9 @@ namespace CarShop
                 if (res == 1)
                 {
                     MessageBox.Show("Ви успішно зареєструвались.");
+                    ShowEmployees showEmployees = new ShowEmployees();
+                    showEmployees.Show();
+                    this.Close();
                 }
                 else
                 {

@@ -77,5 +77,11 @@ namespace CarShop
             ShowClients showClients = new ShowClients();
             showClients.Show();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            LogInEmployee logInEmployee = new LogInEmployee();
+            logInEmployee.Show();
+        }
     }
 }

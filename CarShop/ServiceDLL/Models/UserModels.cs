@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace ServiceDLL.Models
 {
+        public class UserVM
+        {
+            public string Name { get; set; }
+        
+            public string Email { get; set; }
+        }
         public class UserLoginVM
         {
             public string Email { get; set; }
