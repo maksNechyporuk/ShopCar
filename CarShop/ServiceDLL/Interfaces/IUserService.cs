@@ -11,6 +11,10 @@ namespace ServiceDLL.Interfaces
     {
          int Login(UserLoginVM user);
 
-         int Register(UserRegisterVM user);
+        List<UserVM> GetUser();
+
+        Task<List<UserVM>> GetUserAsync();
+
+        int Register(UserRegisterVM user);
     }
 }

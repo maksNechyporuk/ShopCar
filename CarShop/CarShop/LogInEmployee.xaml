@@ -1,11 +1,11 @@
-﻿<Window x:Class="CarShop.AddWorkers"
+﻿<Window x:Class="CarShop.LogInEmployee"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop"
         mc:Ignorable="d"
-        Title="Registration" Height="156.009" Width="245.731">
+        Title="Authorization" Height="156.009" Width="245.731">
     <Grid Height="124" VerticalAlignment="Top" HorizontalAlignment="Left" Width="236">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

@@ -15,6 +15,20 @@ namespace ServiceDLL.Concrete
     {
         private string _url = "https://localhost:44356/api/users";
 
+        public List<UserVM> GetUser()
+        {
+            var client = new WebClient();
+            client.Encoding = ASCIIEncoding.UTF8;
+            string data = client.DownloadString(_url);
+            var list = JsonConvert.DeserializeObject<List<UserVM>>(data);
+            return list;
+        }
+
+        public Task<List<UserVM>> GetUserAsync()
+        {
+            return Task.Run(() => GetUser());
+        }
+
         public int Login(UserLoginVM user)
         {
             try
