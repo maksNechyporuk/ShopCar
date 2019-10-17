@@ -107,6 +107,9 @@
     <Compile Include="AddNewModelWindow.xaml.cs">
       <DependentUpon>AddNewModelWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClientsWindows\ShowClients.xaml.cs">
+      <DependentUpon>ShowClients.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeersWindows\ShowEmployees.xaml.cs">
       <DependentUpon>ShowEmployees.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewModelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientsWindows\ShowClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
