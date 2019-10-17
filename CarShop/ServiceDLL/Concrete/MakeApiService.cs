@@ -15,7 +15,7 @@ namespace ServiceDLL.Concrete
     {
         private string _url = "https://localhost:44381/api/make";
 
-        public bool Create(MakeAddModel make)
+        public string Create(MakeAddModel make)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -33,7 +33,7 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
-            return false;
+            return content.ToString();
         }
 
         public int Delete(MakelDeleteVM make)

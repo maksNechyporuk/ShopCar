@@ -36,38 +36,166 @@ namespace CarShop
             DBGrid.ItemsSource = MakeVM;
             FillDB();
         }
-        async void FillDB()
+
+        async void FillDB(int pageNumber = 1)
         {
             MakeApiService service = new MakeApiService();
             List<MakeVM> list = await service.GetMakesAsync();
             MakeVM.Clear();
             MakeVM.AddRange(list);
-            DBGrid.ItemsSource = MakeVM;
+
+            var count = MakeVM.Count();
+            int numberOfObjectsPerPage = 10;//int.Parse(cbCount.Text);
+            int pages = (int)Math.Ceiling((double)count / (double)numberOfObjectsPerPage);
+            GenerationBtn(pages, pageNumber);
+
+            int begin = (pageNumber - 1) * numberOfObjectsPerPage;
+            int end = pageNumber * numberOfObjectsPerPage;
+            DBGrid.ItemsSource = MakeVM.Skip(numberOfObjectsPerPage * (pageNumber - 1))
+                        .Take(numberOfObjectsPerPage);
 
         }
         private void BtnAddMake_Click(object sender, RoutedEventArgs e)
         {
 
             MakeApiService service = new MakeApiService();
+            string str=  service.Create(new MakeAddModel { Name = txtMake.Text });
+            str= str.Trim('"');
+            MessageBox.Show(str);
+            FillDB();
+        }
+        void GenerationBtn(int pages, int pageNumber)
+        {
+            #region Побудова кнопок           
+            int startX = 0;
+            var sizeButton = new Size { Width = 50, Height = 30 };
+            var colorActive = Color.FromRgb(124, 252, 0);
+            int count_b = 0;
 
-            service.Create(new MakeAddModel { Name = txtMake.Text });
-            //var list = _context.Makes.AsQueryable().ToList();
-            //bool c = false;
-            //foreach (var item in list)
-            //{
-            //    if (item.Name == txtMake.Text)
-            //        c = true;
-            //}
-            //if (c == true)
-            //{
-            //    MessageBox.Show("Error");
-            //}
-            //if (c == false)
-            //{
-            //    _context.Makes.Add(new Entities.Make { Name = txtMake.Text });
-            //    _context.SaveChanges();
-            //    FillDB();
-            //}
+
+            wpBTN.Children.Clear();
+            if (pageNumber <= 9)
+            {
+                for (int i = 0; i < pages; i++)
+                {
+                    if (count_b < 11)
+                    {
+                        
+                        var b = new Button()
+                        {
+                            Content = $"{i + 1}",
+                            Width = sizeButton.Width,
+                            Height = sizeButton.Height,
+                            Margin = new Thickness(5, 5, 5, 5),
+                            Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
+                        };
+                        b.Click += B_Click; ;
+                        wpBTN.Children.Add(b);
+                        startX += 50;
+                        count_b++;
+
+                    }
+                    else { break; }
+
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    var b = new Button()
+                    {
+                        Content = $"{i + 1}",
+                        Width = sizeButton.Width,
+                        Height = sizeButton.Height,
+                        Margin = new Thickness(5, 5, 5, 5),
+                        Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
+                    };
+                    b.Click += B_Click; ;
+
+                    wpBTN
+                    .Children
+                    .Add(b);
+                    startX += 50;
+                }
+
+                var l = new Label()
+                {
+                    Content = $"...",
+                    Width = sizeButton.Width,
+                    Height = sizeButton.Height,
+                    Margin = new Thickness(5, 5, 5, 5),
+
+
+                };
+                wpBTN
+               .Children
+               .Add(l);
+                startX += 50;
+
+                for (int i = pageNumber - 6; i < pages; i++)
+                {
+                    if (count_b < 11)
+                    {
+                        var b = new Button()
+                        {
+                            Content = $"{i + 1}",
+                            Width = sizeButton.Width,
+                            Height = sizeButton.Height,
+                            Margin = new Thickness(5, 5, 5, 5),
+                            Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
+                        };
+                        b.Click += B_Click; ;
+                        wpBTN.Children.Add(b);
+
+                        startX += 50;
+
+                        count_b++;
+                    }
+                    else { break; }
+
+                }
+
+            }
+            if ((pageNumber + 6) < pages)
+            {
+
+                var l = new Label()
+                {
+                    Content = $"...",
+                    Width = sizeButton.Width,
+                    Height = sizeButton.Height,
+                    Margin = new Thickness(5, 5, 5, 5),
+                };
+                wpBTN
+               .Children
+               .Add(l);
+            }
+            if ((pageNumber + 6) <= pages)
+            {
+                var b = new Button()
+                {
+                    Content = $"{pages}",
+                    Width = sizeButton.Width,
+                    Height = sizeButton.Height,
+                    Margin = new Thickness(5, 5, 5, 5),
+                    Background = pageNumber == pageNumber - 1 ? Brushes.Green : Brushes.White
+                };
+                b.Click += B_Click; ;
+                wpBTN
+             .Children
+             .Add(b);
+            }
+            #endregion
+        }
+
+   
+
+        private void B_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+
+            FillDB(Convert.ToInt32(btn.Content));
         }
 
         private void DBGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
