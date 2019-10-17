@@ -9,7 +9,7 @@
     <Grid Margin="8,0,2,0">
         <TextBox HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
         <Label Content="Номер телефону клієнта" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
-        <Button x:Name="btnFindEmployee" Content="Знайти" HorizontalAlignment="Left" Margin="564,15,0,0" VerticalAlignment="Top" Width="200" Height="49" Click="BtnFindEmployee_Click"/>
+        <Button x:Name="btnFindEmployee" Content="Знайти" HorizontalAlignment="Left" Margin="564,15,0,0" VerticalAlignment="Top" Width="200" Height="49" />
         <DataGrid HorizontalAlignment="Left" Height="323" Margin="10,86,0,0" VerticalAlignment="Top" Width="758"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="173,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
         <Label Content="Ім'я клієнта" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>

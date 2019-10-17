@@ -36,8 +36,8 @@ namespace CarShop
             DBGrid.ItemsSource = MakeVM;
             FillDB();
         }
-
-        async void FillDB(int pageNumber = 1)
+        int pageNumber = 1;
+        async void FillDB()
         {
             MakeApiService service = new MakeApiService();
             List<MakeVM> list = await service.GetMakesAsync();
@@ -45,7 +45,7 @@ namespace CarShop
             MakeVM.AddRange(list);
 
             var count = MakeVM.Count();
-            int numberOfObjectsPerPage = 10;//int.Parse(cbCount.Text);
+            int numberOfObjectsPerPage = 5;//int.Parse(cbCount.Text);
             int pages = (int)Math.Ceiling((double)count / (double)numberOfObjectsPerPage);
             GenerationBtn(pages, pageNumber);
 
@@ -67,20 +67,16 @@ namespace CarShop
         void GenerationBtn(int pages, int pageNumber)
         {
             #region Побудова кнопок           
-            int startX = 0;
             var sizeButton = new Size { Width = 50, Height = 30 };
-            var colorActive = Color.FromRgb(124, 252, 0);
             int count_b = 0;
-
-
             wpBTN.Children.Clear();
-            if (pageNumber <= 9)
+            if (pageNumber <= 5)
             {
                 for (int i = 0; i < pages; i++)
                 {
-                    if (count_b < 11)
+                    if (count_b < 7)
                     {
-                        
+
                         var b = new Button()
                         {
                             Content = $"{i + 1}",
@@ -91,7 +87,6 @@ namespace CarShop
                         };
                         b.Click += B_Click; ;
                         wpBTN.Children.Add(b);
-                        startX += 50;
                         count_b++;
 
                     }
@@ -99,9 +94,10 @@ namespace CarShop
 
                 }
             }
+           
             else
             {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     var b = new Button()
                     {
@@ -112,11 +108,9 @@ namespace CarShop
                         Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
                     };
                     b.Click += B_Click; ;
-
                     wpBTN
                     .Children
                     .Add(b);
-                    startX += 50;
                 }
 
                 var l = new Label()
@@ -131,11 +125,10 @@ namespace CarShop
                 wpBTN
                .Children
                .Add(l);
-                startX += 50;
 
-                for (int i = pageNumber - 6; i < pages; i++)
+                for (int i = pageNumber - 4; i < pages; i++)
                 {
-                    if (count_b < 11)
+                    if (count_b < 7)
                     {
                         var b = new Button()
                         {
@@ -148,7 +141,6 @@ namespace CarShop
                         b.Click += B_Click; ;
                         wpBTN.Children.Add(b);
 
-                        startX += 50;
 
                         count_b++;
                     }
@@ -157,7 +149,7 @@ namespace CarShop
                 }
 
             }
-            if ((pageNumber + 6) < pages)
+            if ((pageNumber + 4) < pages)
             {
 
                 var l = new Label()
@@ -171,7 +163,7 @@ namespace CarShop
                .Children
                .Add(l);
             }
-            if ((pageNumber + 6) <= pages)
+            if ((pageNumber + 4) < pages)
             {
                 var b = new Button()
                 {
@@ -194,14 +186,11 @@ namespace CarShop
         private void B_Click(object sender, RoutedEventArgs e)
         {
             var btn = (Button)sender;
-
-            FillDB(Convert.ToInt32(btn.Content));
+            pageNumber = Convert.ToInt32(btn.Content);
+            FillDB();
         }
 
-        private void DBGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+     
 
         private void EditMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -210,32 +199,34 @@ namespace CarShop
 
         private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            // try
+            try
             {
 
-                //   if (DBGrid.SelectedItem != null)
-                //    {
-                //        int ind = 0;
-                //        ind = MakeVM.IndexOf(DBGrid.SelectedItem as MakeViewModels);
-                //        int f = MakeVM[ind].Id;
-                //        //     //DataGrid(DBGrid.SelectedItem as MakeViewModels);
-                //        var itemToRemove = _context.Makes.Where(x => x.Id ==f ).ToList(); //returns a single item.
+                if (DBGrid.SelectedItem != null)
+                {
+                    int ind = 0;
+                    ind = MakeVM.IndexOf(DBGrid.SelectedItem as MakeVM);
+                    MakeApiService service = new MakeApiService();
+                    int f = MakeVM[ind].Id;
+                    service.Delete(new MakelDeleteVM { Id = f });
+                    ////     //DataGrid(DBGrid.SelectedItem as MakeViewModels);
+                    //var itemToRemove = _context.Makes.Where(x => x.Id == f).ToList(); //returns a single item.
 
-                //        if (itemToRemove != null)
-                //        {
-                //            _context.Makes.Remove(itemToRemove[0]);
-                //            _context.SaveChanges();
-                //        }
+                    //if (itemToRemove != null)
+                    //{
+                    //    _context.Makes.Remove(itemToRemove[0]);
+                    //    _context.SaveChanges();
+                    //}
 
 
-                //        _context.SaveChanges();
-                //        FillDB();
+                    //_context.SaveChanges();
+                    FillDB();
 
-                //    }
-                //}
-                //catch
-                { }
+                }
+            }
+            catch
+            { }
             }
         }
     }
-}
+
