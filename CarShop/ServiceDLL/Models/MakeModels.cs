@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceDLL.Models
 {
-    public class MakeModel
+    public class MakeVM
     {
         public int Id { get; set; }
         public string Name { get; set; }
