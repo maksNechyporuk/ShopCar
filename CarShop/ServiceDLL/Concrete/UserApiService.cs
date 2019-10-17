@@ -13,7 +13,7 @@ namespace ServiceDLL.Concrete
 {
     public class UserApiService : IUserService
     {
-        private string _url = "https://localhost:44356/api/users";
+        private string _url = "https://localhost:44381/api/user";
 
         public List<UserVM> GetUser()
         {

@@ -22,6 +22,7 @@ namespace CarShop.EmployeersWindows
     public partial class ShowEmployees : Window
     {
         UserApiService servise;
+        List<UserVM> users;
         public ShowEmployees()
         {
             InitializeComponent();
@@ -31,13 +32,34 @@ namespace CarShop.EmployeersWindows
 
         async void  FillDG()
         {
-            var users = await servise.GetUserAsync();
+            users = await servise.GetUserAsync();
             dgShowEmployees.ItemsSource = users;
+        }
+
+        void FillDGByFind(List<UserVM> list)
+        {
+            dgShowEmployees.ItemsSource = list;
         }
 
         private void BtnFindEmployee_Click(object sender, RoutedEventArgs e)
         {
+            if (txtEmail.Text != "" && txtName.Text != "") 
+            {
+                dgShowEmployees.ItemsSource = users.Where(c => c.Email == txtEmail.Text && c.Name == txtName.Text);
+            }
+            else if(txtEmail.Text!="")
+            {
+                dgShowEmployees.ItemsSource = users.Where(c => c.Email == txtEmail.Text);
+            }
+            else
+            {
+                dgShowEmployees.ItemsSource = users.Where(c => c.Name == txtName.Text);
+            }
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FillDG();
         }
     }
 }
