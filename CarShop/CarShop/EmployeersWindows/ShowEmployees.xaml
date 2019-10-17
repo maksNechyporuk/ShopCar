@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ShowEmployees" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="dgShowEmployees" AutoGenerateColumns="False" Margin="0,64,0,0">
+        <DataGrid x:Name="dgShowEmployees" AutoGenerateColumns="False" Margin="0,83,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
@@ -29,7 +29,7 @@
 
                             <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
                             <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
-                            
+
                             <TextBlock Text="Email: " FontWeight="Bold" Grid.Row="2" />
                             <TextBlock Text="{Binding Email}" Grid.Column="2" Grid.Row="2" />
 
@@ -38,11 +38,12 @@
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
-        <Button Name="btnFindEmployee" Content="Find" HorizontalAlignment="Left" Margin="656,10,0,0" VerticalAlignment="Top" Width="126" Height="49" Click="BtnFindEmployee_Click"/>
+        <Button Name="btnFindEmployee" Content="Find" HorizontalAlignment="Left" Margin="595,10,0,0" VerticalAlignment="Top" Width="84" Height="49" Click="BtnFindEmployee_Click"/>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="371,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="310,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Label Content="Name: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email:" HorizontalAlignment="Left" Margin="371,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="310,10,0,0" VerticalAlignment="Top"/>
+        <Button Content="Calsel find" HorizontalAlignment="Left" Margin="697,10,0,0" VerticalAlignment="Top" Width="85" Height="49" Click="Button_Click"/>
 
     </Grid>
 </Window>

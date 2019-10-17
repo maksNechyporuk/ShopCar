@@ -11,8 +11,8 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Email :" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.705,0.5" Height="26"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="81,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
+        <Label Content="Name: " HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.705,0.5" Height="26"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="81,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
 
         <Label Content="Password: " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
         <TextBox Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="81,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>

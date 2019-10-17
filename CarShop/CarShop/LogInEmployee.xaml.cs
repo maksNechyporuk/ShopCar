@@ -30,9 +30,9 @@ namespace CarShop
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             UserApiService userService = new UserApiService();
-            if (txtEmail.Text != "" && txtPassword.Text != "")
+            if (txtName.Text != "" && txtPassword.Text != "")
             {
-                var res = userService.Login(new UserLoginVM { Email = txtEmail.Text, Password = txtPassword.Text });
+                var res = userService.Login(new UserLoginVM { Name = txtName.Text, Password = txtPassword.Text });
                 if (res == 1)
                 {
                     MessageBox.Show("Ви успішно зареєструвались.");
@@ -43,8 +43,8 @@ namespace CarShop
                 else
                 {
                     MessageBox.Show("Неправильно введені дані.");
-                    txtEmail.Text = "";
-                    txtPassword.Text = "";
+                    //txtName.Text = "";
+                    //txtPassword.Text = "";
                 }
             }
         }
