@@ -226,26 +226,26 @@ namespace CarShop
 
                 MakeVM make = (cbMake.SelectedItem as MakeVM);
 
-                service.Create(new ModelAddVM { Name = txtModel.Name ,Make=make});
-                var list = _context.Models.AsQueryable().ToList();
-                bool c = false;
-                foreach (var item in list)
-                {
-                    if (item.Name == txtModel.Text)
-                        c = true;
-                }
-                if (c == true)
-                {
-                    MessageBox.Show("Error");
-                }
-                if (c == false)
-                {
-                    _context.Models.Add(new Entities.Model { MakeId = int.Parse(cbMake.SelectedValue.ToString()), Name = txtModel.Text });
-                    _context.SaveChanges();
-                    txtModel.Clear();
+                service.Create(new ModelAddVM { Name = txtModel.Text ,Make=make});
+                //var list = _context.Models.AsQueryable().ToList();
+                //bool c = false;
+                //foreach (var item in list)
+                //{
+                //    if (item.Name == txtModel.Text)
+                //        c = true;
+                //}
+                //if (c == true)
+                //{
+                //    MessageBox.Show("Error");
+                //}
+                //if (c == false)
+                //{
+                //    _context.Models.Add(new Entities.Model { MakeId = int.Parse(cbMake.SelectedValue.ToString()), Name = txtModel.Text });
+                //    _context.SaveChanges();
+                //    txtModel.Clear();
 
+                //}
                     FillGrid();
-                }
             }
             else
             {
