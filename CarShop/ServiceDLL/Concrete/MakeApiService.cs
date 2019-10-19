@@ -36,7 +36,12 @@ namespace ServiceDLL.Concrete
             return content.ToString();
         }
 
-        public int Delete(MakelDeleteVM make)
+        public Task<string> CreateAsync(MakeAddModel make)
+        {
+            return Task.Run(() => Create(make));
+        }
+
+        public string Delete(MakelDeleteVM make)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -53,7 +58,12 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
-            return 0;
+            return content.ToString();
+        }
+
+        public Task<string> DeleteAsync(MakelDeleteVM make)
+        {
+            return Task.Run(() => Delete(make));
         }
 
         public List<MakeVM> GetMakes()
@@ -70,7 +80,7 @@ namespace ServiceDLL.Concrete
             return Task.Run(() => GetMakes()); 
         }
 
-        public void Update(MakeVM make)
+        public string Update(MakeVM make)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -88,6 +98,14 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
+            return content.ToString(); 
+
+        }
+
+        public Task<string> UpdateAsync(MakeVM make)
+        {
+            return Task.Run(() => Update(make));
+
         }
     }
 }

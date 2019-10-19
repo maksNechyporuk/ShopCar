@@ -9,7 +9,7 @@
     <Grid >
         <TextBox Name="txtMake" HorizontalAlignment="Left" Height="23" Margin="97,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Make" HorizontalAlignment="Left" Margin="31,26,0,0" VerticalAlignment="Top"/>
-        <Button Name="btnAddMake" Content="Add" HorizontalAlignment="Left" Margin="297,27,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddMake_Click"/>
+        <Button Name="btnAddMake" Content="Add" HorizontalAlignment="Left" Margin="287,10,0,0" VerticalAlignment="Top" Width="149" Click="BtnAddMake_Click" Height="48"/>
         <DataGrid x:Name="DBGrid" HorizontalAlignment="Left" Height="288" AutoGenerateColumns="False"  ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" Grid.Row="0"  Margin="10,111,0,0" VerticalAlignment="Top" Width="740">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
@@ -23,6 +23,7 @@
             </DataGrid.ContextMenu>
         </DataGrid>
         <WrapPanel Name="wpBTN" HorizontalAlignment="Left" Height="77" Margin="10,415,0,0" VerticalAlignment="Top" Width="740"/>
+        <Button IsEnabled="False" Content="Update" Name="btnUpdate" HorizontalAlignment="Left" Margin="453,10,0,0" VerticalAlignment="Top" Width="147" Height="48" Click="BtnUpdate_Click"/>
 
     </Grid>
 </Window>

@@ -98,13 +98,13 @@
     <Compile Include="AddClients.xaml.cs">
       <DependentUpon>AddClients.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddNewCarWindow.xaml.cs">
+    <Compile Include="CarsWindow\AddNewCarWindow.xaml.cs">
       <DependentUpon>AddNewCarWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddNewMakeWindow.xaml.cs">
+    <Compile Include="CarsWindow\AddNewMakeWindow.xaml.cs">
       <DependentUpon>AddNewMakeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddNewModelWindow.xaml.cs">
+    <Compile Include="CarsWindow\AddNewModelWindow.xaml.cs">
       <DependentUpon>AddNewModelWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClientsWindows\ShowClients.xaml.cs">
@@ -127,7 +127,6 @@
     <Compile Include="Entities\Purchase.cs" />
     <Compile Include="Entities\TypeCar.cs" />
     <Compile Include="Extensions\ObservableExtension.cs" />
-    <Compile Include="Make.cs" />
     <Compile Include="Properties\Resource.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -138,7 +137,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.uk.resx</DependentUpon>
     </Compile>
-    <Compile Include="ShowCarWindow.xaml.cs">
+    <Compile Include="CarsWindow\ShowCarWindow.xaml.cs">
       <DependentUpon>ShowCarWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShowClients.xaml.cs">
@@ -151,15 +150,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddNewCarWindow.xaml">
+    <Page Include="CarsWindow\AddNewCarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddNewMakeWindow.xaml">
+    <Page Include="CarsWindow\AddNewMakeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddNewModelWindow.xaml">
+    <Page Include="CarsWindow\AddNewModelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,7 +185,7 @@
     <Compile Include="MainWinCarShop.xaml.cs">
       <DependentUpon>MainWinCarShop.xaml</DependentUpon>
     </Compile>
-    <Page Include="ShowCarWindow.xaml">
+    <Page Include="CarsWindow\ShowCarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -241,6 +240,7 @@
       <Name>ServiceDLL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
