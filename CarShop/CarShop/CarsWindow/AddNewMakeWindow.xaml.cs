@@ -34,11 +34,12 @@ namespace CarShop
             InitializeComponent();
             MakeVM = new ObservableCollection<MakeVM>();
             DBGrid.ItemsSource = MakeVM;
-            FillDB();
+            FillGrid();
         }
         int pageNumber = 1;
-        async void FillDB()
+        async void FillGrid()
         {
+            txtMake.Clear();
             MakeApiService service = new MakeApiService();
             List<MakeVM> list = await service.GetMakesAsync();
             MakeVM.Clear();
@@ -52,17 +53,23 @@ namespace CarShop
             int begin = (pageNumber - 1) * numberOfObjectsPerPage;
             int end = pageNumber * numberOfObjectsPerPage;
             DBGrid.ItemsSource = MakeVM.Skip(numberOfObjectsPerPage * (pageNumber - 1))
-                        .Take(numberOfObjectsPerPage);
+            .Take(numberOfObjectsPerPage);
 
         }
-        private void BtnAddMake_Click(object sender, RoutedEventArgs e)
+
+        void ShowMessage(string mes)
+        {
+            mes = mes.Trim('"');
+
+            MessageBox.Show(mes);
+        }
+        private async void BtnAddMake_Click(object sender, RoutedEventArgs e)
         {
 
             MakeApiService service = new MakeApiService();
-            string str=  service.Create(new MakeAddModel { Name = txtMake.Text });
-            str= str.Trim('"');
-            MessageBox.Show(str);
-            FillDB();
+            
+            ShowMessage( await service.CreateAsync(new MakeAddModel { Name = txtMake.Text }));       
+            FillGrid();
         }
         void GenerationBtn(int pages, int pageNumber)
         {
@@ -180,53 +187,49 @@ namespace CarShop
             }
             #endregion
         }
-
-   
-
         private void B_Click(object sender, RoutedEventArgs e)
         {
             var btn = (Button)sender;
             pageNumber = Convert.ToInt32(btn.Content);
-            FillDB();
+            FillGrid();
         }
-
-     
-
         private void EditMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            btnUpdate.IsEnabled = true;
+            MakeVM make = (DBGrid.SelectedItem as MakeVM);
+            txtMake.Text = make.Name;
         }
-
-        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        private async void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
         {
             try
             {
 
                 if (DBGrid.SelectedItem != null)
                 {
-                    int ind = 0;
-                    ind = MakeVM.IndexOf(DBGrid.SelectedItem as MakeVM);
+                    MakeVM make = (DBGrid.SelectedItem as MakeVM);
                     MakeApiService service = new MakeApiService();
-                    int f = MakeVM[ind].Id;
-                    service.Delete(new MakelDeleteVM { Id = f });
-                    ////     //DataGrid(DBGrid.SelectedItem as MakeViewModels);
-                    //var itemToRemove = _context.Makes.Where(x => x.Id == f).ToList(); //returns a single item.
-
-                    //if (itemToRemove != null)
-                    //{
-                    //    _context.Makes.Remove(itemToRemove[0]);
-                    //    _context.SaveChanges();
-                    //}
-
-
-                    //_context.SaveChanges();
-                    FillDB();
-
+                    int id = make.Id;
+                    ShowMessage( await service.DeleteAsync(new MakelDeleteVM { Id = id }));                   
+                    FillGrid();
                 }
             }
             catch
-            { }
+            {
+            }
+            }
+
+        private async void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            if (DBGrid.SelectedItem != null)
+            {
+                MakeApiService service = new MakeApiService();
+            MakeVM make = (DBGrid.SelectedItem as MakeVM);
+            int id = make.Id;
+                ShowMessage( await service.UpdateAsync(new MakeVM { Id = id, Name = txtMake.Text }));
+            btnUpdate.IsEnabled = false;
+            FillGrid();
             }
         }
     }
+}
 
