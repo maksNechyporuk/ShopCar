@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace ServiceDLL.Concrete
 {
-    class ModelApiService : IModelService
+  public  class ModelApiService : IModelService
     {
-        private string _url = "https://localhost:44356/api/models";
+        private string _url = "https://localhost:44381/api/model";
 
         public void Create(ModelAddVM model)
         {
