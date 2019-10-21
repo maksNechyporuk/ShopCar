@@ -1,5 +1,6 @@
 ﻿using CarShop.Entities;
 using CarShop.ViewModels;
+using Newtonsoft.Json;
 using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using System;
@@ -7,7 +8,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,6 +35,7 @@ namespace CarShop
         public AddNewMakeWindow()
         {
             InitializeComponent();
+            lblError.Background = Brushes.White;
             MakeVM = new ObservableCollection<MakeVM>();
             DBGrid.ItemsSource = MakeVM;
             FillGrid();
@@ -46,7 +50,7 @@ namespace CarShop
             MakeVM.AddRange(list);
 
             var count = MakeVM.Count();
-            int numberOfObjectsPerPage = 5;//int.Parse(cbCount.Text);
+            int numberOfObjectsPerPage = 2;//int.Parse(cbCount.Text);
             int pages = (int)Math.Ceiling((double)count / (double)numberOfObjectsPerPage);
             GenerationBtn(pages, pageNumber);
 
@@ -54,22 +58,43 @@ namespace CarShop
             int end = pageNumber * numberOfObjectsPerPage;
             DBGrid.ItemsSource = MakeVM.Skip(numberOfObjectsPerPage * (pageNumber - 1))
             .Take(numberOfObjectsPerPage);
-
         }
-
         void ShowMessage(string mes)
         {
             mes = mes.Trim('"');
-
             MessageBox.Show(mes);
         }
         private async void BtnAddMake_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                MakeApiService service = new MakeApiService();
+                ShowMessage(await service.CreateAsync(new MakeAddModel { Name = txtMake.Text }));
+                FillGrid();
+                lblError.Foreground = Brushes.White;
+                lblError.Content="";
+            }         
+            catch (WebException wex)
+            {
+                ShowException(wex);
+            }               
+        }
 
-            MakeApiService service = new MakeApiService();
-            
-            ShowMessage( await service.CreateAsync(new MakeAddModel { Name = txtMake.Text }));       
-            FillGrid();
+        void ShowException(WebException wex)
+        {
+            if (wex.Response != null)
+            {
+                using (var errorResponse = (HttpWebResponse)wex.Response)
+                {
+                    using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                    {
+                        var error = reader.ReadToEnd();
+                        var mes = JsonConvert.DeserializeObject<MakeVM>(error);
+                        lblError.Content = mes.Name;
+                        lblError.Foreground = Brushes.Red;
+                    }
+                }
+            }
         }
         void GenerationBtn(int pages, int pageNumber)
         {
@@ -92,7 +117,7 @@ namespace CarShop
                             Margin = new Thickness(5, 5, 5, 5),
                             Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
                         };
-                        b.Click += B_Click; ;
+                        b.Click += B_Click; 
                         wpBTN.Children.Add(b);
                         count_b++;
 
@@ -114,7 +139,7 @@ namespace CarShop
                         Margin = new Thickness(5, 5, 5, 5),
                         Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
                     };
-                    b.Click += B_Click; ;
+                    b.Click += B_Click; 
                     wpBTN
                     .Children
                     .Add(b);
@@ -126,8 +151,6 @@ namespace CarShop
                     Width = sizeButton.Width,
                     Height = sizeButton.Height,
                     Margin = new Thickness(5, 5, 5, 5),
-
-
                 };
                 wpBTN
                .Children
@@ -145,7 +168,7 @@ namespace CarShop
                             Margin = new Thickness(5, 5, 5, 5),
                             Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
                         };
-                        b.Click += B_Click; ;
+                        b.Click += B_Click; 
                         wpBTN.Children.Add(b);
 
 
@@ -156,7 +179,11 @@ namespace CarShop
                 }
 
             }
-            if ((pageNumber + 4) < pages)
+            //if ((pageNumber + 4) < pages)
+            //{
+
+            //}
+            if ((pageNumber + 4) <= pages)
             {
 
                 var l = new Label()
@@ -169,9 +196,6 @@ namespace CarShop
                 wpBTN
                .Children
                .Add(l);
-            }
-            if ((pageNumber + 4) < pages)
-            {
                 var b = new Button()
                 {
                     Content = $"{pages}",
@@ -180,7 +204,7 @@ namespace CarShop
                     Margin = new Thickness(5, 5, 5, 5),
                     Background = pageNumber == pageNumber - 1 ? Brushes.Green : Brushes.White
                 };
-                b.Click += B_Click; ;
+                b.Click += B_Click; 
                 wpBTN
              .Children
              .Add(b);
@@ -213,22 +237,30 @@ namespace CarShop
                     FillGrid();
                 }
             }
-            catch
+            catch (WebException wex)
             {
+                ShowException(wex);
             }
-            }
+        }
 
         private async void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (DBGrid.SelectedItem != null)
+            try
             {
-                MakeApiService service = new MakeApiService();
-            MakeVM make = (DBGrid.SelectedItem as MakeVM);
-            int id = make.Id;
-                ShowMessage( await service.UpdateAsync(new MakeVM { Id = id, Name = txtMake.Text }));
-            btnUpdate.IsEnabled = false;
-            FillGrid();
+                if (DBGrid.SelectedItem != null)
+                {
+                    MakeApiService service = new MakeApiService();
+                    MakeVM make = (DBGrid.SelectedItem as MakeVM);
+                    int id = make.Id;
+                    ShowMessage(await service.UpdateAsync(new MakeVM { Id = id, Name = txtMake.Text }));
+                    btnUpdate.IsEnabled = false;
+                    FillGrid();
+                }
             }
+            catch (WebException wex)
+            {
+                ShowException(wex);
+            }           
         }
     }
 }
