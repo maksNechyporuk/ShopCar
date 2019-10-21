@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ServiceDLL.Concrete;
+using ServiceDLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,45 @@ namespace CarShop.ClientsWindows
     /// </summary>
     public partial class ShowClients : Window
     {
-        public ShowClients()
+        ClientApiService servise;
+        List<ClientVM> client;
+       public ShowClients()
         {
             InitializeComponent();
+            servise = new ClientApiService();
+            FillDG();
+        }
+
+        async void FillDG()
+        {
+            client = await servise.GetClientsAsync();
+            dgShowClients.ItemsSource = client;
+        }
+
+        void FillDGByFind(List<ClientVM> list)
+        {
+            dgShowClients.ItemsSource = list;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FillDG();
+        }
+
+        private void BtnFindClient_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtNumber.Text != "" && txtName.Text != "")
+            {
+                dgShowClients.ItemsSource = client.Where(c => c.Phone == txtNumber.Text && c.Name == txtName.Text);
+            }
+            else if (txtNumber.Text != "")
+            {
+                dgShowClients.ItemsSource = client.Where(c => c.Phone == txtNumber.Text);
+            }
+            else
+            {
+                dgShowClients.ItemsSource = client.Where(c => c.Name == txtName.Text);
+            }
         }
     }
 }
