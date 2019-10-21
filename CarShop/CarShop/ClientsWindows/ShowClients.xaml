@@ -7,12 +7,45 @@
         mc:Ignorable="d"
         Title="ShowClients" Height="450" Width="792">
     <Grid Margin="8,0,2,0">
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
-        <Label Content="Номер телефону клієнта" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
-        <Button x:Name="btnFindEmployee" Content="Знайти" HorizontalAlignment="Left" Margin="564,15,0,0" VerticalAlignment="Top" Width="200" Height="49" />
-        <DataGrid HorizontalAlignment="Left" Height="323" Margin="10,86,0,0" VerticalAlignment="Top" Width="758"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="173,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
-        <Label Content="Ім'я клієнта" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
+        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,83,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Number" Binding="{Binding Phone}" />
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DockPanel Background="GhostWhite">
+                        <Image DockPanel.Dock="Left" Source="{Binding PathImg}" Height="64" Margin="10" />
+                        <Grid Margin="0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
+                            <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
+                            <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
+
+                            <TextBlock Text="Number: " FontWeight="Bold" Grid.Row="2" />
+                            <TextBlock Text="{Binding Phone}" Grid.Column="2" Grid.Row="2" />
+
+                            <TextBlock Text="Image: " FontWeight="Bold" Grid.Row="3" />
+                            <TextBlock Text="{Binding Image}" Grid.Column="3" Grid.Row="3" />
+
+                        </Grid>
+                    </DockPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        <TextBox x:Name="txtNumber" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
+        <Label Content="Номер телефону клієнта :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
+        <Button x:Name="btnFindClient" Content="Знайти" HorizontalAlignment="Left" Margin="337,15,0,0" VerticalAlignment="Top" Width="200" Height="49" Click="BtnFindClient_Click" />       
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="173,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
+        <Label Content="Ім'я клієнта :" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
+        <Button Content="Відмінити пошук" HorizontalAlignment="Left" Margin="575,15,0,0" VerticalAlignment="Top" Width="189" Height="49" Click="Button_Click"/>
     </Grid>
 </Window>
