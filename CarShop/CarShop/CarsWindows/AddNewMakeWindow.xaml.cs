@@ -38,17 +38,21 @@ namespace CarShop
             lblError.Background = Brushes.White;
             MakeVM = new ObservableCollection<MakeVM>();
             DBGrid.ItemsSource = MakeVM;
-            FillGrid();
+            GetMakes();
+           
         }
         int pageNumber = 1;
-        async void FillGrid()
+        async void GetMakes()
         {
-            txtMake.Clear();
             MakeApiService service = new MakeApiService();
-            List<MakeVM> list = await service.GetMakesAsync();
+            List<MakeVM> list = await service.GetMakesAsync(txtMake.Text);
             MakeVM.Clear();
             MakeVM.AddRange(list);
-
+            FillGrid();
+        }
+         void FillGrid()
+        {
+            txtMake.Clear();
             var count = MakeVM.Count();
             int numberOfObjectsPerPage = 2;//int.Parse(cbCount.Text);
             int pages = (int)Math.Ceiling((double)count / (double)numberOfObjectsPerPage);
@@ -261,6 +265,18 @@ namespace CarShop
             {
                 ShowException(wex);
             }           
+        }
+
+        private  void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+            GetMakes();
+            }
+            catch (WebException wex)
+            {
+                ShowException(wex);
+            }
         }
     }
 }

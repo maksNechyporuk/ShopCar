@@ -66,20 +66,32 @@ namespace ServiceDLL.Concrete
             return Task.Run(() => Delete(make));
         }
 
-        public List<MakeVM> GetMakes()
+        public List<MakeVM> GetMakes(string make)
         {
-            var client = new WebClient();
-            client.Encoding = ASCIIEncoding.UTF8;
-            string data = client.DownloadString(_url);
-            var list = JsonConvert.DeserializeObject<List<MakeVM>>(data);
-            return list;
+            if (make == "")
+            {
+                var client = new WebClient();
+                client.Encoding = ASCIIEncoding.UTF8;
+                string data = client.DownloadString(_url);
+                var list = JsonConvert.DeserializeObject<List<MakeVM>>(data);
+                return list;
+            }
+            else
+            {
+                string path = "?Name=" + make;
+                string _url = @"https://localhost:44381/api/make/" + path;
+                var client = new WebClient();
+                client.Encoding = ASCIIEncoding.UTF8;
+                string data = client.DownloadString(_url);
+                var list = JsonConvert.DeserializeObject<List<MakeVM>>(data);
+                return list;
+            }
         }
 
-        public Task<List<MakeVM>> GetMakesAsync()
+        public Task<List<MakeVM>> GetMakesAsync(string make = null)
         {
-            return Task.Run(() => GetMakes()); 
-        }
-
+            return Task.Run(() => GetMakes(make)); 
+        }       
         public string Update(MakeVM make)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
