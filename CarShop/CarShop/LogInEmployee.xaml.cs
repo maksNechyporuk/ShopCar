@@ -27,12 +27,12 @@ namespace CarShop
             InitializeComponent();
         }
 
-        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        private async void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             UserApiService userService = new UserApiService();
             if (txtName.Text != "" && txtPassword.Text != "")
             {
-                var res = userService.Login(new UserLoginVM { Name = txtName.Text, Password = txtPassword.Text });
+                var res = await userService.LoginAsync(new UserLoginVM { Name = txtName.Text, Password = txtPassword.Text });
                 if (res == 1)
                 {
                     MessageBox.Show("Ви успішно зареєструвались.");

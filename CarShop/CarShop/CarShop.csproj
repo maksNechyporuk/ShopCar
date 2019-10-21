@@ -140,9 +140,6 @@
     <Compile Include="CarsWindows\ShowCarWindow.xaml.cs">
       <DependentUpon>ShowCarWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShowClients.xaml.cs">
-      <DependentUpon>ShowClients.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\ClientViewModels.cs" />
     <Compile Include="ViewModels\MakeViewModels.cs" />
     <Compile Include="ViewModels\ModelViewModels.cs" />
@@ -188,10 +185,6 @@
     <Page Include="CarsWindows\ShowCarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ShowClients.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
