@@ -26,6 +26,7 @@
         <WrapPanel Name="wpBTN" HorizontalAlignment="Left" Height="77" Margin="10,415,0,0" VerticalAlignment="Top" Width="740"/>
         <Button IsEnabled="False" Content="Оновити" Name="btnUpdate" HorizontalAlignment="Left" Margin="453,10,0,0" VerticalAlignment="Top" Width="147" Height="48" Click="BtnUpdate_Click"/>
         <Label Content="" Name="lblError" HorizontalAlignment="Left" Margin="41,58,0,0" VerticalAlignment="Top"/>
+        <Button Content="Пошук" HorizontalAlignment="Left" Name="btnSearch" Margin="617,10,0,0" VerticalAlignment="Top" Width="133" Height="48" Click="BtnSearch_Click"/>
 
     </Grid>
 </Window>
