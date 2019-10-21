@@ -57,6 +57,11 @@ namespace ServiceDLL.Concrete
             return 1;
         }
 
+        public Task<int> LoginAsync(UserLoginVM user)
+        {
+            return Task.Run(() => Login(user));
+        }
+
         public int Register(UserRegisterVM user)
         {
             try
@@ -83,6 +88,11 @@ namespace ServiceDLL.Concrete
                 return 0;
             }
             return 1;
+        }
+
+        public Task<int> RegisterAsync(UserRegisterVM user)
+        {
+            return Task.Run(() => Register(user));
         }
     }
 }

@@ -61,5 +61,10 @@ namespace CarShop.EmployeersWindows
         {
             FillDG();
         }
+
+        private void DgShowEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
