@@ -1,5 +1,6 @@
 ﻿using CarShop.Entities;
 using CarShop.ViewModels;
+using Newtonsoft.Json;
 using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using System;
@@ -7,7 +8,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -52,7 +55,7 @@ namespace CarShop
             var listMake = await serviceMake.GetMakesAsync();
             cbMake.ItemsSource = listMake;
             ModelApiService service = new ModelApiService();
-            List<ModelVM> list = await service.GetMakesAsync();
+            List<ModelVM> list = await service.GetModelAsync();
             ModelVM.Clear();
             ModelVM.AddRange(list);
 
@@ -215,45 +218,58 @@ namespace CarShop
             pageNumber = Convert.ToInt32(btn.Content);
             FillGrid();
         }
-
-
-
         private void BtnAddModel_Click(object sender, RoutedEventArgs e)
         {
-            if (cbMake.Text != "" && txtModel.Text != "")
+            try
             {
+                lblErrorModel.Foreground = Brushes.White;
+                lblErrorMake.Foreground = Brushes.White;
+                lblErrorMake.Content = "";
+                lblErrorModel.Content = "";
                 ModelApiService service = new ModelApiService();
-
                 MakeVM make = (cbMake.SelectedItem as MakeVM);
 
-                service.Create(new ModelAddVM { Name = txtModel.Text ,Make=make});
-                //var list = _context.Models.AsQueryable().ToList();
-                //bool c = false;
-                //foreach (var item in list)
-                //{
-                //    if (item.Name == txtModel.Text)
-                //        c = true;
-                //}
-                //if (c == true)
-                //{
-                //    MessageBox.Show("Error");
-                //}
-                //if (c == false)
-                //{
-                //    _context.Models.Add(new Entities.Model { MakeId = int.Parse(cbMake.SelectedValue.ToString()), Name = txtModel.Text });
-                //    _context.SaveChanges();
-                //    txtModel.Clear();
-
-                //}
-                    FillGrid();
+                service.Create(new ModelAddVM { Name = txtModel.Text, Make = make });
             }
-            else
+            catch (WebException wex)
             {
-                MessageBox.Show("Please, fill all lines.");
-
+                ShowException(wex);
+            }     
+        }
+        void ShowException(WebException wex)
+        {
+            if (wex.Response != null)
+            {
+                using (var errorResponse = (HttpWebResponse)wex.Response)
+                {
+                    using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                    {
+                        var error = reader.ReadToEnd();
+                        var mes = JsonConvert.DeserializeObject<ModelException>(error);
+                        ShowError(mes);
+                        lblErrorMake.Foreground = Brushes.Red;
+                        lblErrorModel.Foreground = Brushes.Red;
+                    }
+                }
             }
         }
 
+        void ShowError(ModelException model)
+        {
+            if (model.Make!=null)
+            {
+                lblErrorMake.Content = model.Make;
+            }
+            if (model.Name != null)
+            {
+                lblErrorModel.Content = model.Name;
+            }
+        }
+        void ShowMessage(string mes)
+        {
+            mes = mes.Trim('"');
+            MessageBox.Show(mes);
+        }
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
 
