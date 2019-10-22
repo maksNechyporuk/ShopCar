@@ -16,7 +16,11 @@ namespace ServiceDLL.Models
     public class ModelAddVM
     {
         public MakeVM Make { get; set; }
-
+        public string Name { get; set; }
+    }
+    public class ModelException
+    {
+        public string Make { get; set; }
         public string Name { get; set; }
     }
     public class ModelDeleteVM

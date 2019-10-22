@@ -1,4 +1,5 @@
 ﻿using ServiceDLL.Concrete;
+using ServiceDLL.Helpers;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,19 @@ namespace CarShop.ClientsWindows
     {
         ClientApiService servise;
         List<ClientVM> client;
-       public ShowClients()
+
+        List<ClientDataGridVM> FillDGList(List<ClientVM> client)
+        {
+            List<ClientDataGridVM> clientDG = new List<ClientDataGridVM>();
+            foreach (var item in client)
+            {
+                System.Drawing.Image img = item.Image.Base64ToImage();
+                clientDG.Add(new ClientDataGridVM { Id = item.Id, Name = item.Name, Phone = item.Phone , Image = img});
+            }
+            return clientDG;
+  
+        }
+        public ShowClients()
         {
             InitializeComponent();
             servise = new ClientApiService();
@@ -33,7 +46,7 @@ namespace CarShop.ClientsWindows
         async void FillDG()
         {
             client = await servise.GetClientsAsync();
-            dgShowClients.ItemsSource = client;
+            dgShowClients.ItemsSource = FillDGList(client);
         }
 
         void FillDGByFind(List<ClientVM> list)
