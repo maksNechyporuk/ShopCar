@@ -9,6 +9,7 @@ namespace ServiceDLL.Models
     public class MakeVM
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
     }
 

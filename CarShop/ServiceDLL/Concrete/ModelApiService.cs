@@ -55,7 +55,7 @@ namespace ServiceDLL.Concrete
             return 0;
         }
 
-        public List<ModelVM> GetMakes()
+        public List<ModelVM> GetModel()
         {
             var client = new WebClient();
             client.Encoding = ASCIIEncoding.UTF8;
@@ -64,9 +64,9 @@ namespace ServiceDLL.Concrete
             return list;
         }
 
-        public Task<List<ModelVM>> GetMakesAsync()
+        public Task<List<ModelVM>> GetModelAsync()
         {
-            return Task.Run(() => GetMakes());
+            return Task.Run(() => GetModel());
         }
 
         public void Update(ModelVM model)
