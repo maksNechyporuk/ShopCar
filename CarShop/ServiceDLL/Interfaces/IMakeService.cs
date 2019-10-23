@@ -17,7 +17,5 @@ namespace ServiceDLL.Interfaces
         Task<string> CreateAsync(MakeAddModel make);
         Task<string> DeleteAsync(MakelDeleteVM make);
         Task<string> UpdateAsync(MakeVM make);
-      
-
     }
 }

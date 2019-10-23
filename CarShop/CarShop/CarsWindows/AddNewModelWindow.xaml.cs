@@ -79,13 +79,9 @@ namespace CarShop
             wpBTN.Children.Clear();
             if(pages>=8)
             {
-
                 for (int i = 0; i < pages; i++)
                 {
-                   
-                    
-
-                        var b = new Button()
+                         var b = new Button()
                         {
                             Content = $"{i + 1}",
                             Width = sizeButton.Width,
@@ -94,15 +90,12 @@ namespace CarShop
                             Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
                         };
                         b.Click += B_Click; ;
-                        wpBTN.Children.Add(b);
-
-                    
-                 
+                        wpBTN.Children.Add(b);               
 
                 }
                 return;
             }
-        else    if (pageNumber <= 5)
+            else if (pageNumber <= 5)
             {
                 for (int i = 0; i < pages; i++)
                 {
@@ -117,7 +110,7 @@ namespace CarShop
                             Margin = new Thickness(5, 5, 5, 5),
                             Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
                         };
-                        b.Click += B_Click; ;
+                        b.Click += B_Click;
                         wpBTN.Children.Add(b);
                         count_b++;
 
@@ -139,7 +132,7 @@ namespace CarShop
                         Margin = new Thickness(5, 5, 5, 5),
                         Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
                     };
-                    b.Click += B_Click; ;
+                    b.Click += B_Click;
                     wpBTN
                     .Children
                     .Add(b);
@@ -151,8 +144,6 @@ namespace CarShop
                     Width = sizeButton.Width,
                     Height = sizeButton.Height,
                     Margin = new Thickness(5, 5, 5, 5),
-
-
                 };
                 wpBTN
                .Children
@@ -170,7 +161,7 @@ namespace CarShop
                             Margin = new Thickness(5, 5, 5, 5),
                             Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
                         };
-                        b.Click += B_Click; ;
+                        b.Click += B_Click;
                         wpBTN.Children.Add(b);
 
 
@@ -181,9 +172,9 @@ namespace CarShop
                 }
 
             }
-            if ((pageNumber + 4) < pages)
-            {
 
+            if ((pageNumber + 4) != pages && (pageNumber + 4) < pages)
+            {
                 var l = new Label()
                 {
                     Content = $"...",
@@ -195,7 +186,7 @@ namespace CarShop
                .Children
                .Add(l);
             }
-            if ((pageNumber + 4) < pages)
+            if ((pageNumber + 4) <= pages)
             {
                 var b = new Button()
                 {
@@ -205,7 +196,7 @@ namespace CarShop
                     Margin = new Thickness(5, 5, 5, 5),
                     Background = pageNumber == pageNumber - 1 ? Brushes.Green : Brushes.White
                 };
-                b.Click += B_Click; ;
+                b.Click += B_Click;
                 wpBTN
              .Children
              .Add(b);
@@ -228,7 +219,6 @@ namespace CarShop
                 lblErrorModel.Content = "";
                 ModelApiService service = new ModelApiService();
                 MakeVM make = (cbMake.SelectedItem as MakeVM);
-
                 service.Create(new ModelAddVM { Name = txtModel.Text, Make = make });
             }
             catch (WebException wex)
@@ -245,24 +235,23 @@ namespace CarShop
                     using (var reader = new StreamReader(errorResponse.GetResponseStream()))
                     {
                         var error = reader.ReadToEnd();
-                        var mes = JsonConvert.DeserializeObject<ModelException>(error);
-                        ShowError(mes);
+                        var mes = JsonConvert.DeserializeAnonymousType(error, new
+                        {
+                            Name = "",
+                            Make=""
+                        });
+                        if (mes.Make != null)
+                        {
+                            lblErrorMake.Content = mes.Make;
+                        }
+                        if (mes.Name != null)
+                        {
+                            lblErrorModel.Content = mes.Name;
+                        }
                         lblErrorMake.Foreground = Brushes.Red;
                         lblErrorModel.Foreground = Brushes.Red;
                     }
                 }
-            }
-        }
-
-        void ShowError(ModelException model)
-        {
-            if (model.Make!=null)
-            {
-                lblErrorMake.Content = model.Make;
-            }
-            if (model.Name != null)
-            {
-                lblErrorModel.Content = model.Name;
             }
         }
         void ShowMessage(string mes)
