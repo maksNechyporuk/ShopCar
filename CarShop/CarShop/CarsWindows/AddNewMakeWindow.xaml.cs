@@ -45,6 +45,7 @@ namespace CarShop
         async void GetMakes()
         {
             MakeApiService service = new MakeApiService();
+            txtMake.Clear();
             List<MakeVM> list = await service.GetMakesAsync(txtMake.Text);
             MakeVM.Clear();
             MakeVM.AddRange(list);
@@ -54,7 +55,7 @@ namespace CarShop
         {
             txtMake.Clear();
             var count = MakeVM.Count();
-            int numberOfObjectsPerPage = 1;//int.Parse(cbCount.Text);
+            int numberOfObjectsPerPage = 5;//int.Parse(cbCount.Text);
             int pages = (int)Math.Ceiling((double)count / (double)numberOfObjectsPerPage);
             GenerationBtn(pages, pageNumber);
 
@@ -74,7 +75,7 @@ namespace CarShop
             {
                 MakeApiService service = new MakeApiService();
                 ShowMessage(await service.CreateAsync(new MakeAddModel { Name = txtMake.Text }));
-                FillGrid();
+                GetMakes();
                 lblError.Foreground = Brushes.White;
                 lblError.Content="";
             }         
@@ -93,8 +94,10 @@ namespace CarShop
                     using (var reader = new StreamReader(errorResponse.GetResponseStream()))
                     {
                         var error = reader.ReadToEnd();
-                        var mes = JsonConvert.DeserializeAnonymousType<>(error);
-                        lblError.Content = mes.Name;
+                        var mes = JsonConvert.DeserializeAnonymousType(error, new
+                        {
+                            Name = ""
+                        }); lblError.Content = mes.Name;
                         lblError.Foreground = Brushes.Red;
                     }
                 }
@@ -106,7 +109,32 @@ namespace CarShop
             var sizeButton = new Size { Width = 50, Height = 30 };
             int count_b = 0;
             wpBTN.Children.Clear();
-           if (pageNumber <= 5)
+            if (pages >= 8)
+            {
+
+                for (int i = 0; i < pages; i++)
+                {
+
+
+
+                    var b = new Button()
+                    {
+                        Content = $"{i + 1}",
+                        Width = sizeButton.Width,
+                        Height = sizeButton.Height,
+                        Margin = new Thickness(5, 5, 5, 5),
+                        Background = i == pageNumber - 1 ? Brushes.Green : Brushes.White
+                    };
+                    b.Click += B_Click; ;
+                    wpBTN.Children.Add(b);
+
+
+
+
+                }
+                return;
+            }
+            else  if (pageNumber <= 5)
             {
                 for (int i = 0; i < pages; i++)
                 {
@@ -236,8 +264,8 @@ namespace CarShop
                     MakeVM make = (DBGrid.SelectedItem as MakeVM);
                     MakeApiService service = new MakeApiService();
                     int id = make.Id;
-                    ShowMessage( await service.DeleteAsync(new MakelDeleteVM { Id = id }));                   
-                    FillGrid();
+                    ShowMessage( await service.DeleteAsync(new MakelDeleteVM { Id = id }));
+                    GetMakes();
                 }
             }
             catch (WebException wex)
@@ -257,7 +285,7 @@ namespace CarShop
                     int id = make.Id;
                     ShowMessage(await service.UpdateAsync(new MakeVM { Id = id, Name = txtMake.Text }));
                     btnUpdate.IsEnabled = false;
-                    FillGrid();
+                    GetMakes();
                 }
             }
             catch (WebException wex)
