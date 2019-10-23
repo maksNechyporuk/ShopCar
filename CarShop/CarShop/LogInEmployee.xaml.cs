@@ -1,9 +1,13 @@
 ﻿using CarShop.EmployeersWindows;
+using Newtonsoft.Json;
 using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,11 +34,24 @@ namespace CarShop
         private async void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             UserApiService userService = new UserApiService();
-            if (txtName.Text != "" && txtPassword.Text != "")
+            try
             {
-                var res = await userService.LoginAsync(new UserLoginVM { Name = txtName.Text, Password = txtPassword.Text });
-                if (res == 1)
+                if (txtName.Text != "" && txtPassword.Text != "")
                 {
+                    var token = await userService.LoginAsync(new UserLoginVM { Name = txtName.Text, Password = txtPassword.Text });
+                    var tokenObject = JsonConvert.DeserializeAnonymousType(token, new
+                    {
+                        token = ""
+                    });
+                    var handler = new JwtSecurityTokenHandler();
+                    var jsonToken = handler.ReadToken(tokenObject.token);
+                    var tokenS = handler.ReadToken(tokenObject.token) as JwtSecurityToken;
+                    foreach (var item in tokenS.Claims)
+                    {
+                        MessageBox.Show($"{item.Value}", item.Type);
+                    }
+                    //Debug.WriteLine("token {0}", token);
+                    MessageBox.Show(token);
                     MessageBox.Show("Ви успішно зареєструвались.");
                     ShowEmployees showEmployees = new ShowEmployees();
                     showEmployees.Show();
@@ -42,9 +59,21 @@ namespace CarShop
                 }
                 else
                 {
-                    MessageBox.Show("Неправильно введені дані.");
-                    //txtName.Text = "";
-                    //txtPassword.Text = "";
+                    MessageBox.Show("Деякі поля є не заповненими!");
+                }
+            }
+            catch (WebException wex)
+            {
+                if (wex.Response != null)
+                {
+                    using (var errorResponse = (HttpWebResponse)wex.Response)
+                    {
+                        using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                        {
+                            string error = reader.ReadToEnd();
+                            MessageBox.Show(error);
+                        }
+                    }
                 }
             }
         }
