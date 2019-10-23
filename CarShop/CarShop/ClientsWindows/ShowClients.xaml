@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ShowClients" Height="450" Width="792">
     <Grid Margin="8,0,2,0">
-        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,83,0,0">
+        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,192,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Number" Binding="{Binding Phone}" />
@@ -34,7 +34,7 @@
                             <TextBlock Text="{Binding Phone}" Grid.Column="2" Grid.Row="2" />
 
                             <TextBlock Text="Image: " FontWeight="Bold" Grid.Row="3" />
-                            <TextBlock Text="{Binding Image}" Grid.Column="3" Grid.Row="3" />
+                            <Image Source ="{Binding Image}" Grid.Column="3" Grid.Row="3" />
 
                         </Grid>
                     </DockPanel>
@@ -47,5 +47,6 @@
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="173,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
         <Label Content="Ім'я клієнта :" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
         <Button Content="Відмінити пошук" HorizontalAlignment="Left" Margin="575,15,0,0" VerticalAlignment="Top" Width="189" Height="49" Click="Button_Click"/>
+        <Image x:Name="PhotoImage" HorizontalAlignment="Left" Height="100" Margin="10,78,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>
