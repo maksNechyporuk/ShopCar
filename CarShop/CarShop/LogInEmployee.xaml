@@ -5,18 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop"
         mc:Ignorable="d"
-        Title="Authorization" Height="156.009" Width="245.731">
-    <Grid Height="124" VerticalAlignment="Top" HorizontalAlignment="Left" Width="236">
+        Title="Authorization" Height="184.851" Width="245.731">
+    <Grid Height="154" VerticalAlignment="Top" HorizontalAlignment="Left" Width="236">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Name: " HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.705,0.5" Height="26"/>
+        <Label Content="Name: " HorizontalAlignment="Left" Margin="12,7,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.705,0.5" Height="26"/>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="81,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
 
-        <Label Content="Password: " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
-        <TextBox Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="81,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <Button Name="btnAdd" Content="Log in" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="214" Height="29" Click="BtnAdd_Click"/>
+        <Label Content="Password: " HorizontalAlignment="Left" Margin="12,63,0,0" VerticalAlignment="Top" Height="26" Width="65"/>
+        <TextBox Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="82,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
+        <Button Name="btnAdd" Content="Log in" HorizontalAlignment="Left" Margin="12,115,0,0" VerticalAlignment="Top" Width="214" Height="29" Click="BtnAdd_Click"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="12,89,0,0" VerticalAlignment="Top" Width="212" Height="21"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="12,33,0,0" VerticalAlignment="Top" Width="212" Height="21"/>
 
     </Grid>
 </Window>
