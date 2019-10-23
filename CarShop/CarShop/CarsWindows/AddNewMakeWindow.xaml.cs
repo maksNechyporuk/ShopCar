@@ -54,7 +54,7 @@ namespace CarShop
         {
             txtMake.Clear();
             var count = MakeVM.Count();
-            int numberOfObjectsPerPage = 2;//int.Parse(cbCount.Text);
+            int numberOfObjectsPerPage = 1;//int.Parse(cbCount.Text);
             int pages = (int)Math.Ceiling((double)count / (double)numberOfObjectsPerPage);
             GenerationBtn(pages, pageNumber);
 
@@ -93,7 +93,7 @@ namespace CarShop
                     using (var reader = new StreamReader(errorResponse.GetResponseStream()))
                     {
                         var error = reader.ReadToEnd();
-                        var mes = JsonConvert.DeserializeObject<MakeVM>(error);
+                        var mes = JsonConvert.DeserializeAnonymousType<>(error);
                         lblError.Content = mes.Name;
                         lblError.Foreground = Brushes.Red;
                     }
@@ -106,7 +106,7 @@ namespace CarShop
             var sizeButton = new Size { Width = 50, Height = 30 };
             int count_b = 0;
             wpBTN.Children.Clear();
-            if (pageNumber <= 5)
+           if (pageNumber <= 5)
             {
                 for (int i = 0; i < pages; i++)
                 {
@@ -183,13 +183,9 @@ namespace CarShop
                 }
 
             }
-            //if ((pageNumber + 4) < pages)
-            //{
 
-            //}
-            if ((pageNumber + 4) <= pages)
+            if ((pageNumber + 4) != pages&& (pageNumber + 4) < pages)
             {
-
                 var l = new Label()
                 {
                     Content = $"...",
@@ -200,6 +196,9 @@ namespace CarShop
                 wpBTN
                .Children
                .Add(l);
+            }
+            if ((pageNumber + 4) <= pages)
+            {         
                 var b = new Button()
                 {
                     Content = $"{pages}",
