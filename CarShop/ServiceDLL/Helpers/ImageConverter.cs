@@ -22,16 +22,16 @@ namespace ServiceDLL.Helpers
                 return base64String;
             }          
         }
-        public static Image Base64ToImage(this string base64String)
-        {
-            // Convert base 64 string to byte[]
-            byte[] imageBytes = Convert.FromBase64String(base64String);
-            // Convert byte[] to Image
-            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
-            {
-                Image image = Image.FromStream(ms, true);
-                return image;
-            }
-        }
+        //public static Bitmap Base64ToImage(this string base64String)
+        //{
+        //    // Convert base 64 string to byte[]
+        //    byte[] imageBytes = Convert.FromBase64String(base64String);
+        //    // Convert byte[] to Image
+        //    using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+        //    {
+        //       Bitmap image = (Bitmap)Image.FromStream(ms, true);
+        //       return image;
+        //    }
+        //}
     }
 }
