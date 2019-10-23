@@ -51,9 +51,13 @@ namespace CarShop.EmployeersWindows
             {
                 dgShowEmployees.ItemsSource = users.Where(c => c.Email == txtEmail.Text);
             }
-            else
+            else if(txtName.Text !="")
             {
                 dgShowEmployees.ItemsSource = users.Where(c => c.Name == txtName.Text);
+            }
+            else
+            {
+                return;
             }
         }
 
