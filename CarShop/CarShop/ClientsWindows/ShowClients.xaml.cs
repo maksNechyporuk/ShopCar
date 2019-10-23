@@ -31,12 +31,12 @@ namespace CarShop.ClientsWindows
             List<ClientDataGridVM> clientDG = new List<ClientDataGridVM>();
             foreach (var item in client)
             {
-                System.Drawing.Image img = item.Image.Base64ToImage();
-                clientDG.Add(new ClientDataGridVM { Id = item.Id, Name = item.Name, Phone = item.Phone , Image = img});
-                //PhotoImage = img ;
+                //Bitmap img = item.Image.Base64ToImage();
+                clientDG.Add(new ClientDataGridVM { Id = item.Id, Name = item.Name, Phone = item.Phone/*, Image = img*/ });
+                //PhotoImage = img. ;
             }
             return clientDG;
-  
+
         }
         public ShowClients()
         {
