@@ -9,12 +9,12 @@ namespace ServiceDLL.Interfaces
 {
     public interface IUserService
     {
-         int Login(UserLoginVM user);
+         string Login(UserLoginVM user);
 
         List<UserVM> GetUser();
 
         Task<List<UserVM>> GetUserAsync();
 
-        int Register(UserRegisterVM user);
+        string Register(UserRegisterVM user);
     }
 }

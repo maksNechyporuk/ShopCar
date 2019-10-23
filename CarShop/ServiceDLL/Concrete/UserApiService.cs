@@ -29,68 +29,54 @@ namespace ServiceDLL.Concrete
             return Task.Run(() => GetUser());
         }
 
-        public int Login(UserLoginVM user)
+        public string Login(UserLoginVM user)
         {
-            try
-            {
-                var http = (HttpWebRequest)WebRequest.Create(new Uri(_url + "/login"));
-                http.Accept = "application/json";
-                http.ContentType = "application/json";
-                http.Method = "POST";
+            var http = (HttpWebRequest)WebRequest.Create(new Uri(_url + "/login"));
+            http.Accept = "application/json";
+            http.ContentType = "application/json";
+            http.Method = "POST";
 
-                string parsedContent = JsonConvert.SerializeObject(user);
-                UTF8Encoding encoding = new UTF8Encoding();
-                Byte[] bytes = encoding.GetBytes(parsedContent);
-                Stream newStream = http.GetRequestStream();
-                newStream.Write(bytes, 0, bytes.Length);
-                newStream.Close();
+            string parsedContent = JsonConvert.SerializeObject(user);
+            UTF8Encoding encoding = new UTF8Encoding();
+            Byte[] bytes = encoding.GetBytes(parsedContent);
+            Stream newStream = http.GetRequestStream();
+            newStream.Write(bytes, 0, bytes.Length);
+            newStream.Close();
 
-                var response = http.GetResponse();
-                var stream = response.GetResponseStream();
-                var sr = new StreamReader(stream);
-                var content = sr.ReadToEnd();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            var response = http.GetResponse();
+            var stream = response.GetResponseStream();
+            var sr = new StreamReader(stream);
+            var content = sr.ReadToEnd();
+            return content; ;
         }
 
-        public Task<int> LoginAsync(UserLoginVM user)
+        public Task<string> LoginAsync(UserLoginVM user)
         {
             return Task.Run(() => Login(user));
         }
 
-        public int Register(UserRegisterVM user)
-        {
-            try
-            {
-                var http = (HttpWebRequest)WebRequest.Create(new Uri(_url + "/register"));
-                http.Accept = "application/json";
-                http.ContentType = "application/json";
-                http.Method = "POST";
+        public string Register(UserRegisterVM user)
+        {   
+            var http = (HttpWebRequest)WebRequest.Create(new Uri(_url + "/register"));
+            http.Accept = "application/json";
+            http.ContentType = "application/json";
+            http.Method = "POST";
 
-                string parsedContent = JsonConvert.SerializeObject(user);
-                UTF8Encoding encoding = new UTF8Encoding();
-                Byte[] bytes = encoding.GetBytes(parsedContent);
-                Stream newStream = http.GetRequestStream();
-                newStream.Write(bytes, 0, bytes.Length);
-                newStream.Close();
+            string parsedContent = JsonConvert.SerializeObject(user);
+            UTF8Encoding encoding = new UTF8Encoding();
+            Byte[] bytes = encoding.GetBytes(parsedContent);
+            Stream newStream = http.GetRequestStream();
+            newStream.Write(bytes, 0, bytes.Length);
+            newStream.Close();
 
-                var response = http.GetResponse();
-                var stream = response.GetResponseStream();
-                var sr = new StreamReader(stream);
-                var content = sr.ReadToEnd();
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-            return 1;
+            var response = http.GetResponse();
+            var stream = response.GetResponseStream();
+            var sr = new StreamReader(stream);
+            var content = sr.ReadToEnd();
+            return content;
         }
 
-        public Task<int> RegisterAsync(UserRegisterVM user)
+        public Task<string> RegisterAsync(UserRegisterVM user)
         {
             return Task.Run(() => Register(user));
         }
