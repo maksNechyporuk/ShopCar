@@ -3,6 +3,7 @@ using ServiceDLL.Helpers;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace CarShop.ClientsWindows
             {
                 System.Drawing.Image img = item.Image.Base64ToImage();
                 clientDG.Add(new ClientDataGridVM { Id = item.Id, Name = item.Name, Phone = item.Phone , Image = img});
+                //PhotoImage = img ;
             }
             return clientDG;
   
@@ -74,5 +76,6 @@ namespace CarShop.ClientsWindows
                 dgShowClients.ItemsSource = client.Where(c => c.Name == txtName.Text);
             }
         }
+       
     }
 }
