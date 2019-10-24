@@ -15,7 +15,7 @@ namespace ServiceDLL.Concrete
     {
         private string _url = "https://localhost:44381/api/model";
 
-        public void Create(ModelAddVM model)
+        public string Create(ModelAddVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -33,9 +33,15 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
+            return content;
         }
 
-        public int Delete(ModelDeleteVM model)
+        public Task<string> CreateAsync(ModelAddVM make)
+        {
+            return Task.Run(() => Create(make));
+        }
+
+        public string Delete(ModelDeleteVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -52,10 +58,16 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
-            return 0;
+            return content;
         }
 
-        public List<ModelVM> GetModel()
+        public Task<string> DeleteAsync(ModelDeleteVM make)
+        {
+            return Task.Run(() => Delete(make));
+        }
+
+
+        public List<ModelVM> GetModels(string make)
         {
             var client = new WebClient();
             client.Encoding = ASCIIEncoding.UTF8;
@@ -64,12 +76,11 @@ namespace ServiceDLL.Concrete
             return list;
         }
 
-        public Task<List<ModelVM>> GetModelAsync()
+        public Task<List<ModelVM>> GetModelsAsync(string make)
         {
-            return Task.Run(() => GetModel());
+            return Task.Run(() => GetModels(make));
         }
-
-        public void Update(ModelVM model)
+        public string Update(ModelVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -87,6 +98,13 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
+            return content;
+
+        }
+
+        public Task<string> UpdateAsync(ModelVM make)
+        {
+            return Task.Run(() => Update(make));
         }
     }
 }

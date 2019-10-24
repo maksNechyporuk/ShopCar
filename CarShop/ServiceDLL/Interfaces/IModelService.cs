@@ -9,10 +9,13 @@ namespace ServiceDLL.Interfaces
 {
   public  interface IModelService
     {
-        List<ModelVM> GetModel();
-        Task<List<ModelVM>> GetModelAsync();
-        void Create(ModelAddVM make);
-        int Delete(ModelDeleteVM make);
-        void Update(ModelVM make);
+        List<ModelVM> GetModels(string make);
+        Task<List<ModelVM>> GetModelsAsync(string make);
+        string Create(ModelAddVM make);
+        string Delete(ModelDeleteVM make);
+        string Update(ModelVM make);
+        Task<string> CreateAsync(ModelAddVM make);
+        Task<string> DeleteAsync(ModelDeleteVM make);
+        Task<string> UpdateAsync(ModelVM make);
     }
 }
