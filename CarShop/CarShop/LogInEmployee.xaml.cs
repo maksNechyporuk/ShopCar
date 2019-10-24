@@ -36,43 +36,45 @@ namespace CarShop
             UserApiService userService = new UserApiService();
             try
             {
-                if (txtName.Text != "" && txtPassword.Text != "")
-                {
-                    var token = await userService.LoginAsync(new UserLoginVM { Name = txtName.Text, Password = txtPassword.Text });
-                    var tokenObject = JsonConvert.DeserializeAnonymousType(token, new
-                    {
-                        token = ""
-                    });
-                    var handler = new JwtSecurityTokenHandler();
-                    var jsonToken = handler.ReadToken(tokenObject.token);
-                    var tokenS = handler.ReadToken(tokenObject.token) as JwtSecurityToken;
-                    foreach (var item in tokenS.Claims)
-                    {
-                        MessageBox.Show($"{item.Value}", item.Type);
-                    }
-                    //Debug.WriteLine("token {0}", token);
-                    MessageBox.Show(token);
-                    MessageBox.Show("Ви успішно зареєструвались.");
-                    ShowEmployees showEmployees = new ShowEmployees();
-                    showEmployees.Show();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Деякі поля є не заповненими!");
-                }
+                lblErrorName.Foreground = Brushes.White;
+                lblErrorPassword.Foreground = Brushes.White;
+                lblErrorName.Content = "";
+                lblErrorPassword.Content = "";
+                string req = await userService.LoginAsync(new UserLoginVM { Name = txtName.Text, Password = txtPassword.Text });
+                MessageBox.Show("Ви успішно зареєструвались.");
+                ShowEmployees showEmployees = new ShowEmployees();
+                showEmployees.Show();
+                this.Close();
             }
             catch (WebException wex)
             {
-                if (wex.Response != null)
+                ShowException(wex);
+            }
+        }
+        void ShowException(WebException wex)
+        {
+            if (wex.Response != null)
+            {
+                using (var errorResponse = (HttpWebResponse)wex.Response)
                 {
-                    using (var errorResponse = (HttpWebResponse)wex.Response)
+                    using (var reader = new StreamReader(errorResponse.GetResponseStream()))
                     {
-                        using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                        var error = reader.ReadToEnd();
+                        var mes = JsonConvert.DeserializeAnonymousType(error, new
                         {
-                            string error = reader.ReadToEnd();
-                            MessageBox.Show(error);
+                            Name = "",
+                            Password = ""
+                        });
+                        if (mes.Name != null)
+                        {
+                            lblErrorName.Content = mes.Name;
                         }
+                        if (mes.Password != null)
+                        {
+                            lblErrorPassword.Content = mes.Password;
+                        }
+                        lblErrorName.Foreground = Brushes.Red;
+                        lblErrorPassword.Foreground = Brushes.Red;
                     }
                 }
             }

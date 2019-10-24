@@ -24,9 +24,7 @@ namespace ServiceDLL.Models
         public string Name { get; set; }
 
         public string Phone { get; set; }
-
-        public Image Image { get; set; }
-
+       
     }
     public class ClientAddVM
     {

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop.ClientsWindows"
         mc:Ignorable="d"
-        Title="ShowClients" Height="450" Width="792">
-    <Grid Margin="8,0,2,0">
-        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,192,0,0">
+        Title="ShowClients" Height="378.151" Width="790.739">
+    <Grid Margin="8,0,2,-5" Height="307" VerticalAlignment="Top">
+        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,81,0,-35" Height="261" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Number" Binding="{Binding Phone}" />
@@ -33,9 +33,6 @@
                             <TextBlock Text="Number: " FontWeight="Bold" Grid.Row="2" />
                             <TextBlock Text="{Binding Phone}" Grid.Column="2" Grid.Row="2" />
 
-                            <TextBlock Text="Image: " FontWeight="Bold" Grid.Row="3" />
-                            <Image Source ="{Binding Image}" Grid.Column="3" Grid.Row="3" />
-
                         </Grid>
                     </DockPanel>
                 </DataTemplate>
@@ -43,10 +40,9 @@
         </DataGrid>
         <TextBox x:Name="txtNumber" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
         <Label Content="Номер телефону клієнта :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
-        <Button x:Name="btnFindClient" Content="Знайти" HorizontalAlignment="Left" Margin="337,15,0,0" VerticalAlignment="Top" Width="200" Height="49" Click="BtnFindClient_Click" />       
+        <Button x:Name="btnFindClient" Content="Знайти" HorizontalAlignment="Left" Margin="337,15,0,0" VerticalAlignment="Top" Width="200" Height="49" Click="BtnFindClient_Click" />
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="173,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
         <Label Content="Ім'я клієнта :" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
         <Button Content="Відмінити пошук" HorizontalAlignment="Left" Margin="575,15,0,0" VerticalAlignment="Top" Width="189" Height="49" Click="Button_Click"/>
-        <Image x:Name="PhotoImage" HorizontalAlignment="Left" Height="100" Margin="10,78,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>
