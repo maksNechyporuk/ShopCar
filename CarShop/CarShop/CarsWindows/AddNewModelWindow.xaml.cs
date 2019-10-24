@@ -55,7 +55,7 @@ namespace CarShop
             var listMake = await serviceMake.GetMakesAsync();
             cbMake.ItemsSource = listMake;
             ModelApiService service = new ModelApiService();
-            List<ModelVM> list = await service.GetModelAsync();
+            List<ModelVM> list = await service.GetModelsAsync(txtModel.Text);
             ModelVM.Clear();
             ModelVM.AddRange(list);
 
@@ -209,7 +209,7 @@ namespace CarShop
             pageNumber = Convert.ToInt32(btn.Content);
             FillGrid();
         }
-        private void BtnAddModel_Click(object sender, RoutedEventArgs e)
+        private async void BtnAddModel_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -219,7 +219,7 @@ namespace CarShop
                 lblErrorModel.Content = "";
                 ModelApiService service = new ModelApiService();
                 MakeVM make = (cbMake.SelectedItem as MakeVM);
-                service.Create(new ModelAddVM { Name = txtModel.Text, Make = make });
+                ShowMessage(await service.CreateAsync(new ModelAddVM { Name = txtModel.Text, Make = make }));
             }
             catch (WebException wex)
             {
@@ -259,9 +259,50 @@ namespace CarShop
             mes = mes.Trim('"');
             MessageBox.Show(mes);
         }
-        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        private async void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (DBGrid.SelectedItem != null)
+                {
+                    ModelApiService service = new ModelApiService();
+                    MakeVM make = (cbMake.SelectedItem as MakeVM);
+                    ModelVM model = (DBGrid.SelectedItem as ModelVM);
+                    ShowMessage(await service.UpdateAsync(new ModelVM {Id= model.Id, Name =txtModel.Text,Make=make}));
+                    btnUpdate.IsEnabled = false;
+                    //GetMakes();
+                }
+            }
+            catch (WebException wex)
+            {
+                ShowException(wex);
+            }
+        }
+        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            btnUpdate.IsEnabled = true;
+            ModelVM model = (DBGrid.SelectedItem as ModelVM);
+            txtModel.Text = model.Name;
+            cbMake.Text = model.Make.Name;
+        }
+        private async void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
 
+                if (DBGrid.SelectedItem != null)
+                {
+                    ModelVM make = (DBGrid.SelectedItem as ModelVM);
+                    ModelApiService service = new ModelApiService();
+                    int id = make.Id;
+                    ShowMessage(await service.DeleteAsync(new ModelDeleteVM { Id = id }));
+                   //GetMakes();
+                }
+            }
+            catch (WebException wex)
+            {
+                ShowException(wex);
+            }
         }
     }
 }
