@@ -15,7 +15,7 @@ namespace ServiceDLL.Concrete
     {
         private string _url = "https://localhost:44381/api/clients";
 
-       public void Create(ClientAddVM client)
+       public string Create(ClientAddVM client)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -33,9 +33,14 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
+            return content;
+        }
+        public Task<string> CreateAsync(ClientAddVM client)
+        {
+            return Task.Run(() => Create(client));
         }
 
-        public int Delete(ClientDeleteVM client)
+        public string Delete(ClientDeleteVM client)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -52,9 +57,12 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
-            return 0;
+            return content;
         }
-
+        public Task<string> DeleteAsync(ClientDeleteVM client)
+        {
+            return Task.Run(() => Delete(client));
+        }
         public List<ClientVM> GetClients()
         {
             var client = new WebClient();
@@ -63,13 +71,12 @@ namespace ServiceDLL.Concrete
             var list = JsonConvert.DeserializeObject<List<ClientVM>>(data);
             return list;
         }
-
         public Task<List<ClientVM>> GetClientsAsync()
         {
             return Task.Run(() => GetClients());
         }
 
-        public void Update(ClientVM client)
+        public string Update(ClientVM client)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -87,6 +94,12 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
+            return content;
         }
+        public Task<string> UpdateAsync(ClientVM client)
+        {
+            return Task.Run(() => Update(client));
+        }
+
     }
 }
