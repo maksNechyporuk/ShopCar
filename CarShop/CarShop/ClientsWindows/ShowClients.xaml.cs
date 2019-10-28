@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -76,6 +77,22 @@ namespace CarShop.ClientsWindows
                 dgShowClients.ItemsSource = client.Where(c => c.Name == txtName.Text);
             }
         }
-       
+
+        private void BtnAddClient_Click(object sender, RoutedEventArgs e)
+        {
+            //try
+            //{
+            //    lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
+            //    lblNameError.Foreground = System.Windows.Media.Brushes.White;
+            //    lblPhoneError.Content = "";
+            //    lblNameError.Content = "";
+            //    ClientApiService
+            //}
+            //catch (WebException wex)
+            //{
+            //    ShowException(wex);
+            //}
+        }
     }
-}
+    }
+
