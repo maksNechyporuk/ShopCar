@@ -1,9 +1,11 @@
-﻿using ServiceDLL.Concrete;
+﻿using Newtonsoft.Json;
+using ServiceDLL.Concrete;
 using ServiceDLL.Helpers;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -78,21 +80,55 @@ namespace CarShop.ClientsWindows
             }
         }
 
-        private void BtnAddClient_Click(object sender, RoutedEventArgs e)
+        private async void BtnAddClient_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
-            //    lblNameError.Foreground = System.Windows.Media.Brushes.White;
-            //    lblPhoneError.Content = "";
-            //    lblNameError.Content = "";
-            //    ClientApiService
-            //}
-            //catch (WebException wex)
-            //{
-            //    ShowException(wex);
-            //}
+            try
+            {
+                lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
+                lblNameError.Foreground = System.Windows.Media.Brushes.White;
+                lblPhoneError.Content = "";
+                lblNameError.Content = "";
+                ClientApiService service = new ClientApiService();              
+                ShowMessage(await service.CreateAsync(new ClientAddVM { Name = txtName.Text,Phone = txtNumber.Text}));
+            }
+            catch (WebException wex)
+            {
+                ShowException(wex);
+            }
+        }
+        void ShowException(WebException wex)
+        {
+            if (wex.Response != null)
+            {
+                using (var errorResponse = (HttpWebResponse)wex.Response)
+                {
+                    using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                    {
+                        var error = reader.ReadToEnd();
+                        var mes = JsonConvert.DeserializeAnonymousType(error, new
+                        {
+                            Name = "",
+                            Phone = ""
+                        });
+                        if (mes.Name != null)
+                        {
+                            lblNameError.Content = mes.Name;
+                        }
+                        if (mes.Phone != null)
+                        {
+                            lblPhoneError.Content = mes.Phone;
+                        }
+                        lblNameError.Foreground = System.Windows.Media.Brushes.Red;
+                        lblPhoneError.Foreground = System.Windows.Media.Brushes.Red;
+                    }
+                }
+            }
+        }
+        void ShowMessage(string mes)
+        {
+            mes = mes.Trim('"');
+            MessageBox.Show(mes);
         }
     }
-    }
+}
 
