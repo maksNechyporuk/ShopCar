@@ -10,11 +10,12 @@ namespace ServiceDLL.Interfaces
     public interface IClientService
     {
         List<ClientVM> GetClients();
-
         Task<List<ClientVM>> GetClientsAsync();
-
-        void Create(ClientAddVM client);
-        int Delete(ClientDeleteVM client);
-        void Update(ClientVM client);
+        string Create(ClientAddVM client);
+        string Delete(ClientDeleteVM client);
+        string Update(ClientVM client);
+        Task<string> DeleteAsync(ClientDeleteVM client);
+        Task<string> CreateAsync(ClientAddVM client);
+        Task<string> UpdateAsync(ClientVM client);
     }
 }
