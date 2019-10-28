@@ -31,9 +31,7 @@ namespace ServiceDLL.Concrete
         }
 
         public string Login(UserLoginVM user)
-        {
-            try
-            {
+        {  
                 var http = (HttpWebRequest)WebRequest.Create(new Uri(_url + "/login"));
                 http.Accept = "application/json";
                 http.ContentType = "application/json";
@@ -58,33 +56,7 @@ namespace ServiceDLL.Concrete
                 var handler = new JwtSecurityTokenHandler();
                 var jsonToken = handler.ReadToken(tokenObject.token);
                 var tokenS = handler.ReadToken(tokenObject.token) as JwtSecurityToken;
-                return "";
-                //foreach (var item in tokenS.Claims)
-                //{
-                //    MessageBox.Show($"{item.Value}", item.Type);
-                //}
-                //MessageBox.Show(token);
-            }
-            catch (WebException wex)
-            {
-                string returnMess = "";
-                if (wex.Response != null)
-                {
-                    using (var errorResponse = (HttpWebResponse)wex.Response)
-                    {
-                        using (var reader = new StreamReader(errorResponse.GetResponseStream()))
-                        {
-                            var error = reader.ReadToEnd();
-                            var mes = JsonConvert.DeserializeAnonymousType(error, new
-                            {
-                                invalid = ""
-                            });
-                            returnMess = mes.invalid;
-                        }
-                    }
-                }
-                return returnMess;
-            }
+                return content;
         }
 
         public Task<string> LoginAsync(UserLoginVM user)
