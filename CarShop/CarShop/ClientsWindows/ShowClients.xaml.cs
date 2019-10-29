@@ -35,7 +35,7 @@ namespace CarShop.ClientsWindows
             foreach (var item in client)
             {
                 //Bitmap img = item.Image.Base64ToImage();
-                clientDG.Add(new ClientDataGridVM { Id = item.Id, Name = item.Name, Phone = item.Phone/*, Image = img*/ });
+                clientDG.Add(new ClientDataGridVM { Id = item.Id, Name = item.Name, Phone = item.Phone,Email = item.Email/*, Image = img*/ });
                 //PhotoImage = img. ;
             }
             return clientDG;
@@ -66,18 +66,19 @@ namespace CarShop.ClientsWindows
 
         private void BtnFindClient_Click(object sender, RoutedEventArgs e)
         {
-            if (txtNumber.Text != "" && txtName.Text != "")
+            if (txtNumber.Text != "" && txtName.Text != "" && txtEmail.Text !="")
             {
-                dgShowClients.ItemsSource = client.Where(c => c.Phone == txtNumber.Text && c.Name == txtName.Text);
+                dgShowClients.ItemsSource = client.Where(c => c.Phone == txtNumber.Text && c.Name == txtName.Text && c.Email == txtEmail.Text);
             }
             else if (txtNumber.Text != "")
             {
                 dgShowClients.ItemsSource = client.Where(c => c.Phone == txtNumber.Text);
             }
-            else
+            else 
             {
                 dgShowClients.ItemsSource = client.Where(c => c.Name == txtName.Text);
             }
+          
         }
 
         private async void BtnAddClient_Click(object sender, RoutedEventArgs e)
@@ -86,10 +87,12 @@ namespace CarShop.ClientsWindows
             {
                 lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
                 lblNameError.Foreground = System.Windows.Media.Brushes.White;
+                lblEmailError.Foreground = System.Windows.Media.Brushes.White;
                 lblPhoneError.Content = "";
                 lblNameError.Content = "";
+                lblEmailError.Content = "";
                 ClientApiService service = new ClientApiService();              
-                ShowMessage(await service.CreateAsync(new ClientAddVM { Name = txtName.Text,Phone = txtNumber.Text}));
+                ShowMessage(await service.CreateAsync(new ClientAddVM { Name = txtName.Text,Phone = txtNumber.Text,Email = txtEmail.Text}));
             }
             catch (WebException wex)
             {
@@ -108,7 +111,8 @@ namespace CarShop.ClientsWindows
                         var mes = JsonConvert.DeserializeAnonymousType(error, new
                         {
                             Name = "",
-                            Phone = ""
+                            Phone = "",
+                            Email = ""
                         });
                         if (mes.Name != null)
                         {
@@ -118,8 +122,13 @@ namespace CarShop.ClientsWindows
                         {
                             lblPhoneError.Content = mes.Phone;
                         }
+                        if (mes.Email != null)
+                        {
+                            lblEmailError.Content = mes.Email;
+                        }
                         lblNameError.Foreground = System.Windows.Media.Brushes.Red;
                         lblPhoneError.Foreground = System.Windows.Media.Brushes.Red;
+                        lblEmailError.Foreground = System.Windows.Media.Brushes.Red;
                     }
                 }
             }
