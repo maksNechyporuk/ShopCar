@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Data;
+using ServiceDLL.Concrete;
+using ServiceDLL.Models;
+using WPFAnimal.Extensions;
 
 namespace CarShop
 {
@@ -22,12 +25,14 @@ namespace CarShop
     /// </summary>
     public partial class AddNewCarWindow : Window
     {
-       // public static List<Make> dataSource = new List<Make>();
+        private ObservableCollection<FNameViewModel> FilterVM { get; set; }
+
+        // public static List<Make> dataSource = new List<Make>();
         public AddNewCarWindow()
         {
             InitializeComponent();
-            this.cbMake.Focus();
-            
+            FilterVM = new ObservableCollection<FNameViewModel>();
+            GetFilters();
 
         //SQLiteConnection con = new SQLiteConnection($"Data Source={dbName}");
         //    con.Open();
@@ -41,11 +46,11 @@ namespace CarShop
         //    {
         //        //dataSource.Add(new Make { Name = reader["Make"].ToString(), CityID = int.Parse(reader["Id"].ToString()) });             
         //    }
-            
-        //   cbMake.ItemsSource = dataSet.Tables[0].DefaultView;
-        //   cbMake.SelectedValuePath = dataSet.Tables[0].Columns["Id"].ToString();
-        //   cbMake.DisplayMemberPath = dataSet.Tables[0].Columns["Make"].ToString();
-           //cbMake.ItemsSource=make;           
+
+            //   cbMake.ItemsSource = dataSet.Tables[0].DefaultView;
+            //   cbMake.SelectedValuePath = dataSet.Tables[0].Columns["Id"].ToString();
+            //   cbMake.DisplayMemberPath = dataSet.Tables[0].Columns["Make"].ToString();
+            //cbMake.ItemsSource=make;           
         }
         //protected void autoCities_PatternChanged(object sender, AutoComplete.AutoCompleteArgs args)
         //{
@@ -61,6 +66,69 @@ namespace CarShop
         //    return new ObservableCollection<Make>(
         //        dataSource.Where((city, match) => city.Name.ToLower().Contains(Pattern.ToLower())));
         //}
+      async  void GetFilters()
+        {
+            FilterApiService service = new FilterApiService();
+            List<FNameViewModel> list = await service.GetFiltersAsync();
+            FilterVM.Clear();
+            FilterVM.AddRange(list);
+            FillWP();
+
+
+
+        }
+        void FillWP()
+        {
+            wpFilters.Children.Clear();
+            foreach (var item in FilterVM)
+            {
+                Label Name = new Label();
+                Name.Content = item.Name;
+
+                Name.VerticalAlignment = VerticalAlignment.Top;
+                Name.Margin = new Thickness(25, 5, 15, 5);
+                wpFilters.Children.Add(Name);
+                foreach (var children in item.Children)
+                {
+                    CheckBox value = new CheckBox
+                    {
+                        Content = children.Name,
+                        VerticalAlignment = VerticalAlignment.Bottom,
+                        Margin = new Thickness(55, 0, 5, 5),Tag=children.Id
+                    };
+                    value.Click += Value_Click;
+                    wpFilters.Children.Add(value);
+                }
+            }
+        }
+
+        private async void Value_Click(object sender, RoutedEventArgs e)
+        {
+            //CarApiService 
+            List<CheckBox> box = new List<CheckBox>();
+            foreach (var item in wpFilters.Children)
+            {
+                if (item.GetType() == typeof(CheckBox))
+
+                    box.Add(item as CheckBox);
+            }
+            List<int> idValue = new List<int>();
+            foreach (var item in box)
+            {
+                if (item.IsChecked == true)
+                {
+                    idValue.Add((int)(item.Tag));
+                }
+            }
+            CarApiService service = new CarApiService();
+          var list=  service.GetCarsByFilters(idValue.ToArray());
+
+            int a = 0; 
+            //FilterVM.Clear();
+            //FilterVM.AddRange(list);
+            //FillWP();
+        }
+
         private void CbMake_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
            // MessageBox.Show(cbMake.SelectedValue.ToString());
