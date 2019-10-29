@@ -16,6 +16,8 @@ namespace ServiceDLL.Models
         public string Phone { get; set; }
 
         public string Image { get; set; }
+
+        public string Email { get; set; }
     }
     public class ClientDataGridVM
     {
@@ -24,13 +26,15 @@ namespace ServiceDLL.Models
         public string Name { get; set; }
 
         public string Phone { get; set; }
-       
+        public string Email { get; set; }
+
     }
     public class ClientAddVM
     {
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Image { get; set; }
+        public string Email { get; set; }
     }
     public class ClientDeleteVM
     {

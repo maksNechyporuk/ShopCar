@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:CarShop.ClientsWindows"
         mc:Ignorable="d"
         Title="ShowClients" Height="498.151" Width="575.739">
-    <Grid Margin="3,0,-3,-1">
-        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,101,251,0" Height="360" VerticalAlignment="Top">
+    <Grid Margin="3,0,-3,-6">
+        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,101,251,0" Height="302" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Number" Binding="{Binding Phone}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
@@ -33,6 +34,9 @@
                             <TextBlock Text="Number: " FontWeight="Bold" Grid.Row="2" />
                             <TextBlock Text="{Binding Phone}" Grid.Column="2" Grid.Row="2" />
 
+                            <TextBlock Text="Email: " FontWeight="Bold" Grid.Row="3" />
+                            <TextBlock Text="{Binding Email}" Grid.Column="3" Grid.Row="3" />
+
                         </Grid>
                     </DockPanel>
                 </DataTemplate>
@@ -47,5 +51,9 @@
         <Button x:Name="btnAddClient" Content="Додати клієнта" HorizontalAlignment="Left" Margin="337,229,0,0" VerticalAlignment="Top" Width="200" Height="49" Click="BtnAddClient_Click" RenderTransformOrigin="0.48,1.184"/>
         <Label x:Name="lblPhoneError" Content="" HorizontalAlignment="Left" Margin="7,60,0,0" VerticalAlignment="Top" Width="142"/>
         <Label x:Name="lblNameError" Content="" HorizontalAlignment="Left" Margin="174,61,0,0" VerticalAlignment="Top" Width="143"/>
+        <Button x:Name="btnDeleteClient" Content="Видалити клієнта" HorizontalAlignment="Left" Margin="337,293,0,0" VerticalAlignment="Top" Width="200" Height="47"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="337,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
+        <Label x:Name="lblEmailError" Content="" HorizontalAlignment="Left" Margin="337,61,0,0" VerticalAlignment="Top" Width="163"/>
+        <Label Content="Електронна пошта клієнта :" HorizontalAlignment="Left" Margin="337,3,0,0" VerticalAlignment="Top" Width="163"/>
     </Grid>
 </Window>
