@@ -7,16 +7,13 @@
             xmlns:ctr="clr-namespace:CarShop"
 
       mc:Ignorable="d"
-        Title="Add new car" Height="442.437" Width="326.051">
+        Title="Add new car" Height="456.037" Width="839.651">
     <Grid Margin="0,0,2,3">
-        <ComboBox  x:Name="cbMake"  HorizontalAlignment="Left" Margin="69,23,0,0" VerticalAlignment="Top" Width="120"   IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="True"/>
+        <ScrollViewer  CanContentScroll="True"  Margin="0,0,567.6,0.4">
 
-        <!-- Cool comment 
-        <ctr:AutoComplete x:Name="cbMake" 
-         SelectedValuePath="CityID" DisplayMemberPath="Name" Margin="59,10,34,371" 
-                      PatternChanged="autoCities_PatternChanged"    IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="False"
+            <StackPanel  Name="wpFilters" HorizontalAlignment="Left" Height="423" VerticalAlignment="Top" Width="254" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
 
+        </ScrollViewer>
 
-           />-->
     </Grid>
 </Window>

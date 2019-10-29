@@ -81,18 +81,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\CarApiService.cs" />
     <Compile Include="Concrete\ClientApiService.cs" />
+    <Compile Include="Concrete\FilterApiService.cs" />
     <Compile Include="Concrete\MakeApiService.cs" />
     <Compile Include="Concrete\ModelApiService.cs" />
     <Compile Include="Concrete\UserApiService.cs" />
     <Compile Include="Data\Credential.cs" />
     <Compile Include="Data\MyContext .cs" />
     <Compile Include="Helpers\ImageConverter.cs" />
+    <Compile Include="Interfaces\ICarService.cs" />
     <Compile Include="Interfaces\IClientService.cs" />
+    <Compile Include="Interfaces\IFilterService.cs" />
     <Compile Include="Interfaces\IMakeService.cs" />
     <Compile Include="Interfaces\IModelService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Models\CarModels.cs" />
     <Compile Include="Models\ClientModels.cs" />
+    <Compile Include="Models\FilterModels.cs" />
     <Compile Include="Models\MakeModels.cs" />
     <Compile Include="Models\ModelModels.cs" />
     <Compile Include="Models\UserModels.cs" />
