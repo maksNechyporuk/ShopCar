@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop.ClientsWindows"
         mc:Ignorable="d"
-        Title="ShowClients" Height="498.151" Width="575.739">
-    <Grid Margin="3,0,-3,-6">
-        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,101,251,0" Height="302" VerticalAlignment="Top">
+        Title="ShowClients" Height="523.151" Width="613.739">
+    <Grid Margin="3,0,-16,-21">
+        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,101,269,0" Height="362" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Number" Binding="{Binding Phone}" />
@@ -19,41 +19,41 @@
                         <Image DockPanel.Dock="Left" Source="{Binding PathImg}" Height="64" Margin="10" />
                         <Grid Margin="0,10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
-                            <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
+                            <TextBlock Text="Name: " FontWeight="Bold" Grid.Column="0" Grid.Row="0" />
+                            <TextBlock Text="{Binding Name}" Grid.Row="0"  Grid.Column="1" />
 
-                            <TextBlock Text="Number: " FontWeight="Bold" Grid.Row="2" />
-                            <TextBlock Text="{Binding Phone}" Grid.Column="2" Grid.Row="2" />
+                            <TextBlock Text="Number: " FontWeight="Bold" Grid.Column="0" Grid.Row="1" />
+                            <TextBlock Text="{Binding Phone}" Grid.Row="1"  Grid.Column="1" />
 
-                            <TextBlock Text="Email: " FontWeight="Bold" Grid.Row="3" />
-                            <TextBlock Text="{Binding Email}" Grid.Column="3" Grid.Row="3" />
+                            <TextBlock Text="Email: " FontWeight="Bold" Grid.Column="0" Grid.Row="2" />
+                            <TextBlock Text="{Binding Email}" Grid.Row="2"  Grid.Column="1" />
 
                         </Grid>
                     </DockPanel>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
-        <TextBox x:Name="txtNumber" HorizontalAlignment="Left" Height="23" Margin="173,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
-        <Label Content="Номер телефону клієнта :" HorizontalAlignment="Left" Margin="167,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
-        <Button x:Name="btnFindClient" Content="Знайти" HorizontalAlignment="Left" Margin="337,101,0,0" VerticalAlignment="Top" Width="200" Height="49" Click="BtnFindClient_Click" />
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="7,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.142,0.435"/>
-        <Label Content="Ім'я клієнта :" HorizontalAlignment="Left" Margin="36,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
-        <Button Content="Відмінити пошук" HorizontalAlignment="Left" Margin="337,165,0,0" VerticalAlignment="Top" Width="200" Height="49" Click="Button_Click"/>
-        <Button x:Name="btnAddClient" Content="Додати клієнта" HorizontalAlignment="Left" Margin="337,229,0,0" VerticalAlignment="Top" Width="200" Height="49" Click="BtnAddClient_Click" RenderTransformOrigin="0.48,1.184"/>
-        <Label x:Name="lblPhoneError" Content="" HorizontalAlignment="Left" Margin="175,61,0,0" VerticalAlignment="Top" Width="142"/>
-        <Label x:Name="lblNameError" Content="" HorizontalAlignment="Left" Margin="7,61,0,0" VerticalAlignment="Top" Width="143"/>
-        <Button x:Name="btnDeleteClient" Content="Видалити клієнта" HorizontalAlignment="Left" Margin="337,293,0,0" VerticalAlignment="Top" Width="200" Height="47"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="337,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163"/>
-        <Label x:Name="lblEmailError" Content="" HorizontalAlignment="Left" Margin="337,61,0,0" VerticalAlignment="Top" Width="163"/>
-        <Label Content="Електронна пошта клієнта :" HorizontalAlignment="Left" Margin="337,3,0,0" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="txtNumber" HorizontalAlignment="Left" Height="23" Margin="201,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.142,0.435"/>
+        <Label Content="Номер телефону клієнта :" HorizontalAlignment="Left" Margin="201,2,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
+        <Button x:Name="btnFindClient" Content="Знайти" HorizontalAlignment="Left" Margin="368,101,0,0" VerticalAlignment="Top" Width="221" Height="49" Click="BtnFindClient_Click" />
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="7,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" RenderTransformOrigin="0.142,0.435"/>
+        <Label Content="Ім'я клієнта :" HorizontalAlignment="Left" Margin="47,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
+        <Button Content="Відмінити пошук" HorizontalAlignment="Left" Margin="368,170,0,0" VerticalAlignment="Top" Width="221" Height="49" Click="Button_Click"/>
+        <Button x:Name="btnAddClient" Content="Додати клієнта" HorizontalAlignment="Left" Margin="368,238,0,0" VerticalAlignment="Top" Width="221" Height="49" Click="BtnAddClient_Click" RenderTransformOrigin="0.48,1.184"/>
+        <Label x:Name="lblPhoneError" Content="" HorizontalAlignment="Left" Margin="201,61,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.5,0.5"/>
+        <Label x:Name="lblNameError" Content="" HorizontalAlignment="Left" Margin="7,61,0,0" VerticalAlignment="Top" Width="169"/>
+        <Button x:Name="btnDeleteClient" Content="Видалити клієнта" HorizontalAlignment="Left" Margin="368,308,0,0" VerticalAlignment="Top" Width="221" Height="47"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="395,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.748,0.652"/>
+        <Label x:Name="lblEmailError" Content="" HorizontalAlignment="Left" Margin="395,61,0,0" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.497,0.462"/>
+        <Label Content="Електронна пошта клієнта :" HorizontalAlignment="Left" Margin="395,3,0,0" VerticalAlignment="Top" Width="163"/>
     </Grid>
 </Window>

@@ -95,14 +95,13 @@ namespace CarShop.ClientsWindows
                 string str = txtNumber.Text;
                 if (str != null && str.Trim().Length == 10)
                     str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
-                txtNumber.Text = str;
+                txtNumber.Text = str;              
                 var regex = @"\+38\d{1}\(\d{2}\)\d{3}\-\d{2}\-\d{2}";
                 var match = Regex.Match(str, regex);
-
                 if (!match.Success)
                 {
                     txtNumber.BorderBrush = System.Windows.Media.Brushes.Red;
-                    lblPhoneError.Visibility = Visibility;
+                    lblPhoneError.Visibility = Visibility;                  
                 }
                 else
                 {
@@ -145,6 +144,7 @@ namespace CarShop.ClientsWindows
                         {
                             lblEmailError.Content = mes.Email;
                         }
+
                         lblNameError.Foreground = System.Windows.Media.Brushes.Red;
                         lblPhoneError.Foreground = System.Windows.Media.Brushes.Red;
                         lblEmailError.Foreground = System.Windows.Media.Brushes.Red;
