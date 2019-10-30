@@ -112,6 +112,7 @@ namespace CarShop.ClientsWindows
                     FillDG();
                 }
             }
+
             catch (WebException wex)
             {
                 ShowException(wex);
