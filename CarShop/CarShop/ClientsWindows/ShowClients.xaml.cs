@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -91,8 +92,26 @@ namespace CarShop.ClientsWindows
                 lblPhoneError.Content = "";
                 lblNameError.Content = "";
                 lblEmailError.Content = "";
-                ClientApiService service = new ClientApiService();              
-                ShowMessage(await service.CreateAsync(new ClientAddVM { Name = txtName.Text,Phone = txtNumber.Text,Email = txtEmail.Text}));
+                string str = txtNumber.Text;
+                if (str != null && str.Trim().Length == 10)
+                    str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
+                txtNumber.Text = str;
+                var regex = @"\+38\d{1}\(\d{2}\)\d{3}\-\d{2}\-\d{2}";
+                var match = Regex.Match(str, regex);
+
+                if (!match.Success)
+                {
+                    txtNumber.BorderBrush = System.Windows.Media.Brushes.Red;
+                    lblPhoneError.Visibility = Visibility;
+                }
+                else
+                {
+                    txtNumber.BorderBrush = System.Windows.Media.Brushes.Black;
+                    lblPhoneError.Visibility = Visibility.Collapsed;
+                    ClientApiService service = new ClientApiService();
+                    await service.CreateAsync(new ClientAddVM { Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
+                    FillDG();
+                }
             }
             catch (WebException wex)
             {
