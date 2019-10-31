@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
+using ServiceDLL.Data;
 using ServiceDLL.Interfaces;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SQLite;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
@@ -31,7 +34,7 @@ namespace ServiceDLL.Concrete
         }
 
         public string Login(UserLoginVM user)
-        {  
+         {  
                 var http = (HttpWebRequest)WebRequest.Create(new Uri(_url + "/login"));
                 http.Accept = "application/json";
                 http.ContentType = "application/json";
@@ -56,7 +59,28 @@ namespace ServiceDLL.Concrete
                 var handler = new JwtSecurityTokenHandler();
                 var jsonToken = handler.ReadToken(tokenObject.token);
                 var tokenS = handler.ReadToken(tokenObject.token) as JwtSecurityToken;
-                return content;
+            //DbConnection connection = GetConnection("jon");
+            using (var context = new EFContext())
+            {
+                Credential credential = new Credential
+                {
+                    Token = "ssss",
+                    DateCreate = DateTime.Now,
+                    DateExtToken = 12342134,
+                    UserName="asdf"
+                };
+                context.Credentials.Add(credential);
+                //context.Dependants.Add(new Dependant() { Description = "Dependant description", MainEntity = new EF6.Migrations.Test.Model01.Entity() { Description = "Entity description" } });
+                context.SaveChanges();
+
+            }
+            return content;
+        }
+        private DbConnection GetConnection(string fileName)
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName + ".db3");
+            DbConnection connection = new SQLiteConnection(string.Format("Data Source={0};Version=3;", filePath));
+            return connection;
         }
 
         public Task<string> LoginAsync(UserLoginVM user)
