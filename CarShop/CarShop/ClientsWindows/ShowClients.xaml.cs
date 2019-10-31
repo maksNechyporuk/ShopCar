@@ -75,6 +75,10 @@ namespace CarShop.ClientsWindows
             {
                 dgShowClients.ItemsSource = client.Where(c => c.Phone == txtNumber.Text);
             }
+            else if (txtEmail.Text != "")
+            {
+                dgShowClients.ItemsSource = client.Where(c => c.Email == txtEmail.Text);
+            }
             else 
             {
                 dgShowClients.ItemsSource = client.Where(c => c.Name == txtName.Text);
@@ -93,27 +97,18 @@ namespace CarShop.ClientsWindows
                 lblNameError.Content = "";
                 lblEmailError.Content = "";
                 string str = txtNumber.Text;
+                string str2 = txtName.Text;
+                string str3 = txtEmail.Text;
                 if (str != null && str.Trim().Length == 10)
                     str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
-                txtNumber.Text = str;              
-                var regex = @"\+38\d{1}\(\d{2}\)\d{3}\-\d{2}\-\d{2}";
-                var match = Regex.Match(str, regex);
-                if (!match.Success)
-                {
-                    txtNumber.BorderBrush = System.Windows.Media.Brushes.Red;
-                    lblPhoneError.Visibility = Visibility;                  
-                }
-                else
-                {
-                    txtNumber.BorderBrush = System.Windows.Media.Brushes.Black;
-                    lblPhoneError.Visibility = Visibility.Collapsed;
-                    ClientApiService service = new ClientApiService();
-                    await service.CreateAsync(new ClientAddVM { Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
-                    FillDG();
-                }
+                txtNumber.Text = str;
+                txtName.Text = str2;
+                txtEmail.Text = str3;              
+                ClientApiService service = new ClientApiService();
+                await service.CreateAsync(new ClientAddVM { Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
+                FillDG();
+
             }
-
-
             catch (WebException wex)
             {
                 ShowException(wex);
@@ -136,15 +131,33 @@ namespace CarShop.ClientsWindows
                         });
                         if (mes.Name != null)
                         {
+                            if (mes.Name == "issue")
+                            {
+                                txtName.BorderBrush = System.Windows.Media.Brushes.Red;
+                                lblNameError.Visibility = Visibility;
+                            }
+                            else
                             lblNameError.Content = mes.Name;
                         }
                         if (mes.Phone != null)
                         {
-                            lblPhoneError.Content = mes.Phone;
+                            if(mes.Phone == "issue")
+                            {
+                                txtNumber.BorderBrush = System.Windows.Media.Brushes.Red;
+                                lblPhoneError.Visibility = Visibility;
+                            }
+                            else
+                            lblPhoneError.Content = mes.Phone;                         
                         }
                         if (mes.Email != null)
                         {
-                            lblEmailError.Content = mes.Email;
+                            //if (mes.Email == "issue")
+                            //{
+                            //    txtEmail.BorderBrush = System.Windows.Media.Brushes.Red;
+                            //    lblEmailError.Visibility = Visibility;
+                            //}
+                            //else
+                            //lblEmailError.Content = mes.Email;
                         }
 
                         lblNameError.Foreground = System.Windows.Media.Brushes.Red;
