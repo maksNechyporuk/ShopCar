@@ -26,9 +26,15 @@ namespace CarShop
     /// </summary>
     public partial class LogInEmployee : Window
     {
+        private string userName;
         public LogInEmployee()
         {
             InitializeComponent();
+        }
+
+        public string GetName()
+        {
+            return userName;
         }
 
         private async void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -42,8 +48,7 @@ namespace CarShop
                 lblErrorPassword.Content = "";
                 string req = await userService.LoginAsync(new UserLoginVM { Name = txtName.Text, Password = txtPassword.Text });
                 MessageBox.Show("Ви успішно зареєструвались.");
-                ShowEmployees showEmployees = new ShowEmployees();
-                showEmployees.Show();
+                userName = txtName.Text;
                 this.Close();
             }
             catch (WebException wex)
