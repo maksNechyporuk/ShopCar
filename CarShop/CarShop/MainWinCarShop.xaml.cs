@@ -1,4 +1,5 @@
 ﻿using CarShop.ClientsWindows;
+using CarShop.EmployeersWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,8 +82,15 @@ namespace CarShop
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            ShowEmployees showEmployees = new ShowEmployees();
+            showEmployees.Show();
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
             LogInEmployee logInEmployee = new LogInEmployee();
-            logInEmployee.Show();
-        }    
+            logInEmployee.ShowDialog();
+            lblUserName.Text = logInEmployee.GetName();
+        }
     }
 }

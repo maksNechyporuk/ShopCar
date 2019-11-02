@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -74,6 +75,10 @@ namespace CarShop.ClientsWindows
             {
                 dgShowClients.ItemsSource = client.Where(c => c.Phone == txtNumber.Text);
             }
+            else if (txtEmail.Text != "")
+            {
+                dgShowClients.ItemsSource = client.Where(c => c.Email == txtEmail.Text);
+            }
             else 
             {
                 dgShowClients.ItemsSource = client.Where(c => c.Name == txtName.Text);
@@ -91,8 +96,18 @@ namespace CarShop.ClientsWindows
                 lblPhoneError.Content = "";
                 lblNameError.Content = "";
                 lblEmailError.Content = "";
-                ClientApiService service = new ClientApiService();              
-                ShowMessage(await service.CreateAsync(new ClientAddVM { Name = txtName.Text,Phone = txtNumber.Text,Email = txtEmail.Text}));
+                string str = txtNumber.Text;
+                string str2 = txtName.Text;
+                string str3 = txtEmail.Text;
+                if (str != null && str.Trim().Length == 10)
+                    str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
+                txtNumber.Text = str;
+                txtName.Text = str2;
+                txtEmail.Text = str3;              
+                ClientApiService service = new ClientApiService();
+                await service.CreateAsync(new ClientAddVM { Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
+                FillDG();
+
             }
             catch (WebException wex)
             {
@@ -116,16 +131,35 @@ namespace CarShop.ClientsWindows
                         });
                         if (mes.Name != null)
                         {
+                            if (mes.Name == "issue")
+                            {
+                                txtName.BorderBrush = System.Windows.Media.Brushes.Red;
+                                lblNameError.Visibility = Visibility;
+                            }
+                            else
                             lblNameError.Content = mes.Name;
                         }
                         if (mes.Phone != null)
                         {
-                            lblPhoneError.Content = mes.Phone;
+                            if(mes.Phone == "issue")
+                            {
+                                txtNumber.BorderBrush = System.Windows.Media.Brushes.Red;
+                                lblPhoneError.Visibility = Visibility;
+                            }
+                            else
+                            lblPhoneError.Content = mes.Phone;                         
                         }
                         if (mes.Email != null)
                         {
-                            lblEmailError.Content = mes.Email;
+                            //if (mes.Email == "issue")
+                            //{
+                            //    txtEmail.BorderBrush = System.Windows.Media.Brushes.Red;
+                            //    lblEmailError.Visibility = Visibility;
+                            //}
+                            //else
+                            //lblEmailError.Content = mes.Email;
                         }
+
                         lblNameError.Foreground = System.Windows.Media.Brushes.Red;
                         lblPhoneError.Foreground = System.Windows.Media.Brushes.Red;
                         lblEmailError.Foreground = System.Windows.Media.Brushes.Red;
