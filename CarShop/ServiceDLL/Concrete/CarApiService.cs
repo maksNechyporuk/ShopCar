@@ -82,6 +82,7 @@ namespace ServiceDLL.Concrete
 
         public List<CarVM> GetCarsByFilters(int[] id)
         {
+        
             string path = "?value=" + id[0];
             for (int i = 1; i < id.Length; i++)
             {
@@ -97,6 +98,8 @@ namespace ServiceDLL.Concrete
 
         public Task<List<CarVM>> GetCarsByFiltersAsync(int[] id)
         {
+            if (id.Length ==0)
+            return Task.Run(() => GetCars()); 
             return Task.Run(() => GetCarsByFilters(id));
         }
 

@@ -17,6 +17,9 @@ using System.Data;
 using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using WPFAnimal.Extensions;
+using System.Threading.Tasks;
+using System.Net;
+using System.IO;
 
 namespace CarShop
 {
@@ -26,85 +29,113 @@ namespace CarShop
     public partial class AddNewCarWindow : Window
     {
         private ObservableCollection<FNameViewModel> FilterVM { get; set; }
-
-        // public static List<Make> dataSource = new List<Make>();
+        private ObservableCollection<CarVM> CarVM { get; set; }
+        TextBox txtSearchCar;
         public AddNewCarWindow()
         {
             InitializeComponent();
             FilterVM = new ObservableCollection<FNameViewModel>();
+            CarVM = new ObservableCollection<CarVM>();
+            txtSearchCar = new TextBox() { Width = 230, Margin = new Thickness(0, 10, 5, 5) };
+            txtSearchCar.TextChanged += TxtSearchCar_TextChanged;
             GetFilters();
 
-        //SQLiteConnection con = new SQLiteConnection($"Data Source={dbName}");
-        //    con.Open();
-        //    string query = $"Select * from  tblCarMake";
-        //    SQLiteCommand cmd = new SQLiteCommand(query, con);
-        //    SQLiteDataReader reader = cmd.ExecuteReader();
-        //    DataSet dataSet = new DataSet();
-        //    SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(query, con);
-        //    dataAdapter.Fill(dataSet);
-        //    while (reader.Read())
-        //    {
-        //        //dataSource.Add(new Make { Name = reader["Make"].ToString(), CityID = int.Parse(reader["Id"].ToString()) });             
-        //    }
-
-            //   cbMake.ItemsSource = dataSet.Tables[0].DefaultView;
-            //   cbMake.SelectedValuePath = dataSet.Tables[0].Columns["Id"].ToString();
-            //   cbMake.DisplayMemberPath = dataSet.Tables[0].Columns["Make"].ToString();
-            //cbMake.ItemsSource=make;           
         }
-        //protected void autoCities_PatternChanged(object sender, AutoComplete.AutoCompleteArgs args)
-        //{
-        //    //check
-        //    if (string.IsNullOrEmpty(args.Pattern))
-        //        args.CancelBinding = true;
-        //    else
-        //        args.DataSource =GetCities(args.Pattern);
-        //}
-        //private static ObservableCollection<Make> GetCities(string Pattern)
-        //{
-        //    // match on contain (could do starts with)
-        //    return new ObservableCollection<Make>(
-        //        dataSource.Where((city, match) => city.Name.ToLower().Contains(Pattern.ToLower())));
-        //}
-      async  void GetFilters()
+        private void TxtSearchCar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        async  void GetFilters()
         {
             FilterApiService service = new FilterApiService();
             List<FNameViewModel> list = await service.GetFiltersAsync();
             FilterVM.Clear();
             FilterVM.AddRange(list);
-            FillWP();
-
-
+            CarApiService serviceCars = new CarApiService();
+            var listCars = await serviceCars.GetCarsAsync();
+            CarVM.Clear();
+            CarVM.AddRange(listCars);
+            CarVM.AddRange(listCars);
+            CarVM.AddRange(listCars);
+            CarVM.AddRange(listCars);
+            CarVM.AddRange(listCars);
+            FillFiltersWP();
+            FillCarsWP();
+            Spinner.Opacity=0;
 
         }
-        void FillWP()
+         void  FillCarsWP()
+        {
+
+            wpCars.Children.Clear();
+            int i = 0;
+            int j = 0;
+            if(CarVM.Count==0)
+            {
+                var lbl = new Label { Content = "Даних незнайдено", FontSize = 20, Margin = new Thickness(5, 5, 5, 5) };
+                Grid.SetColumn(lbl, 1);
+                Grid.SetRow(lbl, 3);
+                wpCars.Children.Add(lbl);
+
+            }
+            foreach (var item in CarVM)
+            {               
+                var wp = new StackPanel() { Margin= new Thickness(5, 5, 5, 5) };
+                var img = new Image() {Height = 183, Width = 298};
+                img.Source = new BitmapImage(new Uri(item.Image+ "/1.png"));
+                wp.Tag = item.UniqueName;
+                wp.MouseDown += Wp_MouseDown;
+                wp.Children.Add(img);
+                wp.Children.Add(new Label() { Content = item.UniqueName,  Height = 33, Width = 80 });
+                wp.Children.Add(new Label() { Content = item.Price, Margin= new Thickness(5, 5, 5, 5), Height = 33, Width = 80 });
+                Grid.SetColumn(wp, j);
+                Grid.SetRow(wp, i);
+                wpCars.Children.Add(wp);
+                j++;
+                if(j==4)
+                {
+                    i++;
+                    j = 0;
+                }
+
+            }          
+        }
+
+        private void Wp_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            StackPanel panel= sender as StackPanel;
+            MessageBox.Show(panel.Tag.ToString());
+        }
+
+
+        void FillFiltersWP()
         {
             wpFilters.Children.Clear();
+            wpFilters.Children.Add(txtSearchCar);
             foreach (var item in FilterVM)
-            {
-                Label Name = new Label();
-                Name.Content = item.Name;
-
-                Name.VerticalAlignment = VerticalAlignment.Top;
-                Name.Margin = new Thickness(25, 5, 15, 5);
-                wpFilters.Children.Add(Name);
-                foreach (var children in item.Children)
-                {
-                    CheckBox value = new CheckBox
+            {                   
+                    Label Name = new Label();
+                    Name.Content = item.Name;
+                    Name.Margin = new Thickness(25, 5, 15, 5);
+                    wpFilters.Children.Add(Name);
+                    foreach (var children in item.Children)
                     {
-                        Content = children.Name,
-                        VerticalAlignment = VerticalAlignment.Bottom,
-                        Margin = new Thickness(55, 0, 5, 5),Tag=children.Id
-                    };
-                    value.Click += Value_Click;
-                    wpFilters.Children.Add(value);
+                        CheckBox value = new CheckBox
+                        {
+                            Content = children.Name,
+                            Margin = new Thickness(55, 0, 5, 5),
+                            Tag = children.Id
+                        };
+                        value.Click += Value_Click;
+                        wpFilters.Children.Add(value);
+                    }
                 }
-            }
         }
+
+        
 
         private async void Value_Click(object sender, RoutedEventArgs e)
         {
-            //CarApiService 
             List<CheckBox> box = new List<CheckBox>();
             foreach (var item in wpFilters.Children)
             {
@@ -121,17 +152,13 @@ namespace CarShop
                 }
             }
             CarApiService service = new CarApiService();
-          var list=  service.GetCarsByFilters(idValue.ToArray());
+            var list= await service.GetCarsByFiltersAsync(idValue.ToArray());
+            CarVM.Clear();
+            CarVM.AddRange(list);
+            FillCarsWP();
 
-            int a = 0; 
-            //FilterVM.Clear();
-            //FilterVM.AddRange(list);
-            //FillWP();
         }
 
-        private void CbMake_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           // MessageBox.Show(cbMake.SelectedValue.ToString());
-        }
+     
     }
 }
