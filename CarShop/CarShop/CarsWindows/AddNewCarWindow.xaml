@@ -3,17 +3,47 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+
         xmlns:local="clr-namespace:CarShop"
             xmlns:ctr="clr-namespace:CarShop"
 
       mc:Ignorable="d"
-        Title="Add new car" Height="456.037" Width="839.651">
+        Title="Add new car" Height="835" Width="1545" WindowStartupLocation="CenterScreen"   >
     <Grid Margin="0,0,2,3">
-        <ScrollViewer  CanContentScroll="True"  Margin="0,0,567.6,0.4">
 
-            <StackPanel  Name="wpFilters" HorizontalAlignment="Left" Height="423" VerticalAlignment="Top" Width="254" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer  CanContentScroll="True"  Margin="0,0,1256,0.6">
+
+            <StackPanel  Name="wpFilters" HorizontalAlignment="Left" Height="802" VerticalAlignment="Top" Width="280" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
 
         </ScrollViewer>
+        <ScrollViewer CanContentScroll="True"   Margin="285,0,0,0.6">
+            <Grid   Name="wpCars"   Height="787" Width="1241">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height ="280" ></RowDefinition>
+                    <RowDefinition Height ="280" ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="Auto">
+
+
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="Auto">
+
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="Auto">
+
+                    </ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+        </ScrollViewer>
+        <fa:ImageAwesome  Name="Spinner"  Icon="Spinner" Spin="True" Height="68" Width="68" />
 
     </Grid>
 </Window>
