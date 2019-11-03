@@ -114,8 +114,11 @@
     <Compile Include="AddClients.xaml.cs">
       <DependentUpon>AddClients.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CarsWindows\AddNewCarWindow.xaml.cs">
-      <DependentUpon>AddNewCarWindow.xaml</DependentUpon>
+    <Compile Include="CarsWindows\CarsInformationWindow.xaml.cs">
+      <DependentUpon>CarsInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CarsWindows\ShowCarsWindow.xaml.cs">
+      <DependentUpon>ShowCarsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CarsWindows\AddNewMakeWindow.xaml.cs">
       <DependentUpon>AddNewMakeWindow.xaml</DependentUpon>
@@ -153,8 +156,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.uk.resx</DependentUpon>
     </Compile>
-    <Compile Include="CarsWindows\ShowCarWindow.xaml.cs">
-      <DependentUpon>ShowCarWindow.xaml</DependentUpon>
+    <Compile Include="CarsWindows\CarsWindow.xaml.cs">
+      <DependentUpon>CarsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ClientViewModels.cs" />
     <Compile Include="ViewModels\MakeViewModels.cs" />
@@ -163,7 +166,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CarsWindows\AddNewCarWindow.xaml">
+    <Page Include="CarsWindows\CarsInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CarsWindows\ShowCarsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,7 +205,7 @@
     <Compile Include="MainWinCarShop.xaml.cs">
       <DependentUpon>MainWinCarShop.xaml</DependentUpon>
     </Compile>
-    <Page Include="CarsWindows\ShowCarWindow.xaml">
+    <Page Include="CarsWindows\CarsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

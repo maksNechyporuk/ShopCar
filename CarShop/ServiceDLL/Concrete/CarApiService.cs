@@ -103,6 +103,22 @@ namespace ServiceDLL.Concrete
             return Task.Run(() => GetCarsByFilters(id));
         }
 
+        public CarVM GetCarsByName(string Name)
+        {
+            string path = "?name=" + Name;           
+            string _url = @"https://localhost:44381/api/cars/CarsByName/" + path;
+            var client = new WebClient();
+            client.Encoding = ASCIIEncoding.UTF8;
+            string data = client.DownloadString(_url);
+            var car = Newtonsoft.Json.JsonConvert.DeserializeObject<CarVM>(data);
+            return car;
+        }
+
+        public Task<CarVM> GetCarsByNameAsync(string Name)
+        {
+            return Task.Run(() => GetCarsByName(Name));
+        }
+
         public string Update(CarVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));

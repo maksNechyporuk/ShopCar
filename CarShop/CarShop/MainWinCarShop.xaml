@@ -26,4 +26,5 @@
         <TextBox x:Name="lblUserName" HorizontalAlignment="Left" Height="23" Margin="658,12,0,0" TextWrapping="Wrap" Text="Visitor" VerticalAlignment="Top" Width="52" IsEnabled="False"/>
 
     </Grid>
+    
 </Window>
