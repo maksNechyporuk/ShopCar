@@ -10,6 +10,7 @@
 
       mc:Ignorable="d"
         Title="Add new car" Height="835" Width="1545" WindowStartupLocation="CenterScreen"   >
+    
     <Grid Margin="0,0,2,3">
 
         <Grid.ColumnDefinitions>
@@ -46,4 +47,5 @@
         <fa:ImageAwesome  Name="Spinner"  Icon="Spinner" Spin="True" Height="68" Width="68" />
 
     </Grid>
+   
 </Window>

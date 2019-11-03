@@ -9,6 +9,9 @@ namespace ServiceDLL.Interfaces
 {
     interface ICarService
     {
+        CarVM GetCarsByName(string Name );
+        Task<CarVM> GetCarsByNameAsync(string Name);
+
         List<CarVM> GetCars();
         Task<List<CarVM>> GetCarsAsync();
         List<CarVM> GetCarsByFilters(int [] id);

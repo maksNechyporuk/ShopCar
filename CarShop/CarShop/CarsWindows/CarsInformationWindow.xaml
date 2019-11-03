@@ -1,0 +1,21 @@
+﻿<Window x:Class="CarShop.CarsWindows.CarsInformationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarShop.CarsWindows"
+        mc:Ignorable="d"
+        Title="CarsInformationWindow" Height="835" Width="1545" WindowStartupLocation="CenterScreen" >
+    <ScrollViewer  CanContentScroll="True"  Margin="0,0,-6.6,0.6">
+        <Grid>
+            <Label FontSize="35" Name="lblCarsName" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="1518" Height="133">
+            </Label>
+            <Image Name="BigPhoto"  Margin="108,143,520,157.8" Stretch="Fill" Width="900" Height="600"/>
+
+            <StackPanel Name="spLitleCarsPhoto" HorizontalAlignment="Left" Height="Auto" Margin="-5,165,0,0" VerticalAlignment="Top" Width="108"/>
+            <Label Content="Ціна " Name="lblPrice" HorizontalAlignment="Left" FontSize="20" Margin="1013,178,0,0" VerticalAlignment="Top" Height="51" Width="345"/>
+            <StackPanel Name="spCharacteristics"  HorizontalAlignment="Left" Height="auto" Margin="108,775,0,0" VerticalAlignment="Top" Width="auto"/>
+
+        </Grid>
+    </ScrollViewer>
+</Window>

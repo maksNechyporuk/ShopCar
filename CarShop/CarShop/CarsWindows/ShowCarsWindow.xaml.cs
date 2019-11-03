@@ -20,6 +20,7 @@ using WPFAnimal.Extensions;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using CarShop.CarsWindows;
 
 namespace CarShop
 {
@@ -82,12 +83,12 @@ namespace CarShop
             {               
                 var wp = new StackPanel() { Margin= new Thickness(5, 5, 5, 5) };
                 var img = new Image() {Height = 183, Width = 298};
-                img.Source = new BitmapImage(new Uri(item.Image+ "/1.png"));
+                img.Source = new BitmapImage(new Uri(item.Image + "/300_" + item.UniqueName + ".jpg"));
                 wp.Tag = item.UniqueName;
                 wp.MouseDown += Wp_MouseDown;
                 wp.Children.Add(img);
                 wp.Children.Add(new Label() { Content = item.UniqueName,  Height = 33, Width = 80 });
-                wp.Children.Add(new Label() { Content = item.Price, Margin= new Thickness(5, 5, 5, 5), Height = 33, Width = 80 });
+                wp.Children.Add(new Label() { Content = "Ціна"+item.Price, FontStyle= FontStyle, Margin= new Thickness(5, 5, 5, 5), Height = 33, Width = 80 });
                 Grid.SetColumn(wp, j);
                 Grid.SetRow(wp, i);
                 wpCars.Children.Add(wp);
@@ -101,10 +102,13 @@ namespace CarShop
             }          
         }
 
-        private void Wp_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Wp_MouseDown(object sender, MouseButtonEventArgs e)
         {
             StackPanel panel= sender as StackPanel;
-            MessageBox.Show(panel.Tag.ToString());
+            CarApiService service = new CarApiService();
+            var car = await service.GetCarsByNameAsync(panel.Tag.ToString());
+            CarsInformationWindow window = new CarsInformationWindow(car);
+            window.ShowDialog();
         }
 
 
