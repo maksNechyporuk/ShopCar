@@ -13,6 +13,7 @@ namespace ServiceDLL.Models
         public string Image { get; set; }
         public int Price { get; set; }
         public string UniqueName { get; set; }
+        public string Name { get; set; }
 
         public List<FNameGetViewModel> filters { get; set; }
     }

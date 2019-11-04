@@ -114,6 +114,9 @@
     <Compile Include="AddClients.xaml.cs">
       <DependentUpon>AddClients.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CarsWindows\AddNewCarWindow.xaml.cs">
+      <DependentUpon>AddNewCarWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CarsWindows\CarsInformationWindow.xaml.cs">
       <DependentUpon>CarsInformationWindow.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
     <Compile Include="ViewModels\MakeViewModels.cs" />
     <Compile Include="ViewModels\ModelViewModels.cs" />
     <Page Include="AddClients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CarsWindows\AddNewCarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

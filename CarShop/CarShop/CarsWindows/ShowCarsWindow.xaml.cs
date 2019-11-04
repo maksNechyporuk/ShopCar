@@ -87,8 +87,8 @@ namespace CarShop
                 wp.Tag = item.UniqueName;
                 wp.MouseDown += Wp_MouseDown;
                 wp.Children.Add(img);
-                wp.Children.Add(new Label() { Content = item.UniqueName,  Height = 33, Width = 80 });
-                wp.Children.Add(new Label() { Content = "Ціна"+item.Price, FontStyle= FontStyle, Margin= new Thickness(5, 5, 5, 5), Height = 33, Width = 80 });
+                wp.Children.Add(new Label() { Content = item.Name,  Height = 33, Width = 80 });
+                wp.Children.Add(new Label() { Content = "Ціна "+item.Price, FontStyle= FontStyle, Margin= new Thickness(5, 5, 5, 5), Height = 33, Width = 80 });
                 Grid.SetColumn(wp, j);
                 Grid.SetRow(wp, i);
                 wpCars.Children.Add(wp);
