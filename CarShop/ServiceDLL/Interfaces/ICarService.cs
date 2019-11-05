@@ -22,5 +22,8 @@ namespace ServiceDLL.Interfaces
         Task<string> DeleteAsync(CarDeleteVM model);
         Task<string> CreateAsync(CarAddVM model);
         Task<string> UpdateAsync(CarVM model);
+        List<string> GetImagesBySize(string path, string size);
+        Task<List<string>> GetImagesBySizeAsync(string path, string size);
     }
+    
 }

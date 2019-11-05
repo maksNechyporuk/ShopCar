@@ -159,8 +159,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.uk.resx</DependentUpon>
     </Compile>
-    <Compile Include="CarsWindows\CarsWindow.xaml.cs">
-      <DependentUpon>CarsWindow.xaml</DependentUpon>
+    <Compile Include="CarsWindows\MainCarsWindow.xaml.cs">
+      <DependentUpon>MainCarsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ClientViewModels.cs" />
     <Compile Include="ViewModels\MakeViewModels.cs" />
@@ -212,9 +212,45 @@
     <Compile Include="MainWinCarShop.xaml.cs">
       <DependentUpon>MainWinCarShop.xaml</DependentUpon>
     </Compile>
-    <Page Include="CarsWindows\CarsWindow.xaml">
+    <Page Include="CarsWindows\MainCarsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\TabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\TabItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ToolTip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

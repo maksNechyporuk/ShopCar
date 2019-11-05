@@ -34,7 +34,7 @@ namespace CarShop
         }           
         private void BtnShowCar_Click(object sender, RoutedEventArgs e)
         {
-            ShowCarWindow showCar = new ShowCarWindow();
+            MainCarWindow showCar = new MainCarWindow();
            
             showCar.Show();
         }

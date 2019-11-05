@@ -17,9 +17,9 @@ namespace CarShop
     /// <summary>
     /// Interaction logic for ShowCarWindow.xaml
     /// </summary>
-    public partial class ShowCarWindow : Window
+    public partial class MainCarWindow : Window
     {
-        public ShowCarWindow()
+        public MainCarWindow()
         {
             InitializeComponent();
         }
@@ -36,7 +36,7 @@ namespace CarShop
 
         private void BtnAddNew_Click(object sender, RoutedEventArgs e)
         {
-            AddNewCarWindow addNewCar = new AddNewCarWindow();
+            ShowCarsWindow addNewCar = new ShowCarsWindow();
             addNewCar.ShowDialog();
         }
 
@@ -50,6 +50,12 @@ namespace CarShop
         {
             AddNewModelWindow makeWindow = new AddNewModelWindow();
             makeWindow.ShowDialog();
+        }
+
+        private void BtnAddNewCar_Click(object sender, RoutedEventArgs e)
+        {
+            ShowCarsWindow window = new ShowCarsWindow();
+            window.ShowDialog();
         }
     }
 }

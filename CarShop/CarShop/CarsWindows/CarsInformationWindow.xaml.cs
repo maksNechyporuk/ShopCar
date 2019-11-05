@@ -1,6 +1,8 @@
-﻿using ServiceDLL.Models;
+﻿using ServiceDLL.Concrete;
+using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -32,28 +34,33 @@ namespace CarShop.CarsWindows
         public CarsInformationWindow(CarVM car)
         {
             InitializeComponent();
-            CarVM _car = car;
+            _car = car;
             lblCarsName.Content = _car.Name ;
-            var imgs= Directory.GetFiles(car.Image + "/Photo");
+            var url = ConfigurationManager.AppSettings["siteURL"];
+            var path= $"{url}{_car.Image}";
+            CarApiService service = new CarApiService();
+            var imgs = service.GetImagesBySize(_car.UniqueName,"100");
+            var Bigimgs = service.GetImagesBySize(_car.UniqueName, "1280");
+
             int count = 0;
-           
+
             foreach (var item in imgs)
             {
-                if(item.Contains("100"))
+
+
+                var btnImg = new Button { Content = new Image { Source = new BitmapImage(new Uri(item)) }, Tag = count };
+                btnImg.Click += BtnImg_Click;
+                btn.Add(btnImg);
+                count++;
+                if (count == 8)
+                    break;
+            }
+                foreach (var item in Bigimgs)
                 {
-             
-                       var btnImg = new Button { Content = new Image { Source = new BitmapImage(new Uri(item)) }, Tag = count };
-                    btnImg.Click += BtnImg_Click;
-                    btn.Add(btnImg);
-                    count++;
-                    if (count == 8)
-                        break;
-                }
-                if (item.Contains("1280"))
-                {
+                    
                     bigImg.Add(new Image { Source = new BitmapImage(new Uri(item)) });
                 }
-            }
+            
             foreach (var item in btn)
             {
                 spLitleCarsPhoto.Children.Add(item);

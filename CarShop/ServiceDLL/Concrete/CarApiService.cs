@@ -119,6 +119,22 @@ namespace ServiceDLL.Concrete
             return Task.Run(() => GetCarsByName(Name));
         }
 
+        public List<string> GetImagesBySize(string path, string size)
+        {
+            var url = $"https://localhost:44381/api/carsimages/?path={path}/Photo&size={size}";
+
+            var client = new WebClient();
+            client.Encoding = ASCIIEncoding.UTF8;
+            string data = client.DownloadString(url);
+            var imgs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(data);
+            return imgs;
+        }
+
+        public Task<List<string>> GetImagesBySizeAsync(string path, string size)
+        {
+            return Task.Run(() => GetImagesBySize(path, size));
+        }
+
         public string Update(CarVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
