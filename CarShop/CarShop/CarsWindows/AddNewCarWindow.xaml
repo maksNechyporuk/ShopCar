@@ -8,7 +8,7 @@
         Title="AddNewCarWindow" Height="835" Width="1545" WindowStartupLocation="CenterScreen">
     <Grid>
         <ScrollViewer  CanContentScroll="True"  Margin="0,0,10.4,0.6">
-            <StackPanel Name="spCars" HorizontalAlignment="Left" Height="796" Margin="10,0,0,0" VerticalAlignment="Top" Width="1518"/>
+            <WrapPanel Name="spCars" HorizontalAlignment="Left" Height="796" VerticalAlignment="Top" Width="429"/>
         </ScrollViewer>
     </Grid>
 </Window>

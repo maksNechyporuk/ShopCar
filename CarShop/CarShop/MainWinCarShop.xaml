@@ -11,10 +11,10 @@
         mc:Ignorable="d"
         Title="Car shop" Height="450" Width="800">
     <Grid>
-        <Button Name="btnShowCar" Content="{x:Static  p:Resources.bntContentShow}"  HorizontalAlignment="Left" Margin="274,108,0,0" VerticalAlignment="Top" Width="95" Height="32" Click="BtnShowCar_Click"/>
-        <Button Name="btnAddClients" Content="{x:Static  p:Resources.btnClients}" HorizontalAlignment="Left" Margin="274,159,0,0" VerticalAlignment="Top" Width="95" Height="32" Click="BtnAddClients_Click"/>
-        <Button x:Name="btnShowClients" Content="Show Clients" HorizontalAlignment="Left" Margin="72,159,0,0" VerticalAlignment="Top" Width="95" Height="32" Click="BtnShowClients_Click"/>
-        <Button Content="Show Employees" HorizontalAlignment="Left" Margin="72,110,0,0" VerticalAlignment="Top" Width="95" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5" Height="33">
+        <Button Name="btnShowCar" Content="{x:Static  p:Resources.bntContentShow}"  HorizontalAlignment="Left" Margin="274,108,0,0" VerticalAlignment="Top"  Width="158" Height="32" Click="BtnShowCar_Click"/>
+        <Button Name="btnAddClients" Content="{x:Static  p:Resources.btnClients}" HorizontalAlignment="Left" Margin="274,159,0,0" VerticalAlignment="Top"  Width="158" Height="32" Click="BtnAddClients_Click"/>
+        <Button x:Name="btnShowClients" Content="Show Clients" HorizontalAlignment="Left" Margin="72,159,0,0" VerticalAlignment="Top" Width="158" Height="32" Click="BtnShowClients_Click"/>
+        <Button Content="Show Employees" HorizontalAlignment="Left" Margin="72,110,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5" Height="33">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

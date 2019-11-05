@@ -29,7 +29,7 @@ namespace CarShop.CarsWindows
             InitializeComponent();
         }
         List<Image> bigImg = new List<Image>();
-        List<Button> btn = new List<Button>();
+        List<StackPanel> img = new List<StackPanel>();
 
         public CarsInformationWindow(CarVM car)
         {
@@ -43,14 +43,15 @@ namespace CarShop.CarsWindows
             var Bigimgs = service.GetImagesBySize(_car.UniqueName, "1280");
 
             int count = 0;
-
+            
             foreach (var item in imgs)
             {
 
 
-                var btnImg = new Button { Content = new Image { Source = new BitmapImage(new Uri(item)) }, Tag = count };
-                btnImg.Click += BtnImg_Click;
-                btn.Add(btnImg);
+                var WrapImg = new StackPanel {  Tag = count };
+                WrapImg.Children.Add(new Image { Source = new BitmapImage(new Uri(item)) });
+                WrapImg.MouseDown += BtnImg_Click;
+                img.Add(WrapImg);
                 count++;
                 if (count == 8)
                     break;
@@ -61,7 +62,7 @@ namespace CarShop.CarsWindows
                     bigImg.Add(new Image { Source = new BitmapImage(new Uri(item)) });
                 }
             
-            foreach (var item in btn)
+            foreach (var item in img)
             {
                 spLitleCarsPhoto.Children.Add(item);
 
@@ -78,7 +79,7 @@ namespace CarShop.CarsWindows
 
         private void BtnImg_Click(object sender, RoutedEventArgs e)
         {
-            var b = sender as Button;
+            var b = sender as StackPanel;
             BigPhoto.Source = bigImg[int.Parse(b.Tag.ToString())].Source;
         }
     }

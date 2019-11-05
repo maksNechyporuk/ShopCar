@@ -34,16 +34,9 @@ namespace CarShop
         }           
         private void BtnShowCar_Click(object sender, RoutedEventArgs e)
         {
-            MainCarWindow showCar = new MainCarWindow();
-           
+            MainCarWindow showCar = new MainCarWindow();           
             showCar.Show();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BtnEng_Click(object sender, RoutedEventArgs e)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
