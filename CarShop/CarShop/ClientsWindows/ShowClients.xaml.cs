@@ -4,6 +4,7 @@ using ServiceDLL.Helpers;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -107,7 +108,12 @@ namespace CarShop.ClientsWindows
                 ClientApiService service = new ClientApiService();
                 await service.CreateAsync(new ClientAddVM { Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
                 FillDG();
-
+                txtNumber.Text = "";
+                txtName.Text = "";
+                txtEmail.Text = "";
+                lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
+                lblNameError.Foreground = System.Windows.Media.Brushes.White;
+                lblEmailError.Foreground = System.Windows.Media.Brushes.White;
             }
             catch (WebException wex)
             {
@@ -151,13 +157,13 @@ namespace CarShop.ClientsWindows
                         }
                         if (mes.Email != null)
                         {
-                            //if (mes.Email == "issue")
-                            //{
-                            //    txtEmail.BorderBrush = System.Windows.Media.Brushes.Red;
-                            //    lblEmailError.Visibility = Visibility;
-                            //}
-                            //else
-                            //lblEmailError.Content = mes.Email;
+                            if (mes.Email == "issue")
+                            {
+                                txtEmail.BorderBrush = System.Windows.Media.Brushes.Red;
+                                lblEmailError.Visibility = Visibility;
+                            }
+                            else
+                                lblEmailError.Content = mes.Email;
                         }
 
                         lblNameError.Foreground = System.Windows.Media.Brushes.Red;
@@ -171,6 +177,20 @@ namespace CarShop.ClientsWindows
         {
             mes = mes.Trim('"');
             MessageBox.Show(mes);
+        }
+        
+        private void BtnDeleteClient_Click(object sender, RoutedEventArgs e)
+        {
+            var item = dgShowClients.SelectedItem;
+            string CourseName = (dgShowClients.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            MessageBoxResult result = MessageBox.Show("Ви впевнені,що хочете видалити клієнта " + CourseName + "?");
+            if (result == MessageBoxResult.OK)
+            {
+                dgShowClients.Items.RemoveAt(dgShowClients.SelectedIndex);
+            }
+
+
+
         }
     }
 }
