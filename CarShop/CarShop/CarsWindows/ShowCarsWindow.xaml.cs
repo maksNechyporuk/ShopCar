@@ -21,18 +21,19 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using CarShop.CarsWindows;
+using System.Configuration;
 
 namespace CarShop
 {
     /// <summary>
     /// Interaction logic for AddNewCarWindow.xaml
     /// </summary>
-    public partial class AddNewCarWindow : Window
+    public partial class ShowCarsWindow : Window
     {
         private ObservableCollection<FNameViewModel> FilterVM { get; set; }
         private ObservableCollection<CarVM> CarVM { get; set; }
         TextBox txtSearchCar;
-        public AddNewCarWindow()
+        public ShowCarsWindow()
         {
             InitializeComponent();
             FilterVM = new ObservableCollection<FNameViewModel>();
@@ -83,7 +84,9 @@ namespace CarShop
             {               
                 var wp = new StackPanel() { Margin= new Thickness(5, 5, 5, 5) };
                 var img = new Image() {Height = 183, Width = 298};
-                img.Source = new BitmapImage(new Uri(item.Image + "/300_" + item.UniqueName + ".jpg"));
+                var url = ConfigurationManager.AppSettings["siteURL"];
+                img.Source = new BitmapImage(new Uri($"{url}{item.Image}")); 
+                //img.Source = new BitmapImage(new Uri("https://localhost:44381/images/154m2fas/300_154m2fas.jpg"));
                 wp.Tag = item.UniqueName;
                 wp.MouseDown += Wp_MouseDown;
                 wp.Children.Add(img);
