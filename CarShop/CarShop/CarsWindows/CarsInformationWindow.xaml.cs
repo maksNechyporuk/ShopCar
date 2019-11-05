@@ -33,7 +33,7 @@ namespace CarShop.CarsWindows
         {
             InitializeComponent();
             CarVM _car = car;
-            lblCarsName.Content = _car.UniqueName;
+            lblCarsName.Content = _car.Name ;
             var imgs= Directory.GetFiles(car.Image + "/Photo");
             int count = 0;
            
