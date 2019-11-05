@@ -39,22 +39,29 @@ namespace CarShop.CarsWindows
             List<FNameViewModel> list = await service.GetFiltersAsync();
             FilterVM.Clear();
             FilterVM.AddRange(list);
+            spCars.Children.Clear();
+            spCars.Children.Add(new Label { Content = "Характеристики авто", FontSize = 25,Margin = new Thickness(20, 15, 30, 15) });
+
             foreach (var item in FilterVM)
             {
+                var listValue = new List<string>();
+
                 Label Name = new Label();
                 Name.Content = item.Name;
-                Name.Margin = new Thickness(25, 5, 15, 5);
-                spCars.Children.Add(Name);
+                Name.Width = 90;
 
+                Name.Margin = new Thickness(20, 15, 30, 15);
+                spCars.Children.Add(Name);
                 ComboBox box = new ComboBox();
-        
+
                 foreach (var children in item.Children)
                 {
-                    box.Items.Add (new ComboBoxItem () { Content = children.Name });
-                    box.Margin = new Thickness(55, 0, 5, 5);
-                       box.Tag = children.Id;
-                    spCars.Children.Add(box);
+                    box.Items.Add(new ComboBoxItem() { Content = children.Name,Tag=children.Id });
                 }
+                box.Width = 150;
+                box.Margin = new Thickness(5, 15, 10, 15);
+                box.Tag=item.Id;
+                spCars.Children.Add(box);
             }
         }
     }

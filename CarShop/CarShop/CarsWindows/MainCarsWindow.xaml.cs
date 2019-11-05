@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarShop.CarsWindows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,7 +55,7 @@ namespace CarShop
 
         private void BtnAddNewCar_Click(object sender, RoutedEventArgs e)
         {
-            ShowCarsWindow window = new ShowCarsWindow();
+            AddNewCarWindow window = new AddNewCarWindow();
             window.ShowDialog();
         }
     }

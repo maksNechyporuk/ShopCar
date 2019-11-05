@@ -104,7 +104,6 @@ namespace CarShop
 
             }          
         }
-
         private async void Wp_MouseDown(object sender, MouseButtonEventArgs e)
         {
             StackPanel panel= sender as StackPanel;
@@ -113,8 +112,6 @@ namespace CarShop
             CarsInformationWindow window = new CarsInformationWindow(car);
             window.ShowDialog();
         }
-
-
         void FillFiltersWP()
         {
             wpFilters.Children.Clear();
@@ -138,9 +135,6 @@ namespace CarShop
                     }
                 }
         }
-
-        
-
         private async void Value_Click(object sender, RoutedEventArgs e)
         {
             List<CheckBox> box = new List<CheckBox>();
