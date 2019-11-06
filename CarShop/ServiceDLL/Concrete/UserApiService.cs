@@ -19,18 +19,26 @@ namespace ServiceDLL.Concrete
     {
         private string _url = "https://localhost:44381/api/user";
 
-        public List<UserVM> GetUser()
+        public List<UserVM> GetUser(UserVM user)
         {
+            //if (user == null)
+            //{
             var client = new WebClient();
             client.Encoding = ASCIIEncoding.UTF8;
             string data = client.DownloadString(_url);
             var list = JsonConvert.DeserializeObject<List<UserVM>>(data);
             return list;
+            //}
+            //else
+            //{
+
+            //    return list;
+            //}
         }
 
-        public Task<List<UserVM>> GetUserAsync()
+        public Task<List<UserVM>> GetUserAsync(UserVM user)
         {
-            return Task.Run(() => GetUser());
+            return Task.Run(() => GetUser(user));
         }
 
         public string Login(UserLoginVM user)
@@ -64,10 +72,10 @@ namespace ServiceDLL.Concrete
             {
                 Credential credential = new Credential
                 {
-                    Token = "ssss",
+                    Token = tokenObject.token,
                     DateCreate = DateTime.Now,
                     DateExtToken = 12342134,
-                    UserName="asdf"
+                    UserName=tokenS.Claims.ToArray()[1].Value
                 };
                 context.Credentials.Add(credential);
                 //context.Dependants.Add(new Dependant() { Description = "Dependant description", MainEntity = new EF6.Migrations.Test.Model01.Entity() { Description = "Entity description" } });
@@ -76,6 +84,7 @@ namespace ServiceDLL.Concrete
             }
             return content;
         }
+
         private DbConnection GetConnection(string fileName)
         {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName + ".db3");
