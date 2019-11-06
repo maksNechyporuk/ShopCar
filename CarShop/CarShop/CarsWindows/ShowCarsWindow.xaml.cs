@@ -157,7 +157,6 @@ namespace CarShop
             CarVM.Clear();
             CarVM.AddRange(list);
             FillCarsWP();
-
         }
 
      

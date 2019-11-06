@@ -30,7 +30,6 @@ namespace CarShop.CarsWindows
             InitializeComponent();
             FilterVM = new ObservableCollection<FNameViewModel>();
             FillPanel();
-
         }
 
         async void FillPanel()
@@ -41,7 +40,6 @@ namespace CarShop.CarsWindows
             FilterVM.AddRange(list);
             spCars.Children.Clear();
             spCars.Children.Add(new Label { Content = "Характеристики авто", FontSize = 25,Margin = new Thickness(20, 15, 30, 15) });
-
             foreach (var item in FilterVM)
             {
                 var listValue = new List<string>();
