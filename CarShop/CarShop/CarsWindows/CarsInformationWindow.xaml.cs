@@ -59,7 +59,7 @@ namespace CarShop.CarsWindows
                 foreach (var item in Bigimgs)
                 {
                     
-                    bigImg.Add(new Image { Source = new BitmapImage(new Uri(item)) });
+                    bigImg.Add(new Image { Source = new BitmapImage(new Uri(item))});
                 }
             
             foreach (var item in img)
