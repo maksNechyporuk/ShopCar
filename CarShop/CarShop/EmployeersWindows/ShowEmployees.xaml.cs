@@ -30,7 +30,7 @@ namespace CarShop.EmployeersWindows
             FillDG();
         }
 
-        async void  FillDG()
+        async void FillDG()
         {
             users = await servise.GetUserAsync();
             dgShowEmployees.ItemsSource = users;
@@ -67,6 +67,21 @@ namespace CarShop.EmployeersWindows
         }
 
         private void DgShowEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void BtnAddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnEditEmployee_Click(object sender, RoutedEventArgs e)
         {
 
         }
