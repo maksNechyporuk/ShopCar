@@ -32,7 +32,7 @@ namespace CarShop.EmployeersWindows
 
         async void FillDG()
         {
-            users = await servise.GetUserAsync(null);
+            users = await servise.GetUserAsync(new UserVM());
             dgShowEmployees.ItemsSource = users;
         }
 
