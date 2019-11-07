@@ -31,36 +31,97 @@ namespace CarShop.CarsWindows
             FilterVM = new ObservableCollection<FNameViewModel>();
             FillPanel();
         }
+        ComboBox models = new ComboBox();
 
         async void FillPanel()
         {
+            spCars.Children.Clear();
+            spCars.Children.Add(new Label { Content = "Характеристики авто", FontSize = 25, Margin = new Thickness(20, 15, 30, 15) });
+            var listComboBox = new List<ComboBox>();
+
+            MakeApiService makeApi = new MakeApiService();
+            var listMake = await makeApi.GetMakesAsync();
             FilterApiService service = new FilterApiService();
             List<FNameViewModel> list = await service.GetFiltersAsync();
+            CarApiService apiService = new CarApiService();
+
+            Label Name = new Label();
+            Name.Content ="Марка";
+            Name.Width = 90;
+            Name.Margin = new Thickness(20, 15, 30, 15);
+
+            ComboBox box = new ComboBox();
+
+            foreach (var children in listMake)
+            {
+                box.Items.Add(new ComboBoxItem() { Content = children.Name, Tag = children.Id });
+            }
+            box.SelectionChanged += Box_SelectionChanged;
+            box.Name = "Марка";
+            box.Width = 150;
+            box.Margin = new Thickness(5, 15, 10, 15);
+            spCars.Children.Add(Name);
+            spCars.Children.Add(box);
+
+
             FilterVM.Clear();
             FilterVM.AddRange(list);
-            spCars.Children.Clear();
-            spCars.Children.Add(new Label { Content = "Характеристики авто", FontSize = 25,Margin = new Thickness(20, 15, 30, 15) });
+
+            models.Name = "Модель";
+            models.Width = 150;
+            models.Margin = new Thickness(5, 15, 10, 15);
+
+            Name = new Label();
+            Name.Content = "Модель";
+            Name.Width = 90;
+            Name.Margin = new Thickness(20, 15, 30, 15);
+            spCars.Children.Add(Name);
+            spCars.Children.Add(models);
+
             foreach (var item in FilterVM)
             {
                 var listValue = new List<string>();
-
-                Label Name = new Label();
+                Name = new Label();
                 Name.Content = item.Name;
                 Name.Width = 90;
-
                 Name.Margin = new Thickness(20, 15, 30, 15);
-                spCars.Children.Add(Name);
-                ComboBox box = new ComboBox();
 
+                 box = new ComboBox();
                 foreach (var children in item.Children)
                 {
-                    box.Items.Add(new ComboBoxItem() { Content = children.Name,Tag=children.Id });
+                    box.Items.Add(new ComboBoxItem() { Content = children.Name, Tag = children.Id });
                 }
+                string name = item.Name.Replace(" ", "_");
+                box.SelectionChanged += Box_SelectionChanged;
+                box.Name = name;
                 box.Width = 150;
                 box.Margin = new Thickness(5, 15, 10, 15);
-                box.Tag=item.Id;
-                spCars.Children.Add(box);
+                box.Tag = item.Id;
+                if (!name.Contains("Моде"))
+                {
+                    spCars.Children.Add(Name);
+                    spCars.Children.Add(box);
+                }
             }
+        }
+
+        private void Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CarApiService apiService = new CarApiService();
+
+            ComboBox box = sender as ComboBox;
+            List<FNameViewModel> l=new List<FNameViewModel>();
+            if (box.Name.Contains("Мар"))
+            {
+                 l.AddRange(apiService.GetModelsByMake(int.Parse(box.Tag.ToString())));
+                foreach (var children in l)
+                {
+                    models.Items.Add(new ComboBoxItem() { Content = children.Name, Tag = children.Id });
+                }
+                
+            }
+
+
         }
     }
 }

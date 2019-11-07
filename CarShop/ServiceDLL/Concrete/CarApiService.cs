@@ -66,21 +66,21 @@ namespace ServiceDLL.Concrete
             return Task.Run(() => Delete(model));
         }
 
-        public List<CarVM> GetCars()
+        public List<CarsByFilterVM> GetCars()
         {
             var client = new WebClient();
             client.Encoding = ASCIIEncoding.UTF8;
             string data = client.DownloadString(_url);
-            var list = JsonConvert.DeserializeObject<List<CarVM>>(data);
+            var list = JsonConvert.DeserializeObject<List<CarsByFilterVM>>(data);
             return list;
         }
 
-        public Task<List<CarVM>> GetCarsAsync()
+        public Task<List<CarsByFilterVM>> GetCarsAsync()
         {
             return Task.Run(() => GetCars());
         }
 
-        public List<CarVM> GetCarsByFilters(int[] id)
+        public List<CarsByFilterVM> GetCarsByFilters(int[] id)
         {
         
             string path = "?value=" + id[0];
@@ -92,11 +92,11 @@ namespace ServiceDLL.Concrete
             var client = new WebClient();
             client.Encoding = ASCIIEncoding.UTF8;
             string data = client.DownloadString(_url);
-            var list = JsonConvert.DeserializeObject<List<CarVM>>(data);
+            var list = JsonConvert.DeserializeObject<List<CarsByFilterVM>>(data);
             return list;
         }
 
-        public Task<List<CarVM>> GetCarsByFiltersAsync(int[] id)
+        public Task<List<CarsByFilterVM>> GetCarsByFiltersAsync(int[] id)
         {
             if (id.Length ==0)
             return Task.Run(() => GetCars()); 
@@ -133,6 +133,22 @@ namespace ServiceDLL.Concrete
         public Task<List<string>> GetImagesBySizeAsync(string path, string size)
         {
             return Task.Run(() => GetImagesBySize(path, size));
+        }
+
+        public List<FNameViewModel> GetModelsByMake(int id)
+        {
+            string path = "?id=" + id;         
+            string _url = @"https://localhost:44381/api/filters/GetModelsByMake" + path;
+            var client = new WebClient();
+            client.Encoding = ASCIIEncoding.UTF8;
+            string data = client.DownloadString(_url);
+            var list = JsonConvert.DeserializeObject<List<FNameViewModel>>(data);
+            return list;
+        }
+
+        public List<FNameViewModel> GetModelsByMakeAsync(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public string Update(CarVM model)

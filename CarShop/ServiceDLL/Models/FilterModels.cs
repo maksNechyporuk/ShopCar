@@ -15,7 +15,7 @@ namespace ServiceDLL.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Children { get; set; }
+        public FValueViewModel Children { get; set; }
     }
     public class FNameViewModel
     {

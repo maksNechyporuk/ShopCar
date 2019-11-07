@@ -31,13 +31,13 @@ namespace CarShop
     public partial class ShowCarsWindow : Window
     {
         private ObservableCollection<FNameViewModel> FilterVM { get; set; }
-        private ObservableCollection<CarVM> CarVM { get; set; }
+        private ObservableCollection<CarsByFilterVM> CarVM { get; set; }
         TextBox txtSearchCar;
         public ShowCarsWindow()
         {
             InitializeComponent();
             FilterVM = new ObservableCollection<FNameViewModel>();
-            CarVM = new ObservableCollection<CarVM>();
+            CarVM = new ObservableCollection<CarsByFilterVM>();
             txtSearchCar = new TextBox() { Width = 230, Margin = new Thickness(0, 10, 5, 5) };
             txtSearchCar.TextChanged += TxtSearchCar_TextChanged;
             GetFilters();
@@ -56,7 +56,6 @@ namespace CarShop
             CarApiService serviceCars = new CarApiService();
             var listCars = await serviceCars.GetCarsAsync();
             CarVM.Clear();
-            CarVM.AddRange(listCars);
             CarVM.AddRange(listCars);
             CarVM.AddRange(listCars);
             CarVM.AddRange(listCars);
