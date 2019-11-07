@@ -21,19 +21,23 @@ namespace ServiceDLL.Concrete
 
         public List<UserVM> GetUser(UserVM user)
         {
-            //if (user == null)
-            //{
-            var client = new WebClient();
-            client.Encoding = ASCIIEncoding.UTF8;
-            string data = client.DownloadString(_url);
-            var list = JsonConvert.DeserializeObject<List<UserVM>>(data);
-            return list;
-            //}
-            //else
-            //{
-
-            //    return list;
-            //}
+            if (user == null)
+            {
+                var client = new WebClient();
+                client.Encoding = ASCIIEncoding.UTF8;
+                string data = client.DownloadString(_url);
+                var list = JsonConvert.DeserializeObject<List<UserVM>>(data);
+                return list;
+            }
+            else
+            {
+                string _url = "https://localhost:44381/api/user/search/?";
+                var client = new WebClient();
+                client.Encoding = ASCIIEncoding.UTF8;
+                string data = client.DownloadString(_url+$"Name={user.Name}&Email={user.Email}");
+                var list = JsonConvert.DeserializeObject<List<UserVM>>(data);
+                return list;
+            }
         }
 
         public Task<List<UserVM>> GetUserAsync(UserVM user)
