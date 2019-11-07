@@ -181,17 +181,43 @@ namespace CarShop.ClientsWindows
         
         private void BtnDeleteClient_Click(object sender, RoutedEventArgs e)
         {
+
             var item = dgShowClients.SelectedItem;
-            string CourseName = (dgShowClients.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            MessageBoxResult result = MessageBox.Show("Ви впевнені,що хочете видалити клієнта " + CourseName + "?");
+            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+            MessageBoxResult result = MessageBox.Show("Ви впевнені,що хочете видалити клієнта " + client.Name + "?");
             if (result == MessageBoxResult.OK)
             {
-                dgShowClients.Items.RemoveAt(dgShowClients.SelectedIndex);
-            }
+                ClientApiService service = new ClientApiService();
+                service.Delete(new ClientDeleteVM { Id = client.Id });
+                FillDG();
+            }            
+        }
 
+        private void BtnAcceptChanges_Click(object sender, RoutedEventArgs e)
+        {
+            string str = txtNumber.Text;
+            string str2 = txtName.Text;
+            string str3 = txtEmail.Text;
+            if (str != null && str.Trim().Length == 10)
+                str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
+            txtNumber.Text = str;
+            txtName.Text = str2;
+            txtEmail.Text = str3;
+            ClientApiService service = new ClientApiService();
+            service.Update(new ClientVM { Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
+            FillDG();
+            txtNumber.Text = "";
+            txtName.Text = "";
+            txtEmail.Text = "";
+        }
 
-
+        private void BtnChoose_Click(object sender, RoutedEventArgs e)
+        {
+            var item = dgShowClients.SelectedItem;
+            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+            txtName.Text = client.Name;
+            txtNumber.Text = client.Phone;
+            txtEmail.Text = client.Email;
         }
     }
 }
-

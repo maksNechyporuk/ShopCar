@@ -9,6 +9,7 @@
     <Grid Margin="3,0,-16,-21">
         <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,101,269,0" Height="362" VerticalAlignment="Top">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Number" Binding="{Binding Phone}" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
@@ -55,5 +56,7 @@
         <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="395,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.748,0.652"/>
         <Label x:Name="lblEmailError" Content="" HorizontalAlignment="Left" Margin="395,61,0,0" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.497,0.462"/>
         <Label Content="Електронна пошта клієнта :" HorizontalAlignment="Left" Margin="395,3,0,0" VerticalAlignment="Top" Width="163"/>
+        <Button x:Name="btnAcceptChanges" Content="Підтвердити" HorizontalAlignment="Left" Margin="472,376,0,0" VerticalAlignment="Top" Width="117" Height="47" Click="BtnAcceptChanges_Click"/>
+        <Button x:Name="btnChoose" Content="Вибрати" HorizontalAlignment="Left" Margin="368,376,0,0" VerticalAlignment="Top" Width="99" Height="47" Click="BtnChoose_Click"/>
     </Grid>
 </Window>

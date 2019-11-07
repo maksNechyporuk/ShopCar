@@ -11,9 +11,9 @@ namespace ServiceDLL.Interfaces
     {
          string Login(UserLoginVM user);
 
-        List<UserVM> GetUser();
+        List<UserVM> GetUser(UserVM user);
 
-        Task<List<UserVM>> GetUserAsync();
+        Task<List<UserVM>> GetUserAsync(UserVM user);
 
         string Register(UserRegisterVM user);
     }

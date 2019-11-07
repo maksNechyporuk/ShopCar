@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="ShowEmployees" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="dgShowEmployees" AutoGenerateColumns="False" Margin="0,83,0,0" SelectionChanged="DgShowEmployees_SelectionChanged">
+        <DataGrid x:Name="dgShowEmployees" AutoGenerateColumns="False" Margin="0,80,202,80" SelectionChanged="DgShowEmployees_SelectionChanged">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
             </DataGrid.Columns>
@@ -38,12 +40,16 @@
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
-        <Button Name="btnFindEmployee" Content="Find" HorizontalAlignment="Left" Margin="595,10,0,0" VerticalAlignment="Top" Width="84" Height="49" Click="BtnFindEmployee_Click"/>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="310,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Label Content="Name: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Email:" HorizontalAlignment="Left" Margin="310,10,0,0" VerticalAlignment="Top"/>
-        <Button Content="Calsel find" HorizontalAlignment="Left" Margin="697,10,0,0" VerticalAlignment="Top" Width="85" Height="49" Click="Button_Click"/>
+        <Button x:Name="btnFindEmployee" Content="Find" HorizontalAlignment="Left" Margin="595,10,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnFindEmployee_Click"/>
+        <Button x:Name="btnCanselFind" Content="Calsel find" HorizontalAlignment="Left" Margin="595,80,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="Button_Click"/>
+        <Button x:Name="btnAddEmployee" Content="Add Employee" HorizontalAlignment="Left" Margin="595,150,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnAddEmployee_Click"/>
+        <Button x:Name="btnDeleteEmployee" Content="Delete Employee" HorizontalAlignment="Left" Margin="595,220,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnDeleteEmployee_Click"/>
+        <Button x:Name="btnEditEmployee" Content="Edit Employee" HorizontalAlignment="Left" Margin="595,290,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnEditEmployee_Click"/>
+
 
     </Grid>
 </Window>
