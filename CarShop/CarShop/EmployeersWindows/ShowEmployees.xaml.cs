@@ -32,7 +32,7 @@ namespace CarShop.EmployeersWindows
 
         async void FillDG()
         {
-            users = await servise.GetUserAsync();
+            users = await servise.GetUserAsync(null);
             dgShowEmployees.ItemsSource = users;
         }
 
@@ -41,24 +41,11 @@ namespace CarShop.EmployeersWindows
             dgShowEmployees.ItemsSource = list;
         }
 
-        private void BtnFindEmployee_Click(object sender, RoutedEventArgs e)
+        private async void BtnFindEmployee_Click(object sender, RoutedEventArgs e)
         {
-            if (txtEmail.Text != "" && txtName.Text != "") 
-            {
-                dgShowEmployees.ItemsSource = users.Where(c => c.Email == txtEmail.Text && c.Name == txtName.Text);
-            }
-            else if(txtEmail.Text!="")
-            {
-                dgShowEmployees.ItemsSource = users.Where(c => c.Email == txtEmail.Text);
-            }
-            else if(txtName.Text !="")
-            {
-                dgShowEmployees.ItemsSource = users.Where(c => c.Name == txtName.Text);
-            }
-            else
-            {
-                return;
-            }
+            UserApiService service = new UserApiService();
+            users = await service.GetUserAsync(new UserVM { Email = txtEmail.Text, Name = txtName.Text });
+            dgShowEmployees.ItemsSource = users;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
