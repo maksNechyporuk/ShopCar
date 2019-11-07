@@ -35,7 +35,6 @@ namespace ServiceDLL.Concrete
             var content = sr.ReadToEnd();
             return content;
         }
-
         public Task<string> CreateAsync(ModelAddVM make)
         {
             return Task.Run(() => Create(make));

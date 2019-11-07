@@ -113,15 +113,15 @@ namespace CarShop.CarsWindows
             List<FNameViewModel> l=new List<FNameViewModel>();
             if (box.Name.Contains("Мар"))
             {
-                 l.AddRange(apiService.GetModelsByMake(int.Parse(box.Tag.ToString())));
-                foreach (var children in l)
+                models.Items.Clear();
+                var item=box.SelectedItem as ComboBoxItem;
+                l.AddRange(apiService.GetModelsByMake(int.Parse(item.Tag.ToString())));
+                foreach (var name in l)
                 {
+                    foreach (var children in name.Children)
                     models.Items.Add(new ComboBoxItem() { Content = children.Name, Tag = children.Id });
-                }
-                
+                }                
             }
-
-
         }
     }
 }
