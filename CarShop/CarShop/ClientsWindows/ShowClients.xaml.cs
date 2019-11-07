@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -114,6 +115,9 @@ namespace CarShop.ClientsWindows
                 lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
                 lblNameError.Foreground = System.Windows.Media.Brushes.White;
                 lblEmailError.Foreground = System.Windows.Media.Brushes.White;
+                lblPhoneError.Content = "";
+                lblNameError.Content = "";
+                lblEmailError.Content = "";
             }
             catch (WebException wex)
             {
@@ -169,6 +173,7 @@ namespace CarShop.ClientsWindows
                         lblNameError.Foreground = System.Windows.Media.Brushes.Red;
                         lblPhoneError.Foreground = System.Windows.Media.Brushes.Red;
                         lblEmailError.Foreground = System.Windows.Media.Brushes.Red;
+                       
                     }
                 }
             }
@@ -181,8 +186,13 @@ namespace CarShop.ClientsWindows
         
         private void BtnDeleteClient_Click(object sender, RoutedEventArgs e)
         {
-
             var item = dgShowClients.SelectedItem;
+            if (item != dgShowClients.SelectedItem)
+            {
+                IsEnabled = false;
+            }
+            else
+             IsEnabled = true;
             ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
             MessageBoxResult result = MessageBox.Show("Ви впевнені,що хочете видалити клієнта " + client.Name + "?");
             if (result == MessageBoxResult.OK)
@@ -193,22 +203,33 @@ namespace CarShop.ClientsWindows
             }            
         }
 
-        private void BtnAcceptChanges_Click(object sender, RoutedEventArgs e)
+        private async void BtnAcceptChanges_Click(object sender, RoutedEventArgs e)
         {
-            string str = txtNumber.Text;
-            string str2 = txtName.Text;
-            string str3 = txtEmail.Text;
-            if (str != null && str.Trim().Length == 10)
-                str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
-            txtNumber.Text = str;
-            txtName.Text = str2;
-            txtEmail.Text = str3;
-            ClientApiService service = new ClientApiService();
-            service.Update(new ClientVM { Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
-            FillDG();
-            txtNumber.Text = "";
-            txtName.Text = "";
-            txtEmail.Text = "";
+            try
+            {
+                ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+                string str = txtNumber.Text;
+                string str2 = txtName.Text;
+                string str3 = txtEmail.Text;
+                if (str != null && str.Trim().Length == 10)
+                    str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
+                txtNumber.Text = str;
+                txtName.Text = str2;
+                txtEmail.Text = str3;
+                ClientApiService service = new ClientApiService();
+                await service.UpdateAsync(new ClientVM { Id = client.Id,Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
+                FillDG();
+                txtNumber.Text = "";
+                txtName.Text = "";
+                txtEmail.Text = "";
+                lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
+                lblNameError.Foreground = System.Windows.Media.Brushes.White;
+                lblEmailError.Foreground = System.Windows.Media.Brushes.White;
+            }
+            catch (WebException wex)
+            {
+                ShowException(wex);
+            }
         }
 
         private void BtnChoose_Click(object sender, RoutedEventArgs e)
