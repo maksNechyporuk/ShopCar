@@ -35,20 +35,22 @@ namespace CarShop.CarsWindows
         {
             InitializeComponent();
             _car = car;
-            lblCarsName.Content = _car.Name ;
+            LoadElements();
+        }
+        public void LoadElements()
+        {
+            lblCarsName.Content = _car.Name;
             var url = ConfigurationManager.AppSettings["siteURL"];
-            var path= $"{url}{_car.Image}";
+            var path = $"{url}{_car.Image}";
             CarApiService service = new CarApiService();
-            var imgs = service.GetImagesBySize(_car.UniqueName,"100");
+            var imgs = service.GetImagesBySize(_car.UniqueName, "100");
             var Bigimgs = service.GetImagesBySize(_car.UniqueName, "1280");
-
+            _car.filters = _car.filters.OrderBy(p => p.Name).ToList();
             int count = 0;
-            
+
             foreach (var item in imgs)
             {
-
-
-                var WrapImg = new StackPanel {  Tag = count };
+                var WrapImg = new StackPanel { Tag = count };
                 WrapImg.Children.Add(new Image { Source = new BitmapImage(new Uri(item)) });
                 WrapImg.MouseDown += BtnImg_Click;
                 img.Add(WrapImg);
@@ -56,12 +58,12 @@ namespace CarShop.CarsWindows
                 if (count == 8)
                     break;
             }
-                foreach (var item in Bigimgs)
-                {
-                    
-                    bigImg.Add(new Image { Source = new BitmapImage(new Uri(item))});
-                }
-            
+            foreach (var item in Bigimgs)
+            {
+
+                bigImg.Add(new Image { Source = new BitmapImage(new Uri(item)) });
+            }
+
             foreach (var item in img)
             {
                 spLitleCarsPhoto.Children.Add(item);
@@ -69,14 +71,13 @@ namespace CarShop.CarsWindows
             }
             BigPhoto.Source = bigImg[0].Source;
             lblPrice.Content += _car.Price.ToString();
-            spCharacteristics.Children.Add(new Label { Content = "Характеристики авто", FontSize=25});
+            spCharacteristics.Children.Add(new Label { Content = "Характеристики авто", FontSize = 25 });
 
-            foreach (var item in car.filters)
+            foreach (var item in _car.filters)
             {
-                spCharacteristics.Children.Add(new Label { Content = item.Name+": "+item.Children, FontSize = 18 });
+                spCharacteristics.Children.Add(new Label { Content = item.Name + ": " + item.Children.Name, FontSize = 18 });
             }
         }
-
         private void BtnImg_Click(object sender, RoutedEventArgs e)
         {
             var b = sender as StackPanel;

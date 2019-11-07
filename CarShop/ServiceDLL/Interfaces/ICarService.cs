@@ -11,11 +11,12 @@ namespace ServiceDLL.Interfaces
     {
         CarVM GetCarsByName(string Name );
         Task<CarVM> GetCarsByNameAsync(string Name);
-
-        List<CarVM> GetCars();
-        Task<List<CarVM>> GetCarsAsync();
-        List<CarVM> GetCarsByFilters(int [] id);
-        Task<List<CarVM>> GetCarsByFiltersAsync(int[] id);
+        List<FNameViewModel> GetModelsByMake(int id);
+        List<FNameViewModel> GetModelsByMakeAsync(int id);
+        List<CarsByFilterVM> GetCars();
+        Task<List<CarsByFilterVM>> GetCarsAsync();
+        List<CarsByFilterVM> GetCarsByFilters(int [] id);
+        Task<List<CarsByFilterVM>> GetCarsByFiltersAsync(int[] id);
         string Create(CarAddVM model);
         string Delete(CarDeleteVM model);
         string Update(CarVM model);
