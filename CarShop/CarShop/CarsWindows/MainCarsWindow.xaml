@@ -10,64 +10,8 @@
         mc:Ignorable="d"
         Title="ShowCarWindow" Height="450" Width="800">
     <Grid>
-        <Button Name="btnAddNew" Content="{x:Static  p:Resources.btnAddCar}" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="177" Height="37" Click="BtnAddNew_Click"/>
-        <Button x:Name="btnAddNewCar" Content="{x:Static  p:Resources.btnSearchCar}" Click="BtnAddNewCar_Click" HorizontalAlignment="Left" Margin="229,19,0,0" VerticalAlignment="Top" Width="103" Height="37"/>
-        <DataGrid x:Name="dgViewDB" Margin="1,67,-2,-2" AutoGenerateColumns="False" >
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Edit" x:Name="EditMenuItem" Click="EditMenuItem_Click" />
-                    <MenuItem Header="Delete" x:Name="DeleteMenuItem" Click="DeleteMenuItem_Click"/>
-
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
-
-                <DataGridTextColumn x:Name="nameUser" Header="Назва" Binding="{Binding Name}" />
-                <DataGridTemplateColumn Header="Дата народження">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Birthday}" BorderThickness="0" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.292"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-1.069"/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
-
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate x:Name="abc">
-                    <DockPanel x:Name="dockPanelUser" Background="GhostWhite">
-                        <Image  x:Name="UserImage"  DockPanel.Dock="Left" Source="{Binding PathImg}" Height="64" Margin="10" />
-                        <Grid Margin="0,10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="ID: " FontWeight="Bold" />
-                            <TextBlock Text="{Binding Id}" Grid.Column="1" />
-                            <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
-                            <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
-                            <TextBlock Text="Birthday: " FontWeight="Bold" Grid.Row="2" />
-                            <TextBlock Text="{Binding Birthday, StringFormat=d}" Grid.Column="1" Grid.Row="2" />
-
-                        </Grid>
-                    </DockPanel>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-        </DataGrid>
+        <Button Name="btnShowCars" FontSize="20" Content="Автомобілі" HorizontalAlignment="Left" Margin="20,115,0,0" VerticalAlignment="Top" Width="242" Height="37" Click="BtnShowCars_Click"/>
+        <Button x:Name="btnAddNewCar" FontSize="15"  Content="Добавити новий автомобіль" Click="BtnAddNewCar_Click" HorizontalAlignment="Left" Margin="20,157,0,0" VerticalAlignment="Top" Width="242" Height="37"/>
 
         <Button x:Name="btnAddMake"  Content="{x:Static  p:Resources.btnAddMake}" HorizontalAlignment="Left" Margin="349,19,0,0" VerticalAlignment="Top" Width="175" Height="37" Click="BtnAddMake_Click"/>
         <Button x:Name="btnAddModel" Content="{x:Static  p:Resources.btnAddModel}"  HorizontalAlignment="Left" Margin="549,19,0,0" VerticalAlignment="Top" Width="154" Height="37" Click="BtnAddModel_Click"/>
