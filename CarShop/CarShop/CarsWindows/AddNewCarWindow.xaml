@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="AddNewCarWindow" Height="835" Width="1545" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ScrollViewer  CanContentScroll="True"  Margin="0,0,10.4,0.6">
-            <Button Name="btnAddNewCar" Content="Добавити" Width="152" Height="64"/>
+        <Button Name="btnAddNewCar" Click="BtnAddNewCar_Click" Content="Добавити" Height="64" Margin="1106,371,299.4,370.6"/>
+
+        <ScrollViewer  CanContentScroll="True"  Margin="0,0,1004.4,0.6">
+
+            <WrapPanel Name="spCars" HorizontalAlignment="Left" Height="796" VerticalAlignment="Top" Width="429"/>
+
         </ScrollViewer>
     </Grid>
 </Window>

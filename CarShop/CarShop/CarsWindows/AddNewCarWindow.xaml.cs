@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
+using System.Windows.Input;       
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -97,7 +97,7 @@ namespace CarShop.CarsWindows
                 box.Width = 150;
                 box.Margin = new Thickness(5, 15, 10, 15);
                 box.Tag = item.Id;
-                if (!name.Contains("Моде"))
+                if (!name.Contains("Модель"))
                 {
                     spCars.Children.Add(Name);
                     spCars.Children.Add(box);
@@ -111,7 +111,7 @@ namespace CarShop.CarsWindows
 
             ComboBox box = sender as ComboBox;
             List<FNameViewModel> l=new List<FNameViewModel>();
-            if (box.Name.Contains("Мар"))
+            if (box.Name.Contains("Марка"))
             {
                 models.Items.Clear();
                 var item=box.SelectedItem as ComboBoxItem;
@@ -122,6 +122,26 @@ namespace CarShop.CarsWindows
                     models.Items.Add(new ComboBoxItem() { Content = children.Name, Tag = children.Id });
                 }                
             }
+        }
+
+        private void BtnAddNewCar_Click(object sender, RoutedEventArgs e)
+        {
+            var cb = new List<ComboBox>();
+            foreach (var item in spCars.Children)
+            {
+                if(item is ComboBox)
+                {
+                    cb.Add(item as ComboBox);
+                }
+            }
+            string mes="";
+            foreach (var item in cb)
+            {
+                var i = item.SelectedItem as ComboBoxItem;
+                mes+=item.Name+": "+i.Tag.ToString(); 
+            }
+            MessageBox.Show(mes);
+
         }
     }
 }

@@ -25,21 +25,6 @@ namespace CarShop
             InitializeComponent();
         }
 
-        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BtnAddNew_Click(object sender, RoutedEventArgs e)
-        {
-            ShowCarsWindow addNewCar = new ShowCarsWindow();
-            addNewCar.ShowDialog();
-        }
 
         private void BtnAddMake_Click(object sender, RoutedEventArgs e)
         {
@@ -57,6 +42,12 @@ namespace CarShop
         {
             AddNewCarWindow window = new AddNewCarWindow();
             window.ShowDialog();
+        }
+
+        private void BtnShowCars_Click(object sender, RoutedEventArgs e)
+        {
+            ShowCarsWindow addNewCar = new ShowCarsWindow();
+            addNewCar.ShowDialog();
         }
     }
 }
