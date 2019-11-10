@@ -9,6 +9,9 @@ namespace ServiceDLL.Interfaces
 {
     interface ICarService
     {
+        string CreateFilterWithCars(FilterAddWithCarVM model);
+        Task<string> CreateAsyncFilterWithCars(FilterAddWithCarVM model);
+
         CarVM GetCarsByName(string Name );
         Task<CarVM> GetCarsByNameAsync(string Name);
         List<FNameViewModel> GetModelsByMake(int id);
@@ -17,11 +20,11 @@ namespace ServiceDLL.Interfaces
         Task<List<CarsByFilterVM>> GetCarsAsync();
         List<CarsByFilterVM> GetCarsByFilters(int [] id);
         Task<List<CarsByFilterVM>> GetCarsByFiltersAsync(int[] id);
-        string Create(CarAddVM model);
+        int Create(CarAddVM model);
         string Delete(CarDeleteVM model);
         string Update(CarVM model);
         Task<string> DeleteAsync(CarDeleteVM model);
-        Task<string> CreateAsync(CarAddVM model);
+        Task<int> CreateAsync(CarAddVM model);
         Task<string> UpdateAsync(CarVM model);
         List<string> GetImagesBySize(string path, string size);
         Task<List<string>> GetImagesBySizeAsync(string path, string size);

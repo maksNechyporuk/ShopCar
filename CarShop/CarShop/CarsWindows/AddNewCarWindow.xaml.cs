@@ -4,6 +4,7 @@ using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace CarShop.CarsWindows
         private ObservableCollection<FNameViewModel> FilterVM { get; set; }
         string main_base64Image;
         List<string> additional_base64Image;
-
+        int[] id;
         public AddNewCarWindow()
         {
             InitializeComponent();
@@ -87,32 +88,50 @@ namespace CarShop.CarsWindows
             spCars.Children.Add(Name);
             models.SelectionChanged += Models_SelectionChanged;
             spCars.Children.Add(models);
-
+            id= new int[FilterVM.Count-1];
+            int i = 0;
             foreach (var item in FilterVM)
             {
-                var listValue = new List<string>();
+                string name = item.Name.Replace(" ", "_");
+              
+                if (name!=("Модель"))
+                {
+                    int j = i;
+                    var listValue = new List<string>();
                 Name = new Label();
                 Name.Content = item.Name;
                 Name.Width = 90;
                 Name.Margin = new Thickness(20, 15, 30, 15);
                 Name.FontSize = 15;
-                box = new ComboBox();
+                box = new ComboBox() {TabIndex=i};
                 foreach (var children in item.Children)
                 {
                     box.Items.Add(new ComboBoxItem() { Content = children.Name, Tag = children.Id });
                 }
-                string name = item.Name.Replace(" ", "_");
-                box.SelectionChanged += Box_SelectionChanged;
+                box.SelectionChanged += Box_SelectionChanged1;
                 box.Name = name;
                 box.Width = 150;
                 box.Margin = new Thickness(5, 15, 10, 15);
                 box.Tag = item.Id;
-                if (!name.Contains("Модель"))
-                {
+              
+                    
                     spCars.Children.Add(Name);
                     spCars.Children.Add(box);
+                 
                 }
+                else
+                continue;
+                i++;
+
             }
+        }
+
+        private void Box_SelectionChanged1(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox box = sender as ComboBox;
+            var item = box.SelectedItem as ComboBoxItem;
+            id[int.Parse(box.TabIndex.ToString())] = int.Parse(item.Tag.ToString());
+
         }
 
         private void Models_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -147,26 +166,11 @@ namespace CarShop.CarsWindows
         {
             CarApiService service = new CarApiService();
 
-            await service.CreateAsync(new CarAddVM {AdditionalImage=additional_base64Image,Count=int.Parse(txtCount.Text),
+          int idCar=  await service.CreateAsync(new CarAddVM {AdditionalImage=additional_base64Image,Count=int.Parse(txtCount.Text),
                 Date =dpDate.SelectedDate.Value,MainImage=main_base64Image,
                 Price =decimal.Parse(txtPrice.Text),UniqueName= Guid.NewGuid().ToString()
                 ,Name =CarsMake+ CarsModel });
-
-            ////var cb = new List<ComboBox>();
-            ////foreach (var item in spCars.Children)
-            ////{
-            ////    if(item is ComboBox)
-            ////    {
-            ////        cb.Add(item as ComboBox);
-            ////    }
-            ////}
-            ////string mes="";
-            ////foreach (var item in cb)
-            ////{
-            ////    var i = item.SelectedItem as ComboBoxItem;
-            ////    mes+=item.Name+": "+i.Tag.ToString(); 
-            ////}
-            ////MessageBox.Show(mes);
+          await  service.CreateAsyncFilterWithCars(new FilterAddWithCarVM {IdValue=id.ToList(),IdCar=idCar });
 
         }
 
