@@ -24,8 +24,8 @@
         <ScrollViewer CanContentScroll="True"   Margin="285,0,0,0.6">
             <Grid   Name="wpCars"   Height="787" Width="1241">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height ="280" ></RowDefinition>
-                    <RowDefinition Height ="280" ></RowDefinition>
+                    <RowDefinition Height ="310" ></RowDefinition>
+                    <RowDefinition Height ="310" ></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto">

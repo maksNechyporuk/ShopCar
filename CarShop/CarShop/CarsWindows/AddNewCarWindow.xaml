@@ -6,13 +6,25 @@
         xmlns:local="clr-namespace:CarShop.CarsWindows"
         mc:Ignorable="d"
         Title="AddNewCarWindow" Height="835" Width="1545" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Button Name="btnAddNewCar" Click="BtnAddNewCar_Click" Content="Добавити" Height="64" Margin="1106,371,299.4,370.6"/>
+    <Grid Name="MainGrid">
+        <StackPanel Name="spLitleCarsPhoto" HorizontalAlignment="Left" Height="Auto" Margin="744,10,0,0" VerticalAlignment="Top" Width="108"/>
 
-        <ScrollViewer  CanContentScroll="True"  Margin="0,0,1004.4,0.6">
+        <Button Name="btnMainImg" Click="BtnMainImg_Click"  Content="Добавити головне фото" Height="64" Margin="1097,732,228.4,9.6"/>
+        <Image Name="BigPhoto"  Margin="852,0,0.4,331.6" Stretch="Fill"/>
 
-            <WrapPanel Name="spCars" HorizontalAlignment="Left" Height="796" VerticalAlignment="Top" Width="429"/>
+        <ScrollViewer  CanContentScroll="True"  Margin="0,0,1082.4,0.6">
+
+            <WrapPanel Name="spCars" HorizontalAlignment="Left" Height="796" VerticalAlignment="Top" Width="419"/>
 
         </ScrollViewer>
+        <DatePicker HorizontalAlignment="Left" Name="dpDate" Margin="461,134,0,0" VerticalAlignment="Top" Height="29" Width="210"/>
+        <Label Content="Дата виготовлення" FontSize="18" HorizontalAlignment="Left" Margin="461,77,0,0" VerticalAlignment="Top" Height="52" Width="182"/>
+        <Label Content="Ціна" FontSize="18" HorizontalAlignment="Left" Margin="461,168,0,0" VerticalAlignment="Top" Height="42" Width="182"/>
+        <TextBox FontSize="15" HorizontalAlignment="Left" Height="37" Margin="461,215,0,0" TextWrapping="Wrap" Text="" Name="txtPrice" VerticalAlignment="Top" Width="210"/>
+        
+        <Label Content="Кількість" FontSize="18" HorizontalAlignment="Left" Margin="461,257,0,0" VerticalAlignment="Top" Height="42" Width="182"/>
+        <TextBox FontSize="15" HorizontalAlignment="Left" Height="37" Margin="461,311,0,0" TextWrapping="Wrap" Text="" x:Name="txtCount" VerticalAlignment="Top" Width="210"/>
+        <Button x:Name="btnAdditionalImg" Click="BtnAdditionalImg_Click"  Content="Добавити додаткові фото" Height="64" Margin="879,732,446.4,9.6"/>
+        <Button x:Name="btnAddCar" Click="BtnAddNewCar_Click"  Content="Добавити автомобіль" Height="64" Margin="1315,732,10.4,9.6"/>
     </Grid>
 </Window>

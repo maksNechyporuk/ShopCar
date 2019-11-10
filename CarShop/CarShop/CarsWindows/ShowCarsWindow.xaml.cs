@@ -56,10 +56,7 @@ namespace CarShop
             CarApiService serviceCars = new CarApiService();
             var listCars = await serviceCars.GetCarsAsync();
             CarVM.Clear();
-            CarVM.AddRange(listCars);
-            CarVM.AddRange(listCars);
-            CarVM.AddRange(listCars);
-            CarVM.AddRange(listCars);
+            CarVM.AddRange(listCars);         
             FillFiltersWP();
             FillCarsWP();
             Spinner.Opacity=0;
@@ -85,12 +82,12 @@ namespace CarShop
                 var img = new Image() {Height = 183, Width = 298};
                 var url = ConfigurationManager.AppSettings["siteURL"];
                 img.Source = new BitmapImage(new Uri($"{url}{item.Image}")); 
-                //img.Source = new BitmapImage(new Uri("https://localhost:44381/images/154m2fas/300_154m2fas.jpg"));
                 wp.Tag = item.UniqueName;
                 wp.MouseDown += Wp_MouseDown;
                 wp.Children.Add(img);
-                wp.Children.Add(new Label() { Content = item.Name,  Height = 33, Width = 80 });
-                wp.Children.Add(new Label() { Content = "Ціна "+item.Price, FontStyle= FontStyle, Margin= new Thickness(5, 5, 5, 5), Height = 33, Width = 80 });
+               
+                wp.Children.Add(new Label() { Content = item.Name,FontSize=15,   Width = 250 });
+                wp.Children.Add(new Label() { Content = "Ціна "+item.Price, FontSize = 15, FontStyle = FontStyle, Margin= new Thickness(5, 5, 5, 5), Height = 63, Width = 250 });
                 Grid.SetColumn(wp, j);
                 Grid.SetRow(wp, i);
                 wpCars.Children.Add(wp);

@@ -11,7 +11,7 @@ namespace ServiceDLL.Models
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string Image { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public string UniqueName { get; set; }
         public string Name { get; set; }
 
@@ -20,7 +20,7 @@ namespace ServiceDLL.Models
     public class CarsByFilterVM
     {
         public int Id { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public string Image { get; set; }
 
         public string UniqueName { get; set; }
@@ -28,6 +28,13 @@ namespace ServiceDLL.Models
     }
     public class CarAddVM
     {
+        public DateTime Date { get; set; }
+        public string MainImage { get; set; }
+        public List<string> AdditionalImage { get; set; }
+        public decimal Price { get; set; }
+        public int Count { get; set; }
+        public string UniqueName { get; set; }
+        public string Name { get; set; }
 
     }
     public class CarDeleteVM
