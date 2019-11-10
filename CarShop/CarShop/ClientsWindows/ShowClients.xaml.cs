@@ -49,8 +49,9 @@ namespace CarShop.ClientsWindows
             InitializeComponent();
             servise = new ClientApiService();
             FillDG();
-        }
 
+        }
+                        
         async void FillDG()
         {
             client = await servise.GetClientsAsync();
@@ -112,12 +113,12 @@ namespace CarShop.ClientsWindows
                 txtNumber.Text = "";
                 txtName.Text = "";
                 txtEmail.Text = "";
-                lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
-                lblNameError.Foreground = System.Windows.Media.Brushes.White;
-                lblEmailError.Foreground = System.Windows.Media.Brushes.White;
                 lblPhoneError.Content = "";
                 lblNameError.Content = "";
                 lblEmailError.Content = "";
+                lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
+                lblNameError.Foreground = System.Windows.Media.Brushes.White;
+                lblEmailError.Foreground = System.Windows.Media.Brushes.White;
             }
             catch (WebException wex)
             {
@@ -169,11 +170,10 @@ namespace CarShop.ClientsWindows
                             else
                                 lblEmailError.Content = mes.Email;
                         }
-
                         lblNameError.Foreground = System.Windows.Media.Brushes.Red;
                         lblPhoneError.Foreground = System.Windows.Media.Brushes.Red;
                         lblEmailError.Foreground = System.Windows.Media.Brushes.Red;
-                       
+
                     }
                 }
             }
@@ -185,14 +185,7 @@ namespace CarShop.ClientsWindows
         }
         
         private void BtnDeleteClient_Click(object sender, RoutedEventArgs e)
-        {
-            var item = dgShowClients.SelectedItem;
-            if (item != dgShowClients.SelectedItem)
-            {
-                IsEnabled = false;
-            }
-            else
-             IsEnabled = true;
+        {         
             ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
             MessageBoxResult result = MessageBox.Show("Ви впевнені,що хочете видалити клієнта " + client.Name + "?");
             if (result == MessageBoxResult.OK)
@@ -233,12 +226,23 @@ namespace CarShop.ClientsWindows
         }
 
         private void BtnChoose_Click(object sender, RoutedEventArgs e)
-        {
+        {      
             var item = dgShowClients.SelectedItem;
             ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
             txtName.Text = client.Name;
             txtNumber.Text = client.Phone;
             txtEmail.Text = client.Email;
+        }
+
+        private void DgShowClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {           
+            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+            if (client == dgShowClients.SelectedItem)
+            {
+                btnChoose.IsEnabled = true;
+                btnAcceptChanges.IsEnabled = true;
+                btnDeleteClient.IsEnabled = true;
+            }
         }
     }
 }
