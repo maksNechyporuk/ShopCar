@@ -15,7 +15,7 @@ namespace ServiceDLL.Concrete
     {
         private string _url = "https://localhost:44381/api/cars";
 
-        public string Create(CarAddVM model)
+        public int Create(CarAddVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -33,12 +33,38 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
-            return content.ToString();
+            return int.Parse(content.ToString());
         }
 
-        public Task<string> CreateAsync(CarAddVM model)
+        public Task<int> CreateAsync(CarAddVM model)
         {
             return Task.Run(() => Create(model));
+        }
+
+        public Task<string> CreateAsyncFilterWithCars(FilterAddWithCarVM model)
+        {
+            return Task.Run(() => CreateFilterWithCars(model));
+        }
+
+        public string CreateFilterWithCars(FilterAddWithCarVM model)
+        {
+            var http = (HttpWebRequest)WebRequest.Create(new Uri(_url+ "/CreateFilterWithCars"));
+            http.Accept = "application/json";
+            http.ContentType = "application/json";
+            http.Method = "POST";
+
+            string parsedContent = JsonConvert.SerializeObject(model);
+            UTF8Encoding encoding = new UTF8Encoding();
+            Byte[] bytes = encoding.GetBytes(parsedContent);
+            Stream newStream = http.GetRequestStream();
+            newStream.Write(bytes, 0, bytes.Length);
+            newStream.Close();
+
+            var response = http.GetResponse();
+            var stream = response.GetResponseStream();
+            var sr = new StreamReader(stream);
+            var content = sr.ReadToEnd();
+            return content.ToString();
         }
 
         public string Delete(CarDeleteVM model)

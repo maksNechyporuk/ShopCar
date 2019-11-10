@@ -84,8 +84,7 @@ namespace CarShop
                 img.Source = new BitmapImage(new Uri($"{url}{item.Image}")); 
                 wp.Tag = item.UniqueName;
                 wp.MouseDown += Wp_MouseDown;
-                wp.Children.Add(img);
-               
+                wp.Children.Add(img);              
                 wp.Children.Add(new Label() { Content = item.Name,FontSize=15,   Width = 250 });
                 wp.Children.Add(new Label() { Content = "Ціна "+item.Price, FontSize = 15, FontStyle = FontStyle, Margin= new Thickness(5, 5, 5, 5), Height = 63, Width = 250 });
                 Grid.SetColumn(wp, j);

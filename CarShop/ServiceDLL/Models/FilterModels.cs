@@ -24,6 +24,13 @@ namespace ServiceDLL.Models
         public List<FValueViewModel> Children { get; set; }
     }
 
+    public class FilterAddWithCarVM
+    {
+        public int IdCar { get; set; }
+        public List<int> IdValue { get; set; }
+    }
+
+
     public class FilterAddVM
     {
         public string Name { get; set; }
