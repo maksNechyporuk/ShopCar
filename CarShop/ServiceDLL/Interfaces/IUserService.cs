@@ -16,5 +16,9 @@ namespace ServiceDLL.Interfaces
         Task<List<UserVM>> GetUserAsync(UserVM user);
 
         string Register(UserRegisterVM user);
+
+        string Delete(UserDeleteVM user);
+
+        string Update(UserUpdateVM user);
     }
 }
