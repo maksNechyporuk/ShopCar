@@ -92,6 +92,21 @@ namespace ServiceDLL.Concrete
             return Task.Run(() => Delete(model));
         }
 
+        public CarUpdateVM GetCarForUpdate(int CarId)
+        {         
+            string _url = $"https://localhost:44381/api/cars/GetCarsForUpdate?CarId={CarId}";
+            var client = new WebClient();
+            client.Encoding = ASCIIEncoding.UTF8;
+            string data = client.DownloadString(_url);
+            var list = JsonConvert.DeserializeObject<CarUpdateVM>(data);
+            return list;
+        }
+
+        public Task<CarUpdateVM> GetCarForUpdateAsync(int CarId)
+        {
+            return Task.Run(() => GetCarForUpdate(CarId));
+        }
+
         public List<CarsByFilterVM> GetCars()
         {
             var client = new WebClient();
@@ -202,5 +217,7 @@ namespace ServiceDLL.Concrete
         {
             return Task.Run(() => Update(model));
         }
+
+
     }
 }
