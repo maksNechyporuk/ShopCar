@@ -126,5 +126,56 @@ namespace ServiceDLL.Concrete
         {
             return Task.Run(() => Register(user));
         }
+
+        public string Delete(UserDeleteVM user)
+        {
+            var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
+            http.Accept = "application/json";
+            http.ContentType = "application/json";
+            http.Method = "DELETE";
+
+            string parsedContent = JsonConvert.SerializeObject(user);
+            UTF8Encoding encoding = new UTF8Encoding();
+            Byte[] bytes = encoding.GetBytes(parsedContent);
+            Stream newStream = http.GetRequestStream();
+            newStream.Write(bytes, 0, bytes.Length);
+            newStream.Close();
+            var response = http.GetResponse();
+            var stream = response.GetResponseStream();
+            var sr = new StreamReader(stream);
+            var content = sr.ReadToEnd();
+            return content.ToString();
+        }
+
+        public Task<string> DeleteAsync(UserDeleteVM user)
+        {
+            return Task.Run(() => Delete(user));
+        }
+
+        public string Update(UserUpdateVM user)
+        {
+            var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
+            http.Accept = "application/json";
+            http.ContentType = "application/json";
+            http.Method = "PUT";
+
+            string parsedContent = JsonConvert.SerializeObject(user);
+            UTF8Encoding encoding = new UTF8Encoding();
+            Byte[] bytes = encoding.GetBytes(parsedContent);
+            Stream newStream = http.GetRequestStream();
+            newStream.Write(bytes, 0, bytes.Length);
+            newStream.Close();
+
+            var response = http.GetResponse();
+            var stream = response.GetResponseStream();
+            var sr = new StreamReader(stream);
+            var content = sr.ReadToEnd();
+            return content.ToString();
+        }
+
+        public Task<string> DeleteAsync(UserUpdateVM user)
+        {
+            return Task.Run(() => Update(user));
+        }
     }
 }

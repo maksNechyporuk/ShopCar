@@ -51,6 +51,8 @@ namespace CarShop.EmployeersWindows
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             FillDG();
+            txtEmail.Text = "";
+            txtName.Text = "";
         }
 
         private void DgShowEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,17 +62,28 @@ namespace CarShop.EmployeersWindows
 
         private void BtnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-
+            UserApiService service = new UserApiService();
+            var del_emp = (UserVM)dgShowEmployees.SelectedItem;
+            servise.Register(new UserRegisterVM { Email = txtEmail.Text, Name = txtEmail.Text, Password = "" });
         }
 
         private void BtnDeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBoxResult result = MessageBox.Show("Are you sure that you want to delete this employee ?","", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                UserApiService service = new UserApiService();
+                var del_emp = (UserVM)dgShowEmployees.SelectedItem;
+                servise.Delete(new UserDeleteVM { Id = del_emp.Id });
+                FillDG();
+            }
         }
 
         private void BtnEditEmployee_Click(object sender, RoutedEventArgs e)
         {
-
+            UserApiService service = new UserApiService();
+            var edit_emp = (UserVM)dgShowEmployees.SelectedItem;
+            servise.Update(new UserUpdateVM { Id = edit_emp.Id, Email = edit_emp.Email, Name = edit_emp.Name });
         }
     }
 }
