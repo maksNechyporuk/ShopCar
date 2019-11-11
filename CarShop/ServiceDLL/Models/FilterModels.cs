@@ -27,7 +27,7 @@ namespace ServiceDLL.Models
     public class FilterAddWithCarVM
     {
         public int IdCar { get; set; }
-        public List<int> IdValue { get; set; }
+        public int[] IdValue { get; set; }
     }
 
 

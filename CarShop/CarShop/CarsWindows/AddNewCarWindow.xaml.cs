@@ -1,22 +1,17 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;       
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WPFAnimal.Extensions;
 
 namespace CarShop.CarsWindows
@@ -32,6 +27,7 @@ namespace CarShop.CarsWindows
         string main_base64Image;
         List<string> additional_base64Image;
         int[] id;
+        CarUpdateVM carUpdateVM;
         public AddNewCarWindow()
         {
             InitializeComponent();
@@ -39,8 +35,119 @@ namespace CarShop.CarsWindows
             FilterVM = new ObservableCollection<FNameViewModel>();
             FillPanel();
         }
+        public AddNewCarWindow(CarUpdateVM _carUpdateVM)
+        {
+            InitializeComponent();
+            carUpdateVM = _carUpdateVM;
+            additional_base64Image = new List<string>();
+            FilterVM = new ObservableCollection<FNameViewModel>();
+            FillPanel(carUpdateVM);
+        }
         ComboBox models = new ComboBox();
+        async void FillPanel(CarUpdateVM _carUpdateVM)
+        {
+            spCars.Children.Clear();
+            spCars.Children.Add(new Label { Content = "Характеристики авто", FontSize = 25, Margin = new Thickness(20, 15, 30, 15) });
+            var listComboBox = new List<ComboBox>();
 
+            MakeApiService makeApi = new MakeApiService();
+            var listMake = await makeApi.GetMakesAsync();
+            FilterApiService service = new FilterApiService();
+            List<FNameViewModel> list = await service.GetFiltersAsync();
+            CarApiService apiService = new CarApiService();
+
+            Label Name = new Label();
+            Name.Content = "Марка";
+            Name.Width = 90;
+            Name.Margin = new Thickness(20, 15, 30, 15);
+            Name.FontSize = 15;
+
+            ComboBox box = new ComboBox();
+
+            foreach (var children in listMake)
+            {
+                var BoxItem = new ComboBoxItem() { Content = children.Name, TabIndex = children.Id };
+                box.Items.Add(BoxItem);
+                foreach (var item in _carUpdateVM.FilterAdd.IdValue)
+                {
+                    if (BoxItem.TabIndex == item)
+                    {
+                        box.SelectedItem = BoxItem;
+                    }
+                }
+              
+            }
+            box.SelectionChanged += Box_SelectionChanged;
+            box.Name = "Марка";
+            box.Width = 150;
+            box.Margin = new Thickness(5, 15, 10, 15);
+            spCars.Children.Add(Name);
+            spCars.Children.Add(box);
+
+
+            FilterVM.Clear();
+            FilterVM.AddRange(list);
+
+            models.Name = "Модель";
+            models.Width = 150;
+            models.Margin = new Thickness(5, 15, 10, 15);
+
+            Name = new Label();
+            Name.Content = "Модель";
+            Name.FontSize = 15;
+            Name.Width = 90;
+            Name.Margin = new Thickness(20, 15, 30, 15);
+            spCars.Children.Add(Name);
+            models.SelectionChanged += Models_SelectionChanged;
+            spCars.Children.Add(models);
+            id = new int[FilterVM.Count - 1];
+            int i = 0;
+            foreach (var item in FilterVM)
+            {
+                string name = item.Name.Replace(" ", "_");
+
+                if (name != ("Модель"))
+                {
+                    int j = i;
+                    var listValue = new List<string>();
+                    Name = new Label();
+                    Name.Content = item.Name;
+                    Name.Width = 90;
+                    Name.Margin = new Thickness(20, 15, 30, 15);
+                    Name.FontSize = 15;
+                    box = new ComboBox() { TabIndex = i };
+                    foreach (var children in item.Children)
+                    {
+                        var BoxItem = new ComboBoxItem() { Content = children.Name, TabIndex = children.Id };
+                        box.Items.Add(BoxItem);
+                        foreach (var value in _carUpdateVM.FilterAdd.IdValue)
+                        {
+                            if (BoxItem.TabIndex == value)
+                            {
+                                box.SelectedItem = BoxItem;
+                            }
+                        }
+                    }
+                    box.SelectionChanged += Box_SelectionChanged1;
+                    box.Name = name;
+                    box.Width = 150;
+                    box.Margin = new Thickness(5, 15, 10, 15);
+                    box.Tag = item.Id;
+                   
+
+                    spCars.Children.Add(Name);
+                    spCars.Children.Add(box);
+
+                }
+                else
+                    continue;
+                i++;
+
+            }
+            txtCount.Text = _carUpdateVM.Count.ToString();
+            txtPrice.Text = _carUpdateVM.Price.ToString();
+            dpDate.SelectedDate = _carUpdateVM.Date;
+        }
         async void FillPanel()
         {
             spCars.Children.Clear();
@@ -125,22 +232,18 @@ namespace CarShop.CarsWindows
 
             }
         }
-
         private void Box_SelectionChanged1(object sender, SelectionChangedEventArgs e)
         {
             ComboBox box = sender as ComboBox;
             var item = box.SelectedItem as ComboBoxItem;
             id[int.Parse(box.TabIndex.ToString())] = int.Parse(item.Tag.ToString());
-
         }
-
         private void Models_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        { ComboBox box = sender as ComboBox;          
+        {
+           ComboBox box = sender as ComboBox;          
            var item = box.SelectedItem as ComboBoxItem;
-           CarsModel = item.Content.ToString();      
-                
-         }
-
+           CarsModel = item.Content.ToString();                      
+        }
         private void Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CarApiService apiService = new CarApiService();
@@ -164,16 +267,23 @@ namespace CarShop.CarsWindows
 
         private async void BtnAddNewCar_Click(object sender, RoutedEventArgs e)
         {
-            CarApiService service = new CarApiService();
+            if (IfNotEmpty())
+            {
+                CarApiService service = new CarApiService();
 
-          int idCar=  await service.CreateAsync(new CarAddVM {AdditionalImage=additional_base64Image,Count=int.Parse(txtCount.Text),
-                Date =dpDate.SelectedDate.Value,MainImage=main_base64Image,
-                Price =decimal.Parse(txtPrice.Text),UniqueName= Guid.NewGuid().ToString()
-                ,Name =CarsMake+ CarsModel });
-          await  service.CreateAsyncFilterWithCars(new FilterAddWithCarVM {IdValue=id.ToList(),IdCar=idCar });
-
+                int idCar = await service.CreateAsync(new CarAddVM
+                {
+                    AdditionalImage = additional_base64Image,
+                    Count = int.Parse(txtCount.Text),
+                    Date = dpDate.SelectedDate.Value,
+                    MainImage = main_base64Image,
+                    Price = decimal.Parse(txtPrice.Text),
+                    UniqueName = Guid.NewGuid().ToString(),
+                    Name = CarsMake + CarsModel
+                });
+                await service.CreateAsyncFilterWithCars(new FilterAddWithCarVM { IdValue = id, IdCar = idCar });
+            }
         }
-
         private void BtnMainImg_Click(object sender, RoutedEventArgs e)
         {
             
@@ -187,12 +297,77 @@ namespace CarShop.CarsWindows
                 main_base64Image = Convert.ToBase64String(b);
             }
         }
-
-        private void BtnAdditionalImg_Click(object sender, RoutedEventArgs e)
+      void ShowException(WebException wex)
+        {
+            if (wex.Response != null)
+            {
+                using (var errorResponse = (HttpWebResponse)wex.Response)
+                {
+                    using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                    {
+                        var error = reader.ReadToEnd();
+                        var mes = JsonConvert.DeserializeAnonymousType(error, new
+                        {
+                            Name = ""
+                        });
+                    }
+                }
+            }
+        }
+      private  bool IfNotEmpty()
+        {
+            List<ComboBox> boxes = new List<ComboBox>();
+            foreach (var item in spCars.Children)
+            {
+                if(item is ComboBox)
+                {
+                    boxes.Add(item as ComboBox);
+                }
+            }
+            int count = 0;
+            foreach (var item in boxes)
+            {
+                if(item.SelectedItem==null)
+                {
+                    item.BorderBrush= new SolidColorBrush(Colors.Red);
+                    count++;
+                }
+            }
+            if(txtCount.Text=="")
+            {
+                txtCount.BorderBrush = new SolidColorBrush(Colors.Red); count++;
+            }
+            if ( txtPrice.Text == "")
+            {
+                txtPrice.BorderBrush = new SolidColorBrush(Colors.Red); count++;
+            }
+            if (dpDate.SelectedDate == null)
+            {
+                dpDate.BorderBrush = new SolidColorBrush(Colors.Red); count++;
+            }
+            if (BigPhoto.Source==null)
+            {
+                count++;
+                btnMainImg.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            if (spLitleCarsPhoto.Children.Count==0)
+            {
+                count++;
+                btnAdditionalImg.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            if (count==0)
+            return true;
+            else
+            {
+                MessageBox.Show("Заповніть усі поля");
+                return false;
+            }
+        }
+            private void BtnAdditionalImg_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) " +
-                "| *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            "| *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
             dlg.Multiselect = true;
             if (dlg.ShowDialog() == true)
             {
@@ -207,7 +382,7 @@ namespace CarShop.CarsWindows
 
                     spLitleCarsPhoto.Children.Add(WrapImg);
                 }
-                
+               
             }
         }
         public static byte[] ConvertBitmapSourceToByteArray(BitmapSource image)

@@ -83,10 +83,15 @@ namespace CarShop
                 var url = ConfigurationManager.AppSettings["siteURL"];
                 img.Source = new BitmapImage(new Uri($"{url}{item.Image}")); 
                 wp.Tag = item.UniqueName;
-                wp.MouseDown += Wp_MouseDown;
+                wp.MouseLeftButtonDown += Wp_MouseDown;
                 wp.Children.Add(img);              
                 wp.Children.Add(new Label() { Content = item.Name,FontSize=15,   Width = 250 });
                 wp.Children.Add(new Label() { Content = "Ціна "+item.Price, FontSize = 15, FontStyle = FontStyle, Margin= new Thickness(5, 5, 5, 5), Height = 63, Width = 250 });
+                ContextMenu update = new ContextMenu() {TabIndex=item.Id };
+                MenuItem itemMenu = new MenuItem() {Header="Редагувати", TabIndex = item.Id };
+                itemMenu.Click += ItemMenu_Click;
+                update.Items.Add(itemMenu);
+                wp.ContextMenu = update;
                 Grid.SetColumn(wp, j);
                 Grid.SetRow(wp, i);
                 wpCars.Children.Add(wp);
@@ -99,6 +104,16 @@ namespace CarShop
 
             }          
         }
+
+        private async void ItemMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menu = sender as MenuItem;
+            CarApiService service = new CarApiService();
+            var list = await service.GetCarForUpdateAsync(menu.TabIndex);
+            AddNewCarWindow window = new AddNewCarWindow(list);
+            window.ShowDialog();
+        }
+
         private async void Wp_MouseDown(object sender, MouseButtonEventArgs e)
         {
             StackPanel panel= sender as StackPanel;
