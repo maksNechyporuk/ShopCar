@@ -1,8 +1,11 @@
-﻿using ServiceDLL.Concrete;
+﻿using Newtonsoft.Json;
+using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -57,20 +60,26 @@ namespace CarShop.EmployeersWindows
 
         private void DgShowEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dgShowEmployees.SelectedItem != null)
+            {
+                var employee = (UserVM)dgShowEmployees.SelectedItem;
+                txtEmail.Text = employee.Email;
+                txtName.Text = employee.Name;
+            }
         }
 
         private void BtnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            UserApiService service = new UserApiService();
-            var del_emp = (UserVM)dgShowEmployees.SelectedItem;
-            servise.Register(new UserRegisterVM { Email = txtEmail.Text, Name = txtEmail.Text, Password = "" });
+            AddEmployee addEmployee = new AddEmployee();
+            addEmployee.ShowDialog();
+            FillDG();
         }
+        
 
         private void BtnDeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure that you want to delete this employee ?","", MessageBoxButton.OKCancel);
-            if (result == MessageBoxResult.OK)
+            MessageBoxResult result = MessageBox.Show("Are you sure that you want to delete this employee ?","Delete", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
             {
                 UserApiService service = new UserApiService();
                 var del_emp = (UserVM)dgShowEmployees.SelectedItem;
@@ -79,11 +88,59 @@ namespace CarShop.EmployeersWindows
             }
         }
 
-        private void BtnEditEmployee_Click(object sender, RoutedEventArgs e)
+        private async void BtnEditEmployee_Click(object sender, RoutedEventArgs e)
         {
             UserApiService service = new UserApiService();
-            var edit_emp = (UserVM)dgShowEmployees.SelectedItem;
-            servise.Update(new UserUpdateVM { Id = edit_emp.Id, Email = edit_emp.Email, Name = edit_emp.Name });
+            int userid = 0;
+            try
+            {
+                lblName.Foreground = Brushes.White;
+                lblEmail.Foreground = Brushes.White;
+                lblName.Content = "";
+                lblEmail.Content = "";
+                if (dgShowEmployees.SelectedItem != null)
+                {
+                    userid = (dgShowEmployees.SelectedItem as UserVM).Id;
+                }
+                string req = await service.UpdateAsync(new UserUpdateVM { Id = userid, Name = txtName.Text, Email = txtEmail.Text});
+                MessageBox.Show("Працівник відредагований успішно.");
+                txtEmail.Text = "";
+                txtName.Text = "";
+                FillDG();
+                dgShowEmployees.SelectedItem = null;
+            }
+            catch (WebException wex)
+            {
+                ShowException(wex);
+            }
+        }
+        void ShowException(WebException wex)
+        {
+            if (wex.Response != null)
+            {
+                using (var errorResponse = (HttpWebResponse)wex.Response)
+                {
+                    using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                    {
+                        var error = reader.ReadToEnd();
+                        var mes = JsonConvert.DeserializeAnonymousType(error, new
+                        {
+                            Name = "",
+                            Email = "",
+                        });
+                        if (mes.Name != null)
+                        {
+                            lblName.Content = mes.Name;
+                        }
+                        if (mes.Email != null)
+                        {
+                            lblEmail.Content = mes.Email;
+                        }
+                        lblName.Foreground = Brushes.Red;
+                        lblEmail.Foreground = Brushes.Red;
+                    }
+                }
+            }
         }
     }
 }
