@@ -163,12 +163,15 @@ namespace CarShop.ClientsWindows
 
         private void DgShowClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
-            if (client == dgShowClients.SelectedItem)
+            if (dgShowClients.SelectedItem != null)
             {
+               if(dgShowClients.SelectedItem is ClientDataGridVM)
+                {
+                ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
                 btnChoose.IsEnabled = true;
                 btnAcceptChanges.IsEnabled = true;
                 btnDeleteClient.IsEnabled = true;
+                }
             }
         }
         void ShowException(WebException wex)
