@@ -37,6 +37,17 @@ namespace ServiceDLL.Models
         public string Name { get; set; }
 
     }
+    public class CarUpdateVM
+    {
+        public DateTime Date { get; set; }
+        public string MainImage { get; set; }
+        public List<string> AdditionalImage { get; set; }
+        public decimal Price { get; set; }
+        public int Count { get; set; }
+        public string UniqueName { get; set; }
+        public string Name { get; set; }
+        public FilterAddWithCarVM FilterAdd { get; set; }
+    }
     public class CarDeleteVM
     {
         public int Id { get; set; }
