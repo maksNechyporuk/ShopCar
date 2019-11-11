@@ -119,6 +119,29 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
+            var tokenObject = JsonConvert.DeserializeAnonymousType(content, new
+            {
+                token = ""
+            });
+
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(tokenObject.token);
+            var tokenS = handler.ReadToken(tokenObject.token) as JwtSecurityToken;
+            //DbConnection connection = GetConnection("jon");
+            using (var context = new EFContext())
+            {
+                Credential credential = new Credential
+                {
+                    Token = tokenObject.token,
+                    DateCreate = DateTime.Now,
+                    DateExtToken = 12342134,
+                    UserName = tokenS.Claims.ToArray()[1].Value
+                };
+                context.Credentials.Add(credential);
+                //context.Dependants.Add(new Dependant() { Description = "Dependant description", MainEntity = new EF6.Migrations.Test.Model01.Entity() { Description = "Entity description" } });
+                context.SaveChanges();
+
+            }
             return content;
         }
 
@@ -173,7 +196,7 @@ namespace ServiceDLL.Concrete
             return content.ToString();
         }
 
-        public Task<string> DeleteAsync(UserUpdateVM user)
+        public Task<string> UpdateAsync(UserUpdateVM user)
         {
             return Task.Run(() => Update(user));
         }

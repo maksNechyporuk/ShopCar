@@ -138,6 +138,9 @@
     <Compile Include="ClientsWindows\ShowClients.xaml.cs">
       <DependentUpon>ShowClients.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmployeersWindows\AddEmployee.xaml.cs">
+      <DependentUpon>AddEmployee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeersWindows\ShowEmployees.xaml.cs">
       <DependentUpon>ShowEmployees.xaml</DependentUpon>
     </Compile>
@@ -196,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ClientsWindows\ShowClients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeersWindows\AddEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
