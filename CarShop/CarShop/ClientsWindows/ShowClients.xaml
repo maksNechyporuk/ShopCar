@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ShowClients" Height="523.151" Width="613.739">
     <Grid Margin="3,0,-16,-21">
-        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,101,269,0" Height="362" VerticalAlignment="Top">
+        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,101,269,0" Height="362" VerticalAlignment="Top" SelectionChanged="DgShowClients_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
@@ -57,6 +57,6 @@
         <Label x:Name="lblEmailError" Content="" HorizontalAlignment="Left" Margin="395,61,0,0" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.497,0.462"/>
         <Label Content="Електронна пошта клієнта :" HorizontalAlignment="Left" Margin="395,3,0,0" VerticalAlignment="Top" Width="163"/>
         <Button x:Name="btnAcceptChanges" Content="Підтвердити&#xD;&#xA;редагування&#xD;&#xA;    клієнта" HorizontalAlignment="Left" Margin="469,376,0,0" VerticalAlignment="Top" Width="120" Height="99" Click="BtnAcceptChanges_Click" IsEnabled="False"/>
-        <Button x:Name="btnChoose" Content="Вибрати&#xD;&#xA;клієнта" HorizontalAlignment="Left" Margin="368,376,0,0" VerticalAlignment="Top" Width="96" Height="99" Click="BtnChoose_Click"/>
+        <Button x:Name="btnChoose" Content="Вибрати&#xD;&#xA;клієнта" HorizontalAlignment="Left" Margin="368,376,0,0" VerticalAlignment="Top" Width="96" Height="99" Click="BtnChoose_Click" IsEnabled="False"/>
     </Grid>
 </Window>

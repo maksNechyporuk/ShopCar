@@ -37,9 +37,7 @@ namespace CarShop.ClientsWindows
             List<ClientDataGridVM> clientDG = new List<ClientDataGridVM>();
             foreach (var item in client)
             {
-                //Bitmap img = item.Image.Base64ToImage();
-                clientDG.Add(new ClientDataGridVM { Id = item.Id, Name = item.Name, Phone = item.Phone,Email = item.Email/*, Image = img*/ });
-                //PhotoImage = img. ;
+                clientDG.Add(new ClientDataGridVM { Id = item.Id, Name = item.Name, Phone = item.Phone, Email = item.Email });
             }
             return clientDG;
 
@@ -49,11 +47,12 @@ namespace CarShop.ClientsWindows
             InitializeComponent();
             servise = new ClientApiService();
             FillDG();
+
         }
 
         async void FillDG()
         {
-            client = await servise.GetClientsAsync();
+            client = await servise.GetClientsAsync(null);
             dgShowClients.ItemsSource = FillDGList(client);
         }
 
@@ -67,25 +66,12 @@ namespace CarShop.ClientsWindows
             FillDG();
         }
 
-        private void BtnFindClient_Click(object sender, RoutedEventArgs e)
+        private async void BtnFindClient_Click(object sender, RoutedEventArgs e)
         {
-            if (txtNumber.Text != "" && txtName.Text != "" && txtEmail.Text !="")
-            {
-                dgShowClients.ItemsSource = client.Where(c => c.Phone == txtNumber.Text && c.Name == txtName.Text && c.Email == txtEmail.Text);
-            }
-            else if (txtNumber.Text != "")
-            {
-                dgShowClients.ItemsSource = client.Where(c => c.Phone == txtNumber.Text);
-            }
-            else if (txtEmail.Text != "")
-            {
-                dgShowClients.ItemsSource = client.Where(c => c.Email == txtEmail.Text);
-            }
-            else 
-            {
-                dgShowClients.ItemsSource = client.Where(c => c.Name == txtName.Text);
-            }
-          
+
+            ClientApiService service = new ClientApiService();
+            client = await service.GetClientsAsync(new ClientVM { Email = txtEmail.Text, Name = txtName.Text, Phone = txtNumber.Text });
+            dgShowClients.ItemsSource = client;
         }
 
         private async void BtnAddClient_Click(object sender, RoutedEventArgs e)
@@ -105,9 +91,53 @@ namespace CarShop.ClientsWindows
                     str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
                 txtNumber.Text = str;
                 txtName.Text = str2;
-                txtEmail.Text = str3;              
+                txtEmail.Text = str3;
                 ClientApiService service = new ClientApiService();
                 await service.CreateAsync(new ClientAddVM { Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
+                FillDG();
+                txtNumber.Text = "";
+                txtName.Text = "";
+                txtEmail.Text = "";
+                lblPhoneError.Content = "";
+                lblNameError.Content = "";
+                lblEmailError.Content = "";
+                lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
+                lblNameError.Foreground = System.Windows.Media.Brushes.White;
+                lblEmailError.Foreground = System.Windows.Media.Brushes.White;
+            }
+            catch (WebException wex)
+            {
+                ShowException(wex);
+            }
+        }
+
+        private void BtnDeleteClient_Click(object sender, RoutedEventArgs e)
+        {
+            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+            MessageBoxResult result = MessageBox.Show("Ви впевнені,що хочете видалити клієнта " + client.Name + "?", "Видалення", MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+                ClientApiService service = new ClientApiService();
+                service.Delete(new ClientDeleteVM { Id = client.Id });
+                FillDG();
+            }
+        }
+
+        private async void BtnAcceptChanges_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+                string str = txtNumber.Text;
+                string str2 = txtName.Text;
+                string str3 = txtEmail.Text;
+                if (str != null && str.Trim().Length == 10)
+                    str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
+                txtNumber.Text = str;
+                txtName.Text = str2;
+                txtEmail.Text = str3;
+                ClientApiService service = new ClientApiService();
+                await service.UpdateAsync(new ClientVM { Id = client.Id, Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
                 FillDG();
                 txtNumber.Text = "";
                 txtName.Text = "";
@@ -115,13 +145,30 @@ namespace CarShop.ClientsWindows
                 lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
                 lblNameError.Foreground = System.Windows.Media.Brushes.White;
                 lblEmailError.Foreground = System.Windows.Media.Brushes.White;
-                lblPhoneError.Content = "";
-                lblNameError.Content = "";
-                lblEmailError.Content = "";
             }
             catch (WebException wex)
             {
                 ShowException(wex);
+            }
+        }
+
+        private void BtnChoose_Click(object sender, RoutedEventArgs e)
+        {
+            var item = dgShowClients.SelectedItem;
+            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+            txtName.Text = client.Name;
+            txtNumber.Text = client.Phone;
+            txtEmail.Text = client.Email;
+        }
+
+        private void DgShowClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+            if (client == dgShowClients.SelectedItem)
+            {
+                btnChoose.IsEnabled = true;
+                btnAcceptChanges.IsEnabled = true;
+                btnDeleteClient.IsEnabled = true;
             }
         }
         void ShowException(WebException wex)
@@ -147,17 +194,17 @@ namespace CarShop.ClientsWindows
                                 lblNameError.Visibility = Visibility;
                             }
                             else
-                            lblNameError.Content = mes.Name;
+                                lblNameError.Content = mes.Name;
                         }
                         if (mes.Phone != null)
                         {
-                            if(mes.Phone == "issue")
+                            if (mes.Phone == "issue")
                             {
                                 txtNumber.BorderBrush = System.Windows.Media.Brushes.Red;
                                 lblPhoneError.Visibility = Visibility;
                             }
                             else
-                            lblPhoneError.Content = mes.Phone;                         
+                                lblPhoneError.Content = mes.Phone;
                         }
                         if (mes.Email != null)
                         {
@@ -169,11 +216,10 @@ namespace CarShop.ClientsWindows
                             else
                                 lblEmailError.Content = mes.Email;
                         }
-
                         lblNameError.Foreground = System.Windows.Media.Brushes.Red;
                         lblPhoneError.Foreground = System.Windows.Media.Brushes.Red;
                         lblEmailError.Foreground = System.Windows.Media.Brushes.Red;
-                       
+
                     }
                 }
             }
@@ -182,63 +228,6 @@ namespace CarShop.ClientsWindows
         {
             mes = mes.Trim('"');
             MessageBox.Show(mes);
-        }
-        
-        private void BtnDeleteClient_Click(object sender, RoutedEventArgs e)
-        {
-            var item = dgShowClients.SelectedItem;
-            if (item != dgShowClients.SelectedItem)
-            {
-                IsEnabled = false;
-            }
-            else
-             IsEnabled = true;
-            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
-            MessageBoxResult result = MessageBox.Show("Ви впевнені,що хочете видалити клієнта " + client.Name + "?");
-            if (result == MessageBoxResult.OK)
-            {
-                ClientApiService service = new ClientApiService();
-                service.Delete(new ClientDeleteVM { Id = client.Id });
-                FillDG();
-            }            
-        }
-
-        private async void BtnAcceptChanges_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
-                string str = txtNumber.Text;
-                string str2 = txtName.Text;
-                string str3 = txtEmail.Text;
-                if (str != null && str.Trim().Length == 10)
-                    str = string.Format("+38{0}({1}){2}-{3}-{4}", str.Substring(0, 1), str.Substring(1, 2), str.Substring(3, 3), str.Substring(6, 2), str.Substring(8, 2));
-                txtNumber.Text = str;
-                txtName.Text = str2;
-                txtEmail.Text = str3;
-                ClientApiService service = new ClientApiService();
-                await service.UpdateAsync(new ClientVM { Id = client.Id,Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
-                FillDG();
-                txtNumber.Text = "";
-                txtName.Text = "";
-                txtEmail.Text = "";
-                lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
-                lblNameError.Foreground = System.Windows.Media.Brushes.White;
-                lblEmailError.Foreground = System.Windows.Media.Brushes.White;
-            }
-            catch (WebException wex)
-            {
-                ShowException(wex);
-            }
-        }
-
-        private void BtnChoose_Click(object sender, RoutedEventArgs e)
-        {
-            var item = dgShowClients.SelectedItem;
-            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
-            txtName.Text = client.Name;
-            txtNumber.Text = client.Phone;
-            txtEmail.Text = client.Email;
         }
     }
 }

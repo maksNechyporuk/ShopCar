@@ -33,7 +33,7 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
-            return content;
+            return content;          
         }
         public Task<string> CreateAsync(ClientAddVM client)
         {
@@ -63,17 +63,29 @@ namespace ServiceDLL.Concrete
         {
             return Task.Run(() => Delete(client));
         }
-        public List<ClientVM> GetClients()
+        public List<ClientVM> GetClients(ClientVM client)
         {
-            var client = new WebClient();
-            client.Encoding = ASCIIEncoding.UTF8;
-            string data = client.DownloadString(_url);
-            var list = JsonConvert.DeserializeObject<List<ClientVM>>(data);
-            return list;
+            if (client == null)
+            {
+                var webclient = new WebClient();
+                webclient.Encoding = ASCIIEncoding.UTF8;
+                string data = webclient.DownloadString(_url);
+                var list = JsonConvert.DeserializeObject<List<ClientVM>>(data);
+                return list;
+            }
+            else
+            {
+                string _url = "https://localhost:44381/api/clients/search/?";
+                var webclient = new WebClient();
+                webclient.Encoding = ASCIIEncoding.UTF8;
+                string data = webclient.DownloadString(_url + $"Name={client.Name}&Phone={client.Phone}&Email={client.Email}");
+                var list = JsonConvert.DeserializeObject<List<ClientVM>>(data);
+                return list;
+            }
         }
-        public Task<List<ClientVM>> GetClientsAsync()
+        public Task<List<ClientVM>> GetClientsAsync(ClientVM client)
         {
-            return Task.Run(() => GetClients());
+            return Task.Run(() => GetClients(client));
         }
 
         public string Update(ClientVM client)
