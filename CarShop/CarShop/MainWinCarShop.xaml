@@ -11,10 +11,12 @@
         mc:Ignorable="d"
         Title="Car shop" Height="450" Width="800">
     <Grid>
-        <Button Name="btnShowCar" Content="{x:Static  p:Resources.bntContentShow}"  HorizontalAlignment="Left" Margin="274,108,0,0" VerticalAlignment="Top"  Width="158" Height="32" Click="BtnShowCar_Click"/>
-        <Button Name="btnAddClients" Content="{x:Static  p:Resources.btnClients}" HorizontalAlignment="Left" Margin="274,159,0,0" VerticalAlignment="Top"  Width="158" Height="32" Click="BtnAddClients_Click"/>
-        <Button x:Name="btnShowClients" Content="Show Clients" HorizontalAlignment="Left" Margin="72,159,0,0" VerticalAlignment="Top" Width="158" Height="32" Click="BtnShowClients_Click"/>
-        <Button Content="Show Employees" HorizontalAlignment="Left" Margin="72,110,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5" Height="33">
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\frez70\Downloads\CarShopBackground.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Button x:Name="btnShowCar" Content="Автомобілі"  HorizontalAlignment="Left" Margin="510,255,0,0" VerticalAlignment="Top"  Width="158" Height="32" Click="BtnShowCar_Click"/>
+        <Button x:Name="btnShowClients" Content="Клієнти" HorizontalAlignment="Left" Margin="120,255,0,0" VerticalAlignment="Top" Width="158" Height="32" Click="BtnShowClients_Click"/>
+        <Button x:Name="bntShowEmployees" Content="Працівники" HorizontalAlignment="Left" Margin="315,255,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5" Height="33">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -24,8 +26,8 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Button x:Name="btnLogin" Content="Log In" HorizontalAlignment="Left" Margin="715,10,0,0" VerticalAlignment="Top" Width="67" Height="25" Click="BtnLogin_Click"/>
-        <TextBox x:Name="lblUserName" HorizontalAlignment="Left" Height="23" Margin="658,12,0,0" TextWrapping="Wrap" Text="Visitor" VerticalAlignment="Top" Width="52" IsEnabled="False"/>
+        <Button x:Name="btnLogin" Content="Увійти" HorizontalAlignment="Left" Margin="708,10,0,0" VerticalAlignment="Top" Width="74" Height="25" Click="BtnLogin_Click"/>
+        <TextBox x:Name="lblUserName" HorizontalAlignment="Left" Height="23" Margin="651,10,0,0" TextWrapping="Wrap" Text="Visitor" VerticalAlignment="Top" Width="52" IsEnabled="False"/>
 
     </Grid>
     
