@@ -132,6 +132,9 @@
     <Compile Include="CarsWindows\AddNewModelWindow.xaml.cs">
       <DependentUpon>AddNewModelWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CarsWindows\UpdateCarsWindow.xaml.cs">
+      <DependentUpon>UpdateCarsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ClientsWindows\ShowClients.xaml.cs">
       <DependentUpon>ShowClients.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CarsWindows\AddNewModelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CarsWindows\UpdateCarsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

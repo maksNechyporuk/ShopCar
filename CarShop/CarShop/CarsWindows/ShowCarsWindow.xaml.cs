@@ -110,15 +110,9 @@ namespace CarShop
             MenuItem menu = sender as MenuItem;
             CarApiService service = new CarApiService();
             var list = await service.GetCarForUpdateAsync(menu.TabIndex);
-            AddNewCarWindow window = new AddNewCarWindow(list);
+            UpdateCarsWindow window = new UpdateCarsWindow(list);
             window.ShowDialog();
-            System.GC.Collect();
-            System.GC.WaitForPendingFinalizers();
-            var car = window.readyCar;            
-            var id = window.id;
-            window = null;
-            int idCar = await service.UpdateAsync(car);
-            await service.UpdateAsyncFilterWithCars(new FilterAddWithCarVM {IdValue= id,IdCar=car.Id});
+           
         }
 
         private async void Wp_MouseDown(object sender, MouseButtonEventArgs e)
