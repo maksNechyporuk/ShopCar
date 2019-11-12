@@ -1,11 +1,11 @@
-﻿<Window x:Class="CarShop.CarsWindows.AddNewCarWindow"
+﻿<Window x:Class="CarShop.CarsWindows.UpdateCarsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop.CarsWindows"
         mc:Ignorable="d"
-        Title="AddNewCarWindow" Height="835" Width="1545" WindowStartupLocation="CenterScreen" >
+        Title="UpdateCarsWindow" Height="835" Width="1545" WindowStartupLocation="CenterScreen">
     <Grid Name="MainGrid">
         <StackPanel Name="spLitleCarsPhoto" HorizontalAlignment="Left" Height="Auto" Margin="744,10,0,0" VerticalAlignment="Top" Width="108"/>
         <Button Name="btnMainImg" Click="BtnMainImg_Click"  Content="Добавити головне фото" Height="64" Margin="1097,732,228.4,9.6"/>
@@ -20,6 +20,7 @@
         <Label Content="Кількість" FontSize="18" HorizontalAlignment="Left" Margin="461,257,0,0" VerticalAlignment="Top" Height="42" Width="182"/>
         <TextBox FontSize="15" HorizontalAlignment="Left" Height="37" Margin="461,311,0,0" TextWrapping="Wrap" Text="" x:Name="txtCount" VerticalAlignment="Top" Width="210"/>
         <Button x:Name="btnAdditionalImg" Click="BtnAdditionalImg_Click"  Content="Добавити додаткові фото" Height="64" Margin="879,732,446.4,9.6"/>
-        <Button x:Name="btnAddCar" Click="BtnAddNewCar_Click"  Content="Добавити автомобіль" Height="64" Margin="1315,732,10.4,9.6"/>
+        <Button x:Name="btnUpdate" Click="BtnUpdate_Click"  Content="Оновити дані" Height="64" Margin="1315,732,10.4,9.6"/>
+        <Button x:Name="btnDeleteImg" Click="BtnDeleteImg_Click"  Content="Видалити фото" Height="64" Margin="661,732,664.4,9.6"/>
     </Grid>
 </Window>

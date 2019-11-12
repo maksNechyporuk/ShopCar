@@ -41,17 +41,16 @@ namespace CarShop.CarsWindows
         {
             lblCarsName.Content = _car.Name;
             var url = ConfigurationManager.AppSettings["siteURL"];
-            var path = $"{url}{_car.Image}";
+           
             CarApiService service = new CarApiService();
             var imgs = service.GetImagesBySize(_car.UniqueName, "100");
             var Bigimgs = service.GetImagesBySize(_car.UniqueName, "1280");
             _car.filters = _car.filters.OrderBy(p => p.Name).ToList();
             int count = 0;
-
             foreach (var item in imgs)
             {
                 var WrapImg = new StackPanel { Tag = count };
-                WrapImg.Children.Add(new Image { Source = new BitmapImage(new Uri(item)) });
+                WrapImg.Children.Add(new Image { Source = new BitmapImage(new Uri($"{url}{item}")) });
                 WrapImg.MouseDown += BtnImg_Click;
                 img.Add(WrapImg);
                 count++;
@@ -61,7 +60,7 @@ namespace CarShop.CarsWindows
             foreach (var item in Bigimgs)
             {
 
-                bigImg.Add(new Image { Source = new BitmapImage(new Uri(item)) });
+                bigImg.Add(new Image { Source = new BitmapImage(new Uri($"{url}{item}")) });
             }
 
             foreach (var item in img)
