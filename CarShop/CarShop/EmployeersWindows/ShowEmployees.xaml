@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop.EmployeersWindows"
         mc:Ignorable="d"
-        Title="ShowEmployees" Height="450" Width="800">
+        Title="Працівники" Height="450" Width="805">
     <Grid>
         <DataGrid x:Name="dgShowEmployees" AutoGenerateColumns="False" Margin="0,100,202,60" SelectionChanged="DgShowEmployees_SelectionChanged">
             <DataGrid.Columns>
@@ -42,13 +42,13 @@
         </DataGrid>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="310,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
-        <Label Content="Name: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email:" HorizontalAlignment="Left" Margin="310,10,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnFindEmployee" Content="Find" HorizontalAlignment="Left" Margin="595,10,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnFindEmployee_Click"/>
-        <Button x:Name="btnCanselFind" Content="Calsel find" HorizontalAlignment="Left" Margin="595,80,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="Button_Click"/>
-        <Button x:Name="btnAddEmployee" Content="Add Employee" HorizontalAlignment="Left" Margin="595,150,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnAddEmployee_Click"/>
-        <Button x:Name="btnDeleteEmployee" Content="Delete Employee" HorizontalAlignment="Left" Margin="595,220,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnDeleteEmployee_Click"/>
-        <Button x:Name="btnEditEmployee" Content="Edit Employee" HorizontalAlignment="Left" Margin="595,290,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnEditEmployee_Click"/>
+        <Label Content="Ім'я:  " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Емейл:" HorizontalAlignment="Left" Margin="310,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnFindEmployee" Content="Знайти" HorizontalAlignment="Left" Margin="595,10,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnFindEmployee_Click"/>
+        <Button x:Name="btnCanselFind" Content="Відмінити пошук" HorizontalAlignment="Left" Margin="595,80,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="Button_Click"/>
+        <Button x:Name="btnAddEmployee" Content="Додати " HorizontalAlignment="Left" Margin="595,150,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnAddEmployee_Click"/>
+        <Button x:Name="btnDeleteEmployee" Content="Видалити" HorizontalAlignment="Left" Margin="595,220,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnDeleteEmployee_Click"/>
+        <Button x:Name="btnEditEmployee" Content="Редагувати" HorizontalAlignment="Left" Margin="595,290,0,0" VerticalAlignment="Top" Width="187" Height="49" Click="BtnEditEmployee_Click"/>
         <Label x:Name="lblName" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="280" FontSize="9"/>
         <Label x:Name="lblEmail" HorizontalAlignment="Left" Margin="310,64,0,0" VerticalAlignment="Top" Width="280" FontSize="9"/>
 

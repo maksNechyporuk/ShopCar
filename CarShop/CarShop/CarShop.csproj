@@ -117,9 +117,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddClients.xaml.cs">
-      <DependentUpon>AddClients.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CarsWindows\AddNewCarWindow.xaml.cs">
       <DependentUpon>AddNewCarWindow.xaml</DependentUpon>
     </Compile>
@@ -147,16 +144,6 @@
     <Compile Include="LogInEmployee.xaml.cs">
       <DependentUpon>LogInEmployee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Car.cs" />
-    <Compile Include="Entities\Client.cs" />
-    <Compile Include="Entities\Colors.cs" />
-    <Compile Include="Entities\EFcontext.cs" />
-    <Compile Include="Entities\FuelType.cs" />
-    <Compile Include="Entities\Make.cs" />
-    <Compile Include="Entities\Model.cs" />
-    <Compile Include="Entities\Order.cs" />
-    <Compile Include="Entities\Purchase.cs" />
-    <Compile Include="Entities\TypeCar.cs" />
     <Compile Include="Extensions\ObservableExtension.cs" />
     <Compile Include="Properties\Resource.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -171,13 +158,6 @@
     <Compile Include="CarsWindows\MainCarsWindow.xaml.cs">
       <DependentUpon>MainCarsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ClientViewModels.cs" />
-    <Compile Include="ViewModels\MakeViewModels.cs" />
-    <Compile Include="ViewModels\ModelViewModels.cs" />
-    <Page Include="AddClients.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CarsWindows\AddNewCarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

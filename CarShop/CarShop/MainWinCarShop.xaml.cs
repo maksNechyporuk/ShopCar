@@ -60,13 +60,6 @@ namespace CarShop
             System.Windows.Application.Current.Shutdown();
         }
 
-        private void BtnAddClients_Click(object sender, RoutedEventArgs e)
-        {
-            AddClients addClients = new AddClients();
-
-            addClients.Show();
-        }
-
         private void BtnShowClients_Click(object sender, RoutedEventArgs e)
         {
             ShowClients showClients = new ShowClients();
