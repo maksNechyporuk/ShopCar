@@ -232,5 +232,23 @@ namespace CarShop.ClientsWindows
             mes = mes.Trim('"');
             MessageBox.Show(mes);
         }
+
+        private void TxtName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtName.BorderBrush = System.Windows.Media.Brushes.Gray;
+            lblNameError.Content = "";
+        }
+
+        private void TxtNumber_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtNumber.BorderBrush = System.Windows.Media.Brushes.Gray;
+            lblPhoneError.Content = "";
+        }
+
+        private void TxtEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtEmail.BorderBrush = System.Windows.Media.Brushes.Gray;
+            lblEmailError.Content = "";
+        }
     }
 }

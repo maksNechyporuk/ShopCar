@@ -43,17 +43,17 @@
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
-        <TextBox x:Name="txtNumber" HorizontalAlignment="Left" Height="23" Margin="201,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.142,0.435"/>
+        <TextBox x:Name="txtNumber" HorizontalAlignment="Left" Height="23" Margin="201,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.142,0.435" TextChanged="TxtNumber_TextChanged"/>
         <Label Content="Номер телефону клієнта :" HorizontalAlignment="Left" Margin="201,2,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
         <Button x:Name="btnFindClient" Content="Знайти" HorizontalAlignment="Left" Margin="368,101,0,0" VerticalAlignment="Top" Width="221" Height="49" Click="BtnFindClient_Click" />
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="7,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" RenderTransformOrigin="0.142,0.435"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="7,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" RenderTransformOrigin="0.142,0.435" TextChanged="TxtName_TextChanged"/>
         <Label Content="Ім'я клієнта :" HorizontalAlignment="Left" Margin="47,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
         <Button Content="Відмінити пошук" HorizontalAlignment="Left" Margin="368,170,0,0" VerticalAlignment="Top" Width="221" Height="49" Click="Button_Click"/>
         <Button x:Name="btnAddClient" Content="Додати клієнта" HorizontalAlignment="Left" Margin="368,238,0,0" VerticalAlignment="Top" Width="221" Height="49" Click="BtnAddClient_Click" RenderTransformOrigin="0.48,1.184"/>
         <Label x:Name="lblPhoneError" Content="" HorizontalAlignment="Left" Margin="201,61,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.5,0.5"/>
         <Label x:Name="lblNameError" Content="" HorizontalAlignment="Left" Margin="7,61,0,0" VerticalAlignment="Top" Width="169"/>
         <Button x:Name="btnDeleteClient" Content="Видалити клієнта" HorizontalAlignment="Left" Margin="368,308,0,0" VerticalAlignment="Top" Width="221" Height="47" Click="BtnDeleteClient_Click" IsEnabled="False"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="395,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.748,0.652"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="395,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.748,0.652" TextChanged="TxtEmail_TextChanged"/>
         <Label x:Name="lblEmailError" Content="" HorizontalAlignment="Left" Margin="395,61,0,0" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.497,0.462"/>
         <Label Content="Електронна пошта клієнта :" HorizontalAlignment="Left" Margin="395,3,0,0" VerticalAlignment="Top" Width="163"/>
         <Button x:Name="btnAcceptChanges" Content="Підтвердити&#xD;&#xA;редагування&#xD;&#xA;    клієнта" HorizontalAlignment="Left" Margin="469,376,0,0" VerticalAlignment="Top" Width="120" Height="99" Click="BtnAcceptChanges_Click" IsEnabled="False"/>
