@@ -66,6 +66,21 @@ namespace ServiceDLL.Concrete
             return Task.Run(() => Delete(make));
         }
 
+        public int GetMakeByModels(int model)
+        {
+            string _url = $"https://localhost:44381/api/filters/GetMakeByModels?id={model}";
+            var client = new WebClient();
+            client.Encoding = ASCIIEncoding.UTF8;
+            string data = client.DownloadString(_url);
+            var list = JsonConvert.DeserializeObject<int>(data);
+            return list;
+        }
+
+        public Task<int> GetMakeByModelsAsync(int model)
+        {
+            return Task.Run(() => GetMakeByModelsAsync(model));
+        }
+
         public List<MakeVM> GetMakes(string make)
         {
             if (make == "")

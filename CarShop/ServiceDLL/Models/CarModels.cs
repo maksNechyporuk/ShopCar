@@ -28,6 +28,7 @@ namespace ServiceDLL.Models
     }
     public class CarAddVM
     {
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public string MainImage { get; set; }
         public List<string> AdditionalImage { get; set; }
@@ -37,8 +38,9 @@ namespace ServiceDLL.Models
         public string Name { get; set; }
 
     }
-    public class CarUpdateVM
+    public class CarUpdateVM       
     {
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public string MainImage { get; set; }
         public List<string> AdditionalImage { get; set; }

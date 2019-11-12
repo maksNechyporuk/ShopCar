@@ -9,6 +9,7 @@ namespace ServiceDLL.Interfaces
 {
     interface IFilterService
     {
+        
         List<FNameViewModel> GetFilters();
         Task<List<FNameViewModel>> GetFiltersAsync();
         string Create(FilterAddVM name);

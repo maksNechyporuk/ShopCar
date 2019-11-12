@@ -28,7 +28,6 @@ namespace ServiceDLL.Concrete
             Stream newStream = http.GetRequestStream();
             newStream.Write(bytes, 0, bytes.Length);
             newStream.Close();
-
             var response = http.GetResponse();
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
@@ -40,7 +39,31 @@ namespace ServiceDLL.Concrete
         {
             return Task.Run(() => Create(model));
         }
+        public Task<string> UpdateAsyncFilterWithCars(FilterAddWithCarVM model)
+        {
+            return Task.Run(() => UpdateFilterWithCars(model));
+        }
 
+        public string UpdateFilterWithCars(FilterAddWithCarVM model)
+        {
+            var http = (HttpWebRequest)WebRequest.Create(new Uri(_url + "/UpdateFilterWithCars"));
+            http.Accept = "application/json";
+            http.ContentType = "application/json";
+            http.Method = "POST";
+
+            string parsedContent = JsonConvert.SerializeObject(model);
+            UTF8Encoding encoding = new UTF8Encoding();
+            Byte[] bytes = encoding.GetBytes(parsedContent);
+            Stream newStream = http.GetRequestStream();
+            newStream.Write(bytes, 0, bytes.Length);
+            newStream.Close();
+
+            var response = http.GetResponse();
+            var stream = response.GetResponseStream();
+            var sr = new StreamReader(stream);
+            var content = sr.ReadToEnd();
+            return content.ToString();
+        }
         public Task<string> CreateAsyncFilterWithCars(FilterAddWithCarVM model)
         {
             return Task.Run(() => CreateFilterWithCars(model));
@@ -192,7 +215,7 @@ namespace ServiceDLL.Concrete
             throw new NotImplementedException();
         }
 
-        public string Update(CarVM model)
+        public int Update(CarAddVM model)
         {
             var http = (HttpWebRequest)WebRequest.Create(new Uri(_url));
             http.Accept = "application/json";
@@ -210,10 +233,10 @@ namespace ServiceDLL.Concrete
             var stream = response.GetResponseStream();
             var sr = new StreamReader(stream);
             var content = sr.ReadToEnd();
-            return content.ToString();
+            return int.Parse(content.ToString());
         }
 
-        public Task<string> UpdateAsync(CarVM model)
+        public Task<int> UpdateAsync(CarAddVM model)
         {
             return Task.Run(() => Update(model));
         }
