@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop.EmployeersWindows"
         mc:Ignorable="d"
-        Title="AddEmployee" Height="330" Width="302">
+        Title="Реєстрація" Height="337" Width="307">
     <Grid>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="10,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
-        <Label Content="Name: " HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email: " HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ім'я: " HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top"/>
+        <Label Content="Емейл: " HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="10,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
-        <Label Content="Password: " HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пароль: " HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="10,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
-        <Button x:Name="btnAddEmployee" Content="Add new employee" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Width="274" Click="Button_Click"/>
+        <Button x:Name="btnAddEmployee" Content="Додати працівника " HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Width="274" Click="Button_Click"/>
         <Label x:Name="lblEmail" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Width="274" Height="22" FontSize="9"/>
         <Label x:Name="lblPassword" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" Width="274" Height="22" FontSize="9"/>
         <Label x:Name="lblName" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="274" Height="22" FontSize="9"/>

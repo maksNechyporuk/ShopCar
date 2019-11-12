@@ -1,6 +1,4 @@
-﻿using CarShop.Entities;
-using CarShop.ViewModels;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using System;
@@ -35,13 +33,13 @@ namespace CarShop
     {
         private ObservableCollection<ModelVM> ModelVM { get; set; }
 
-        private readonly EFcontext _context;
-        public static List<Make> dataSource = new List<Make>();
+        //private readonly EFcontext _context;
+        //public static List<Make> dataSource = new List<Make>();
        
         public AddNewModelWindow()
         {
             InitializeComponent();
-            _context = new EFcontext();
+            //_context = new EFcontext();
             this.cbMake.Focus();
             ModelVM = new ObservableCollection<ModelVM>();
             FillGrid();

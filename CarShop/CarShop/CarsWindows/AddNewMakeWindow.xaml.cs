@@ -1,6 +1,4 @@
-﻿using CarShop.Entities;
-using CarShop.ViewModels;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using System;

@@ -46,6 +46,7 @@ namespace CarShop.EmployeersWindows
 
         private async void BtnFindEmployee_Click(object sender, RoutedEventArgs e)
         {
+            RefreshLabels();
             UserApiService service = new UserApiService();
             users = await service.GetUserAsync(new UserVM { Email = txtEmail.Text, Name = txtName.Text });
             dgShowEmployees.ItemsSource = users;
@@ -53,6 +54,7 @@ namespace CarShop.EmployeersWindows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            RefreshLabels();
             FillDG();
             txtEmail.Text = "";
             txtName.Text = "";
@@ -70,6 +72,7 @@ namespace CarShop.EmployeersWindows
 
         private void BtnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
+            RefreshLabels();
             AddEmployee addEmployee = new AddEmployee();
             addEmployee.ShowDialog();
             FillDG();
@@ -78,6 +81,7 @@ namespace CarShop.EmployeersWindows
 
         private void BtnDeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
+            RefreshLabels();
             MessageBoxResult result = MessageBox.Show("Are you sure that you want to delete this employee ?","Delete", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
@@ -88,16 +92,20 @@ namespace CarShop.EmployeersWindows
             }
         }
 
+        private void RefreshLabels()
+        {
+            lblName.Foreground = Brushes.White;
+            lblEmail.Foreground = Brushes.White;
+            lblName.Content = "";
+            lblEmail.Content = "";
+        }
         private async void BtnEditEmployee_Click(object sender, RoutedEventArgs e)
         {
             UserApiService service = new UserApiService();
             int userid = 0;
             try
             {
-                lblName.Foreground = Brushes.White;
-                lblEmail.Foreground = Brushes.White;
-                lblName.Content = "";
-                lblEmail.Content = "";
+                RefreshLabels();
                 if (dgShowEmployees.SelectedItem != null)
                 {
                     userid = (dgShowEmployees.SelectedItem as UserVM).Id;

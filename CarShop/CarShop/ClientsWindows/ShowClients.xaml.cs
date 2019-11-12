@@ -163,12 +163,15 @@ namespace CarShop.ClientsWindows
 
         private void DgShowClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
-            if (client == dgShowClients.SelectedItem)
+            if (dgShowClients.SelectedItem != null)
             {
+               if(dgShowClients.SelectedItem is ClientDataGridVM)
+                {
+                ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
                 btnChoose.IsEnabled = true;
                 btnAcceptChanges.IsEnabled = true;
                 btnDeleteClient.IsEnabled = true;
+                }
             }
         }
         void ShowException(WebException wex)
@@ -228,6 +231,24 @@ namespace CarShop.ClientsWindows
         {
             mes = mes.Trim('"');
             MessageBox.Show(mes);
+        }
+
+        private void TxtName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtName.BorderBrush = System.Windows.Media.Brushes.Gray;
+            lblNameError.Content = "";
+        }
+
+        private void TxtNumber_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtNumber.BorderBrush = System.Windows.Media.Brushes.Gray;
+            lblPhoneError.Content = "";
+        }
+
+        private void TxtEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtEmail.BorderBrush = System.Windows.Media.Brushes.Gray;
+            lblEmailError.Content = "";
         }
     }
 }
