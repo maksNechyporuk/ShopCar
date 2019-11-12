@@ -23,10 +23,10 @@ namespace ServiceDLL.Interfaces
         Task<List<CarsByFilterVM>> GetCarsByFiltersAsync(int[] id);
         int Create(CarAddVM model);
         string Delete(CarDeleteVM model);
-        string Update(CarVM model);
+        int Update(CarAddVM model);
         Task<string> DeleteAsync(CarDeleteVM model);
         Task<int> CreateAsync(CarAddVM model);
-        Task<string> UpdateAsync(CarVM model);
+        Task<int> UpdateAsync(CarAddVM model);
         List<string> GetImagesBySize(string path, string size);
         Task<List<string>> GetImagesBySizeAsync(string path, string size);
     }
