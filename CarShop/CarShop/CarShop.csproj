@@ -135,7 +135,7 @@
     <Compile Include="CarsWindows\UpdateCarsWindow.xaml.cs">
       <DependentUpon>UpdateCarsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ClientsWindows\OrderVerification.xaml.cs">
+    <Compile Include="OrderWindows\OrderVerification.xaml.cs">
       <DependentUpon>OrderVerification.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClientsWindows\ShowClients.xaml.cs">
@@ -151,6 +151,12 @@
       <DependentUpon>LogInEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ObservableExtension.cs" />
+    <Compile Include="OrderWindows\SelectClientWindow.xaml.cs">
+      <DependentUpon>SelectClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderWindows\ShowOrderWindow.xaml.cs">
+      <DependentUpon>ShowOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resource.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -188,7 +194,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ClientsWindows\OrderVerification.xaml">
+    <Page Include="OrderWindows\OrderVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +226,14 @@
       <DependentUpon>MainWinCarShop.xaml</DependentUpon>
     </Compile>
     <Page Include="CarsWindows\MainCarsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderWindows\SelectClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderWindows\ShowOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
