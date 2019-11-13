@@ -7,20 +7,24 @@
         mc:Ignorable="d"
         Title="UpdateCarsWindow" Height="835" Width="1545" WindowStartupLocation="CenterScreen">
     <Grid Name="MainGrid">
-        <StackPanel Name="spLitleCarsPhoto" HorizontalAlignment="Left" Height="Auto" Margin="744,10,0,0" VerticalAlignment="Top" Width="108"/>
-        <Button Name="btnMainImg" Click="BtnMainImg_Click"  Content="Добавити головне фото" Height="64" Margin="1097,732,228.4,9.6"/>
-        <Image Name="BigPhoto"  Margin="852,0,0.4,331.6" Stretch="Fill"/>
-        <ScrollViewer  CanContentScroll="True"  Margin="0,0,1082.4,0.6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="641*"/>
+            <ColumnDefinition Width="896*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Name="spLitleCarsPhoto" HorizontalAlignment="Left" Height="Auto" Margin="103.149,10,0,0" VerticalAlignment="Top" Width="108" Grid.Column="1"/>
+        <Button Name="btnMainImg" Click="BtnMainImg_Click"  Content="Добавити головне фото" Height="64" Margin="456.149,732,228,8" Grid.Column="1"/>
+        <Image Name="BigPhoto"  Margin="211.149,0,0,332" Stretch="Fill" Grid.Column="1"/>
+        <ScrollViewer  CanContentScroll="True"  Margin="0,0,185.851,1">
             <WrapPanel Name="spCars" HorizontalAlignment="Left" Height="796" VerticalAlignment="Top" Width="419"/>
         </ScrollViewer>
-        <DatePicker HorizontalAlignment="Left" Name="dpDate" Margin="461,134,0,0" VerticalAlignment="Top" Height="29" Width="210"/>
-        <Label Content="Дата виготовлення" FontSize="18" HorizontalAlignment="Left" Margin="461,77,0,0" VerticalAlignment="Top" Height="52" Width="182"/>
-        <Label Content="Ціна" FontSize="18" HorizontalAlignment="Left" Margin="461,168,0,0" VerticalAlignment="Top" Height="42" Width="182"/>
-        <TextBox FontSize="15" HorizontalAlignment="Left" Height="37" Margin="461,215,0,0" TextWrapping="Wrap" Text="" Name="txtPrice" VerticalAlignment="Top" Width="210"/>
-        <Label Content="Кількість" FontSize="18" HorizontalAlignment="Left" Margin="461,257,0,0" VerticalAlignment="Top" Height="42" Width="182"/>
-        <TextBox FontSize="15" HorizontalAlignment="Left" Height="37" Margin="461,311,0,0" TextWrapping="Wrap" Text="" x:Name="txtCount" VerticalAlignment="Top" Width="210"/>
-        <Button x:Name="btnAdditionalImg" Click="BtnAdditionalImg_Click"  Content="Добавити додаткові фото" Height="64" Margin="879,732,446.4,9.6"/>
-        <Button x:Name="btnUpdate" Click="BtnUpdate_Click"  Content="Оновити дані" Height="64" Margin="1315,732,10.4,9.6"/>
-        <Button x:Name="btnDeleteImg" Click="BtnDeleteImg_Click"  Content="Видалити фото" Height="64" Margin="661,732,664.4,9.6"/>
+        <DatePicker HorizontalAlignment="Left" Name="dpDate" Margin="461,134,0,0" VerticalAlignment="Top" Height="29" Width="210" Grid.ColumnSpan="2"/>
+        <Label Content="Дата виготовлення" FontSize="18" HorizontalAlignment="Left" Margin="461,77,0,0" VerticalAlignment="Top" Height="52" Width="182" Grid.ColumnSpan="2"/>
+        <Label Content="Ціна" FontSize="18" HorizontalAlignment="Left" Margin="461,168,0,0" VerticalAlignment="Top" Height="42" Width="182" Grid.ColumnSpan="2"/>
+        <TextBox FontSize="15" HorizontalAlignment="Left" Height="37" Margin="461,215,0,0" TextWrapping="Wrap" Text="" Name="txtPrice" VerticalAlignment="Top" Width="210" Grid.ColumnSpan="2"/>
+        <Label Content="Кількість" FontSize="18" HorizontalAlignment="Left" Margin="461,257,0,0" VerticalAlignment="Top" Height="42" Width="182" Grid.ColumnSpan="2"/>
+        <TextBox FontSize="15" HorizontalAlignment="Left" Height="37" Margin="461,311,0,0" TextWrapping="Wrap" Text="" x:Name="txtCount" VerticalAlignment="Top" Width="210" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnAdditionalImg" Click="BtnAdditionalImg_Click"  Content="Добавити додаткові фото" Height="64" Margin="238.149,732,446,8" Grid.Column="1"/>
+        <Button x:Name="btnUpdate" Click="BtnUpdate_Click"  Content="Оновити дані" Height="64" Margin="674.149,732,10,8" Grid.Column="1"/>
+        <Button x:Name="btnDeleteImg" Click="BtnDeleteImg_Click"  Content="Видалити фото" Height="64" Margin="20.149,732,664,8" Grid.Column="1"/>
     </Grid>
 </Window>
