@@ -85,13 +85,13 @@ namespace CarShop
             CarApiService serviceCars = new CarApiService();
             var listCars = await serviceCars.GetCarsAsync();
             CarVM.Clear();
-            CarVM.AddRange(listCars);         
+            CarVM.AddRange(listCars);
             FillFiltersWP();
             FillCarsWP();
             Spinner.Opacity=0;
 
         }
-         void  FillCarsWP()
+        async void  FillCarsWP()
         {
 
             wpCars.Children.Clear();
@@ -144,7 +144,11 @@ namespace CarShop
             MenuItem menu = sender as MenuItem;
 
             CarApiService service = new CarApiService();
-            await service.DeleteAsync(new CarDeleteVM { Id = menu.TabIndex });
+            await service.DeleteAsync(new CarDeleteVM { Id = menu.TabIndex }); CarApiService serviceCars = new CarApiService();
+            var listCars = await serviceCars.GetCarsAsync();
+            CarVM.Clear();
+            CarVM.AddRange(listCars);
+            FillCarsWP();
         }
 
         private async void ItemMenu_Click(object sender, RoutedEventArgs e)
@@ -153,8 +157,13 @@ namespace CarShop
             CarApiService service = new CarApiService();
             var list = await service.GetCarForUpdateAsync(menu.TabIndex);
             UpdateCarsWindow window = new UpdateCarsWindow(list);
-            window.ShowDialog();
-           
+            window.ShowDialog(); CarApiService serviceCars = new CarApiService();
+            var listCars = await serviceCars.GetCarsAsync();
+            CarVM.Clear();
+            CarVM.AddRange(listCars);
+            FillCarsWP();
+
+
         }
 
         private async void Wp_MouseDown(object sender, MouseButtonEventArgs e)

@@ -86,6 +86,7 @@
     <Compile Include="Concrete\FilterApiService.cs" />
     <Compile Include="Concrete\MakeApiService.cs" />
     <Compile Include="Concrete\ModelApiService.cs" />
+    <Compile Include="Concrete\OrderApiService.cs" />
     <Compile Include="Concrete\UserApiService.cs" />
     <Compile Include="Data\ContextMigrationConfiguration.cs" />
     <Compile Include="Data\Credential.cs" />
@@ -96,12 +97,14 @@
     <Compile Include="Interfaces\IFilterService.cs" />
     <Compile Include="Interfaces\IMakeService.cs" />
     <Compile Include="Interfaces\IModelService.cs" />
+    <Compile Include="Interfaces\IOrderSevice.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Models\CarModels.cs" />
     <Compile Include="Models\ClientModels.cs" />
     <Compile Include="Models\FilterModels.cs" />
     <Compile Include="Models\MakeModels.cs" />
     <Compile Include="Models\ModelModels.cs" />
+    <Compile Include="Models\OrderModels.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

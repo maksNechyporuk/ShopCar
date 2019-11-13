@@ -1,4 +1,5 @@
-﻿using ServiceDLL.Concrete;
+﻿using CarShop.OrderWindows;
+using ServiceDLL.Concrete;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
@@ -82,6 +83,11 @@ namespace CarShop.CarsWindows
         {
             var b = sender as StackPanel;
             BigPhoto.Source = bigImg[int.Parse(b.Tag.ToString())].Source;
+        }
+        private void BtnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            SelectClientWindow window = new SelectClientWindow(new OrderVM { Car = _car });
+            window.ShowDialog();
         }
     }
 }
