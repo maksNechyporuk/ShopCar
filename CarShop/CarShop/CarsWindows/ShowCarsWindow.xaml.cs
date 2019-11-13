@@ -89,8 +89,13 @@ namespace CarShop
                 wp.Children.Add(new Label() { Content = "Ціна "+item.Price, FontSize = 15, FontStyle = FontStyle, Margin= new Thickness(5, 5, 5, 5), Height = 63, Width = 250 });
                 ContextMenu update = new ContextMenu() {TabIndex=item.Id };
                 MenuItem itemMenu = new MenuItem() {Header="Редагувати", TabIndex = item.Id };
+                MenuItem DeleteMenu = new MenuItem() { Header = "Видалити", TabIndex = item.Id };
+
+                DeleteMenu.Click += DeleteMenu_Click;
                 itemMenu.Click += ItemMenu_Click;
                 update.Items.Add(itemMenu);
+                update.Items.Add(DeleteMenu);
+
                 wp.ContextMenu = update;
                 Grid.SetColumn(wp, j);
                 Grid.SetRow(wp, i);
@@ -103,6 +108,14 @@ namespace CarShop
                 }
 
             }          
+        }
+
+        private async void DeleteMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menu = sender as MenuItem;
+
+            CarApiService service = new CarApiService();
+            await service.DeleteAsync(new CarDeleteVM { Id = menu.TabIndex });
         }
 
         private async void ItemMenu_Click(object sender, RoutedEventArgs e)

@@ -108,6 +108,7 @@ namespace CarShop.CarsWindows
             models.Name = "Модель";
             models.Width = 150;
             models.Margin = new Thickness(5, 15, 10, 15);
+            id = new int[FilterVM.Count];
             foreach (var item in FilterVM)
             {
                 if (item.Name == "Модель")
@@ -120,6 +121,8 @@ namespace CarShop.CarsWindows
                             if (BoxItem.TabIndex == value)
                             {
                                 models.SelectedItem = BoxItem;
+                                id[id.Count()-1] = BoxItem.TabIndex;
+
                                 FillMake(value);
                             }
                         }
@@ -137,7 +140,7 @@ namespace CarShop.CarsWindows
             spCars.Children.Add(Name);
             models.SelectionChanged += Models_SelectionChanged;
             spCars.Children.Add(models);
-            id = new int[FilterVM.Count];
+           
             int i = 0;
             foreach (var item in FilterVM)
             {
@@ -161,6 +164,8 @@ namespace CarShop.CarsWindows
                             if (BoxItem.TabIndex == value)
                             {
                                 box.SelectedItem = BoxItem;
+                                id[int.Parse(box.TabIndex.ToString())] = BoxItem.TabIndex;
+
                             }
                         }
                     }
@@ -233,8 +238,15 @@ namespace CarShop.CarsWindows
             l.AddRange(apiService.GetModelsByMake(item.TabIndex));
             foreach (var name in l)
             {
+
                 foreach (var children in name.Children)
-                    models.Items.Add(new ComboBoxItem() { Content = children.Name, Tag = children.Id });
+                {
+                    var el = new ComboBoxItem() { Content = children.Name, TabIndex = children.Id };
+                    models.Items.Add(el);
+
+                }
+
+              
             }
         }
 
