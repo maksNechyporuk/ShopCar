@@ -210,9 +210,9 @@ namespace ServiceDLL.Concrete
             return list;
         }
 
-        public List<FNameViewModel> GetModelsByMakeAsync(int id)
+        public Task<List<FNameViewModel>> GetModelsByMakeAsync(int id)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => GetModelsByMake(id));
         }
 
         public int Update(CarAddVM model)
@@ -241,6 +241,34 @@ namespace ServiceDLL.Concrete
             return Task.Run(() => Update(model));
         }
 
+        public List<CarsByFilterVM> GetCarsByFilterSearch(int[] id, string name)
+        {
+            string path;
+            if (id.Length != 0)
+            { 
+                path = "?value=" + id[0];
+            for (int i = 1; i < id.Length; i++)
+            {
+                path += "&value=" + id[i];
+            }
+                path += "&name=" + name;
+            }
+            else
+            {
+                path = "?name=" + name;
 
+            }
+            string _url = @"https://localhost:44381/api/cars/CarsByFilter/" + path;
+            var client = new WebClient();
+            client.Encoding = ASCIIEncoding.UTF8;
+            string data = client.DownloadString(_url);
+            var list = JsonConvert.DeserializeObject<List<CarsByFilterVM>>(data);
+            return list;
+        }
+
+        public Task<List<CarsByFilterVM>> GetCarsByFilterSearchAsync(int[] id, string name)
+        {
+            return Task.Run(() => GetCarsByFilterSearch(id,name));
+        }
     }
 }
