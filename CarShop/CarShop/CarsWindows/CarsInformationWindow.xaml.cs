@@ -70,6 +70,7 @@ namespace CarShop.CarsWindows
             }
             BigPhoto.Source = bigImg[0].Source;
             lblPrice.Content += _car.Price.ToString();
+            lblDate.Content += _car.Date.ToString("dd/MM/yyyy");
             spCharacteristics.Children.Add(new Label { Content = "Характеристики авто", FontSize = 25 });
 
             foreach (var item in _car.filters)

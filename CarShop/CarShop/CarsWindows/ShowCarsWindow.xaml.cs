@@ -43,9 +43,38 @@ namespace CarShop
             GetFilters();
 
         }
-        private void TxtSearchCar_TextChanged(object sender, TextChangedEventArgs e)
+        private async void TxtSearchCar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            throw new NotImplementedException();
+           
+           
+
+            List<CheckBox> box = new List<CheckBox>();
+            foreach (var item in wpFilters.Children)
+            {
+                if (item.GetType() == typeof(CheckBox))
+
+                    box.Add(item as CheckBox);
+            }
+            List<int> idValue = new List<int>();
+            foreach (var item in box)
+            {
+                if (item.IsChecked == true)
+                {
+                    idValue.Add((int)(item.Tag));
+                }
+            }
+            CarApiService service = new CarApiService();
+            var listCars = await service.GetCarsByFilterSearchAsync(idValue.ToArray(), txtSearchCar.Text);
+            if (listCars.Count == 0)
+            {
+                var lbl = new Label { Content = "Даних незнайдено", FontSize = 20, Margin = new Thickness(5, 5, 5, 5) };
+                Grid.SetColumn(lbl, 1);
+                Grid.SetRow(lbl, 3);
+                wpCars.Children.Add(lbl);
+            }
+                CarVM.Clear();
+            CarVM.AddRange(listCars);
+            FillCarsWP();
         }
         async  void GetFilters()
         {
@@ -177,7 +206,7 @@ namespace CarShop
                 }
             }
             CarApiService service = new CarApiService();
-            var list= await service.GetCarsByFiltersAsync(idValue.ToArray());
+            var list= await service.GetCarsByFilterSearchAsync(idValue.ToArray(),txtSearchCar.Text);
             CarVM.Clear();
             CarVM.AddRange(list);
             FillCarsWP();

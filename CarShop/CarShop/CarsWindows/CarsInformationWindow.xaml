@@ -15,7 +15,8 @@
             <StackPanel Name="spLitleCarsPhoto" HorizontalAlignment="Left" Height="Auto" Margin="-5,165,0,0" VerticalAlignment="Top" Width="108"/>
             <Label Content="Ціна " Name="lblPrice" HorizontalAlignment="Left" FontSize="20" Margin="1013,178,0,0" VerticalAlignment="Top" Height="51" Width="345"/>
             <StackPanel Name="spCharacteristics"  HorizontalAlignment="Left" Height="auto" Margin="108,775,0,0" VerticalAlignment="Top" Width="auto"/>
-            <Button Content="Оформити замовлення" FontSize="20" HorizontalAlignment="Left" Margin="1013,234,0,0" VerticalAlignment="Top" Width="315" Height="98"/>
+            <Button Content="Оформити замовлення" FontSize="20" HorizontalAlignment="Left" Margin="1013,363,0,0" VerticalAlignment="Top" Width="315" Height="98"/>
+            <Label Content="Дата виготовлення " x:Name="lblDate" HorizontalAlignment="Left" FontSize="20" Margin="1013,229,0,0" VerticalAlignment="Top" Height="51" Width="345"/>
 
         </Grid>
     </ScrollViewer>
