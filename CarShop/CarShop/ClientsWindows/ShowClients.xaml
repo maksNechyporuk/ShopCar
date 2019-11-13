@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarShop.ClientsWindows"
         mc:Ignorable="d"
-        Title="ShowClients" Height="579.151" Width="864.739">
+        Title="ShowClients" Height="638.151" Width="866.739">
     <Grid Margin="3,0,160,-21">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,92,136,0" Height="446" VerticalAlignment="Top" SelectionChanged="DgShowClients_SelectionChanged" Grid.ColumnSpan="2">
+        <DataGrid x:Name="dgShowClients" AutoGenerateColumns="False" Margin="0,92,136,0" Height="499" VerticalAlignment="Top" SelectionChanged="DgShowClients_SelectionChanged" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
@@ -32,7 +32,7 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Image x:Name="ImageClient" Grid.Column="0" Source="{Binding Image}" HorizontalAlignment="Left" Height="100" Margin="344,2,-120,0" VerticalAlignment="Top" Width="100"/>
+                            <Image x:Name="ImageClient" Grid.Column="0" Source="{Binding Image}" HorizontalAlignment="Left" Height="100" Margin="0,20,-120,0" VerticalAlignment="Top" Width="100"/>
 
                             <TextBlock Text="Name: " FontWeight="Bold" Grid.Column="0" Grid.Row="0" />
                             <TextBlock Text="{Binding Name}" Grid.Row="0"  Grid.Column="1" />
@@ -50,20 +50,21 @@
         </DataGrid>
         <TextBox x:Name="txtNumber" HorizontalAlignment="Left" Height="23" Margin="201,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.142,0.435" TextChanged="TxtNumber_TextChanged"/>
         <Label Content="Номер телефону клієнта :" HorizontalAlignment="Left" Margin="201,2,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
-        <Button x:Name="btnFindClient" Content="Знайти" HorizontalAlignment="Left" Margin="206,242,-120,0" VerticalAlignment="Top" Width="238" Height="49" Click="BtnFindClient_Click" RenderTransformOrigin="0.615,0.469" Grid.Column="1" />
+        <Button x:Name="btnFindClient" Content="Знайти" HorizontalAlignment="Left" Margin="205,294,-118,0" VerticalAlignment="Top" Width="238" Height="49" Click="BtnFindClient_Click" RenderTransformOrigin="0.615,0.469" Grid.Column="1" />
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="7,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="169" RenderTransformOrigin="0.142,0.435" TextChanged="TxtName_TextChanged"/>
         <Label Content="Ім'я клієнта :" HorizontalAlignment="Left" Margin="47,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.5"/>
-        <Button Content="Відмінити пошук" HorizontalAlignment="Left" Margin="206,308,-120,0" VerticalAlignment="Top" Width="238" Height="49" Click="Button_Click" Grid.Column="1"/>
-        <Button x:Name="btnAddClient" Content="Додати клієнта" HorizontalAlignment="Left" Margin="206,176,-120,0" VerticalAlignment="Top" Width="238" Height="49" Click="BtnAddClient_Click" RenderTransformOrigin="0.48,1.184" Grid.Column="1"/>
+        <Button Content="Відмінити пошук" HorizontalAlignment="Left" Margin="205,360,-118,0" VerticalAlignment="Top" Width="238" Height="49" Click="Button_Click" Grid.Column="1"/>
+        <Button x:Name="btnAddClient" Content="Додати клієнта" HorizontalAlignment="Left" Margin="205,228,-118,0" VerticalAlignment="Top" Width="238" Height="49" Click="BtnAddClient_Click" RenderTransformOrigin="0.48,1.184" Grid.Column="1"/>
         <Label x:Name="lblPhoneError" Content="" HorizontalAlignment="Left" Margin="201,61,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.5,0.5"/>
         <Label x:Name="lblNameError" Content="" HorizontalAlignment="Left" Margin="7,61,0,0" VerticalAlignment="Top" Width="169"/>
-        <Button x:Name="btnDeleteClient" Content="Видалити клієнта" HorizontalAlignment="Left" Margin="206,375,-120,0" VerticalAlignment="Top" Width="238" Height="47" Click="BtnDeleteClient_Click" IsEnabled="False" Grid.Column="1"/>
+        <Button x:Name="btnDeleteClient" Content="Видалити клієнта" HorizontalAlignment="Left" Margin="205,427,-118,0" VerticalAlignment="Top" Width="238" Height="47" Click="BtnDeleteClient_Click" IsEnabled="False" Grid.Column="1"/>
         <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="395,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.748,0.652" TextChanged="TxtEmail_TextChanged" Grid.ColumnSpan="2"/>
         <Label x:Name="lblEmailError" Content="" HorizontalAlignment="Left" Margin="395,61,0,0" VerticalAlignment="Top" Width="163" RenderTransformOrigin="0.497,0.462" Grid.ColumnSpan="2"/>
         <Label Content="Електронна пошта клієнта :" HorizontalAlignment="Left" Margin="395,3,0,0" VerticalAlignment="Top" Width="163" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnAcceptChanges" Content="Підтвердити&#xD;&#xA;редагування&#xD;&#xA;    клієнта" HorizontalAlignment="Left" Margin="324,439,-120,0" VerticalAlignment="Top" Width="120" Height="99" Click="BtnAcceptChanges_Click" IsEnabled="False" Grid.Column="1"/>
-        <Button x:Name="btnChoose" Content="Вибрати&#xD;&#xA;клієнта" HorizontalAlignment="Left" Margin="206,439,0,0" VerticalAlignment="Top" Width="96" Height="99" Click="BtnChoose_Click" IsEnabled="False" Grid.Column="1"/>
-        <Button x:Name="btnAddImg" Content="Додати фото клієнта" HorizontalAlignment="Left" Margin="206,110,-120,0" VerticalAlignment="Top" Width="238" Height="49" Grid.Column="1" Click="BtnAddImg_Click"/>
-        <Image x:Name="PhotoClient" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="344,2,-120,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="btnAcceptChanges" Content="Підтвердити&#xD;&#xA;редагування&#xD;&#xA;    клієнта" HorizontalAlignment="Left" Margin="324,492,-119,0" VerticalAlignment="Top" Width="120" Height="99" Click="BtnAcceptChanges_Click" IsEnabled="False" Grid.Column="1"/>
+        <Button x:Name="btnChoose" Content="Вибрати&#xD;&#xA;клієнта" HorizontalAlignment="Left" Margin="206,492,0,0" VerticalAlignment="Top" Width="96" Height="99" Click="BtnChoose_Click" IsEnabled="False" Grid.Column="1"/>
+        <Button x:Name="btnAddImg" Content="Додати фото клієнта" HorizontalAlignment="Left" Margin="205,162,-118,0" VerticalAlignment="Top" Width="238" Height="49" Grid.Column="1" Click="BtnAddImg_Click"/>
+        <Image x:Name="PhotoClient" Grid.Column="1" HorizontalAlignment="Left" Height="116" Margin="265,10,-59,0" VerticalAlignment="Top" Width="119"/>
+        <Label x:Name="lblPhotoError" Content="" HorizontalAlignment="Left" Margin="254,131,-76,0" VerticalAlignment="Top" Width="147" RenderTransformOrigin="0.497,0.462" Grid.Column="1"/>
     </Grid>
 </Window>
