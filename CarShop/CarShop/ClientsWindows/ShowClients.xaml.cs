@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using ServiceDLL.Concrete;
 using ServiceDLL.Helpers;
 using ServiceDLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -31,13 +33,13 @@ namespace CarShop.ClientsWindows
     {
         ClientApiService servise;
         List<ClientVM> client;
-
-        List<ClientDataGridVM> FillDGList(List<ClientVM> client)
+        string main_base64Image;
+        List<ClientVM> FillDGList(List<ClientVM> client)
         {
-            List<ClientDataGridVM> clientDG = new List<ClientDataGridVM>();
+            List<ClientVM> clientDG = new List<ClientVM>();
             foreach (var item in client)
             {
-                clientDG.Add(new ClientDataGridVM { Id = item.Id, Name = item.Name, Phone = item.Phone, Email = item.Email });
+                clientDG.Add(new ClientVM { Id = item.Id, Name = item.Name, Phone = item.Phone, Email = item.Email,Image=item.Image });
             }
             return clientDG;
 
@@ -52,7 +54,13 @@ namespace CarShop.ClientsWindows
 
         async void FillDG()
         {
+            var url = ConfigurationManager.AppSettings["siteURL"];
+
             client = await servise.GetClientsAsync(null);
+            foreach (var item in client)
+            {
+                item.Image = url + "/" + item.Image;
+            }
             dgShowClients.ItemsSource = FillDGList(client);
         }
 
@@ -93,7 +101,8 @@ namespace CarShop.ClientsWindows
                 txtName.Text = str2;
                 txtEmail.Text = str3;
                 ClientApiService service = new ClientApiService();
-                await service.CreateAsync(new ClientAddVM { Name = txtName.Text, Phone = txtNumber.Text, Email = txtEmail.Text });
+                await service.CreateAsync(new ClientAddVM { Name = txtName.Text, Phone = txtNumber.Text,Image = main_base64Image,Email = txtEmail.Text,UniqueName = Guid.NewGuid().ToString()
+            });
                 FillDG();
                 txtNumber.Text = "";
                 txtName.Text = "";
@@ -249,6 +258,31 @@ namespace CarShop.ClientsWindows
         {
             txtEmail.BorderBrush = System.Windows.Media.Brushes.Gray;
             lblEmailError.Content = "";
+        }
+
+        private void BtnAddImg_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) " +
+                "| *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            if (dlg.ShowDialog() == true)
+            {
+                PhotoClient.Source = new BitmapImage(new Uri(dlg.FileName));
+                var b = ConvertBitmapSourceToByteArray(PhotoClient.Source as BitmapSource);
+                main_base64Image = Convert.ToBase64String(b);
+            }
+        }     
+        public static byte[] ConvertBitmapSourceToByteArray(BitmapSource image)
+        {
+            byte[] data;
+            BitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(image));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                data = ms.ToArray();
+            }
+            return data;
         }
     }
 }
