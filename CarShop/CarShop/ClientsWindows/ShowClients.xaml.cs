@@ -89,6 +89,7 @@ namespace CarShop.ClientsWindows
                 lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
                 lblNameError.Foreground = System.Windows.Media.Brushes.White;
                 lblEmailError.Foreground = System.Windows.Media.Brushes.White;
+                lblPhotoError.Foreground = System.Windows.Media.Brushes.White;
                 lblPhoneError.Content = "";
                 lblNameError.Content = "";
                 lblEmailError.Content = "";
@@ -104,13 +105,16 @@ namespace CarShop.ClientsWindows
                 await service.CreateAsync(new ClientAddVM { Name = txtName.Text, Phone = txtNumber.Text,Image = main_base64Image,Email = txtEmail.Text,UniqueName = Guid.NewGuid().ToString()
             });
                 FillDG();
+                PhotoClient = null;
                 txtNumber.Text = "";
                 txtName.Text = "";
                 txtEmail.Text = "";
                 lblPhoneError.Content = "";
+                lblPhotoError.Content = "";
                 lblNameError.Content = "";
                 lblEmailError.Content = "";
                 lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
+                lblPhotoError.Foreground = System.Windows.Media.Brushes.White;
                 lblNameError.Foreground = System.Windows.Media.Brushes.White;
                 lblEmailError.Foreground = System.Windows.Media.Brushes.White;
             }
@@ -154,6 +158,7 @@ namespace CarShop.ClientsWindows
                 lblPhoneError.Foreground = System.Windows.Media.Brushes.White;
                 lblNameError.Foreground = System.Windows.Media.Brushes.White;
                 lblEmailError.Foreground = System.Windows.Media.Brushes.White;
+                lblPhotoError.Foreground = System.Windows.Media.Brushes.White;
             }
             catch (WebException wex)
             {
@@ -196,7 +201,8 @@ namespace CarShop.ClientsWindows
                         {
                             Name = "",
                             Phone = "",
-                            Email = ""
+                            Email = "",
+                            Image = ""
                         });
                         if (mes.Name != null)
                         {
@@ -228,9 +234,19 @@ namespace CarShop.ClientsWindows
                             else
                                 lblEmailError.Content = mes.Email;
                         }
+                        if (mes.Image != null)
+                        {
+                            if (mes.Image == "issue")
+                            {                            
+                                lblPhotoError.Visibility = Visibility;
+                            }
+                            else
+                                lblPhotoError.Content = mes.Image;
+                        }
                         lblNameError.Foreground = System.Windows.Media.Brushes.Red;
                         lblPhoneError.Foreground = System.Windows.Media.Brushes.Red;
                         lblEmailError.Foreground = System.Windows.Media.Brushes.Red;
+                        lblPhotoError.Foreground = System.Windows.Media.Brushes.Red;
 
                     }
                 }
