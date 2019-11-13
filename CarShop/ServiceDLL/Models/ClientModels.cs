@@ -14,6 +14,7 @@ namespace ServiceDLL.Models
         public string Name { get; set; }
 
         public string Phone { get; set; }
+        public string UniqueName { get; set; }
 
         public string Image { get; set; }
 
@@ -26,6 +27,7 @@ namespace ServiceDLL.Models
         public string Name { get; set; }
 
         public string Phone { get; set; }
+        public string UniqueName { get; set; }
 
         public string Email { get; set; }
 
@@ -35,6 +37,7 @@ namespace ServiceDLL.Models
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Image { get; set; }
+        public string UniqueName { get; set; }
         public string Email { get; set; }
     }
     public class ClientDeleteVM
