@@ -135,6 +135,9 @@
     <Compile Include="CarsWindows\UpdateCarsWindow.xaml.cs">
       <DependentUpon>UpdateCarsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClientsWindows\OrderVerification.xaml.cs">
+      <DependentUpon>OrderVerification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ClientsWindows\ShowClients.xaml.cs">
       <DependentUpon>ShowClients.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CarsWindows\UpdateCarsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientsWindows\OrderVerification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,7 +270,9 @@
       <Name>ServiceDLL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="CarShopBackground.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
