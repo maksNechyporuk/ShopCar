@@ -272,6 +272,7 @@ namespace CarShop.CarsWindows
                 Name = CarsMake + CarsModel
             });
             await service.UpdateAsyncFilterWithCars(new FilterAddWithCarVM { IdValue = id, IdCar = idCar });
+            this.Close();
         }
 
         private void BtnAdditionalImg_Click(object sender, RoutedEventArgs e)

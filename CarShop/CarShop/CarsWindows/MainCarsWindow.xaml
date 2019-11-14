@@ -10,10 +10,8 @@
         mc:Ignorable="d"
         Title="ShowCarWindow" Height="450" Width="800">
     <Grid>
-        <Button Name="btnShowCars" FontSize="20" Content="Автомобілі" HorizontalAlignment="Left" Margin="20,115,0,0" VerticalAlignment="Top" Width="242" Height="37" Click="BtnShowCars_Click"/>
-        <Button x:Name="btnAddNewCar" FontSize="15"  Content="Добавити новий автомобіль" Click="BtnAddNewCar_Click" HorizontalAlignment="Left" Margin="20,157,0,0" VerticalAlignment="Top" Width="242" Height="37"/>
-
-        <Button x:Name="btnAddMake"  Content="{x:Static  p:Resources.btnAddMake}" HorizontalAlignment="Left" Margin="349,19,0,0" VerticalAlignment="Top" Width="175" Height="37" Click="BtnAddMake_Click"/>
-        <Button x:Name="btnAddModel" Content="{x:Static  p:Resources.btnAddModel}"  HorizontalAlignment="Left" Margin="549,19,0,0" VerticalAlignment="Top" Width="154" Height="37" Click="BtnAddModel_Click"/>
+       
+        <Button Name="btnShowCars" FontSize="20" Content="Автомобілі" HorizontalAlignment="Left" Margin="107,202,0,0" VerticalAlignment="Top" Width="242" Height="37" Click="BtnShowCars_Click"/>
+        <Button x:Name="btnAddNewCar" FontSize="15"  Content="Добавити новий автомобіль" Click="BtnAddNewCar_Click" HorizontalAlignment="Left" Margin="445,202,0,0" VerticalAlignment="Top" Width="242" Height="37"/>
     </Grid>
 </Window>
