@@ -72,6 +72,10 @@ namespace CarShop.ClientsWindows
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             FillDG();
+            PhotoClient = null;
+            txtNumber.Text = "";
+            txtName.Text = "";
+            txtEmail.Text = "";
         }
 
         private async void BtnFindClient_Click(object sender, RoutedEventArgs e)
