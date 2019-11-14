@@ -44,10 +44,7 @@ namespace CarShop
 
         }
         private async void TxtSearchCar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
-           
-
+        {                      
             List<CheckBox> box = new List<CheckBox>();
             foreach (var item in wpFilters.Children)
             {
@@ -157,13 +154,12 @@ namespace CarShop
             CarApiService service = new CarApiService();
             var list = await service.GetCarForUpdateAsync(menu.TabIndex);
             UpdateCarsWindow window = new UpdateCarsWindow(list);
-            window.ShowDialog(); CarApiService serviceCars = new CarApiService();
+            window.ShowDialog();
+            CarApiService serviceCars = new CarApiService();
             var listCars = await serviceCars.GetCarsAsync();
             CarVM.Clear();
             CarVM.AddRange(listCars);
             FillCarsWP();
-
-
         }
 
         private async void Wp_MouseDown(object sender, MouseButtonEventArgs e)
@@ -219,8 +215,6 @@ namespace CarShop
             CarVM.Clear();
             CarVM.AddRange(list);
             FillCarsWP();
-        }
-
-     
+        }     
     }
 }
