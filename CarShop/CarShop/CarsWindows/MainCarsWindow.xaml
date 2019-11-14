@@ -10,8 +10,8 @@
         mc:Ignorable="d"
         Title="ShowCarWindow" Height="450" Width="800">
     <Grid>
-       
-        <Button Name="btnShowCars" FontSize="20" Content="Автомобілі" HorizontalAlignment="Left" Margin="107,202,0,0" VerticalAlignment="Top" Width="242" Height="37" Click="BtnShowCars_Click"/>
-        <Button x:Name="btnAddNewCar" FontSize="15"  Content="Добавити новий автомобіль" Click="BtnAddNewCar_Click" HorizontalAlignment="Left" Margin="445,202,0,0" VerticalAlignment="Top" Width="242" Height="37"/>
+
+        <Button Name="btnShowCars" FontSize="20" Content="Автомобілі" HorizontalAlignment="Left" Margin="107,152,0,0" VerticalAlignment="Top" Width="242" Height="47" Click="BtnShowCars_Click"/>
+        <Button x:Name="btnAddNewCar" FontSize="15"  Content="Добавити новий автомобіль" Click="BtnAddNewCar_Click" HorizontalAlignment="Left" Margin="445,152,0,0" VerticalAlignment="Top" Width="242" Height="47"/>
     </Grid>
 </Window>
