@@ -76,9 +76,14 @@ namespace CarShop.ClientsWindows
 
         private async void BtnFindClient_Click(object sender, RoutedEventArgs e)
         {
+            var url = ConfigurationManager.AppSettings["siteURL"];
 
             ClientApiService service = new ClientApiService();
             client = await service.GetClientsAsync(new ClientVM { Email = txtEmail.Text, Name = txtName.Text, Phone = txtNumber.Text });
+            foreach (var item in client)
+            {
+                item.Image = url + "/" + item.Image;
+            }
             dgShowClients.ItemsSource = client;
         }
 
@@ -126,7 +131,7 @@ namespace CarShop.ClientsWindows
 
         private void BtnDeleteClient_Click(object sender, RoutedEventArgs e)
         {
-            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+            ClientVM client = (ClientVM)dgShowClients.SelectedItem;
             MessageBoxResult result = MessageBox.Show("Ви впевнені,що хочете видалити клієнта " + client.Name + "?", "Видалення", MessageBoxButton.OKCancel);
             if (result == MessageBoxResult.OK)
             {
@@ -140,7 +145,7 @@ namespace CarShop.ClientsWindows
         {
             try
             {
-                ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+                ClientVM client = (ClientVM)dgShowClients.SelectedItem;
                 string str = txtNumber.Text;
                 string str2 = txtName.Text;
                 string str3 = txtEmail.Text;
@@ -169,7 +174,7 @@ namespace CarShop.ClientsWindows
         private void BtnChoose_Click(object sender, RoutedEventArgs e)
         {
             var item = dgShowClients.SelectedItem;
-            ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+            ClientVM client = (ClientVM)dgShowClients.SelectedItem;
             txtName.Text = client.Name;
             txtNumber.Text = client.Phone;
             txtEmail.Text = client.Email;
@@ -179,9 +184,9 @@ namespace CarShop.ClientsWindows
         {
             if (dgShowClients.SelectedItem != null)
             {
-               if(dgShowClients.SelectedItem is ClientDataGridVM)
+               if(dgShowClients.SelectedItem is ClientVM)
                 {
-                ClientDataGridVM client = (ClientDataGridVM)dgShowClients.SelectedItem;
+                ClientVM client = (ClientVM)dgShowClients.SelectedItem;
                 btnChoose.IsEnabled = true;
                 btnAcceptChanges.IsEnabled = true;
                 btnDeleteClient.IsEnabled = true;
