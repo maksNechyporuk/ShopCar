@@ -89,6 +89,8 @@ namespace CarShop.EmployeersWindows
                 var del_emp = (UserVM)dgShowEmployees.SelectedItem;
                 servise.Delete(new UserDeleteVM { Id = del_emp.Id });
                 FillDG();
+                txtEmail.Text = "";
+                txtName.Text = "";
             }
         }
 
